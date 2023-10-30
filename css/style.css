@@ -5,12 +5,12 @@
 }
 
 body {
-    background-color: black;
+    background-color: white;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 p {
-    color: white;
+    color: black;
 }
 
 .attrition,
@@ -320,4 +320,27 @@ p.bold {
 /* hide cursor */
 .showCursor {
     cursor: default;
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.stimuli-left {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+    margin-right: 10px; /* Adjust the right margin to your desired value */
+}
+.stimuli-middle,
+.stimuli-right {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+    margin-left: 10px; /* Adjust the left margin to your desired value */
+    margin-right: 10px; /* Adjust the right margin to your desired value */
 }

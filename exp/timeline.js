@@ -26,32 +26,68 @@ const fixation = {
     response_ends_trial: false,
 };
 
+const fixedReversal = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "reversal",
+    trial_duration: 5000,
+    response_ends_trial: false,
+    on_start: () => {},
+};
+
+const randomizeDecks = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "reversal",
+    trial_duration: 5000,
+    response_ends_trial: false,
+    on_start: () => {
+        let probabilityOrder = [];
+        probabilityOrder.append(shuffle(deepCopy(probabilityNames)));
+        // randomize deck contingencies
+        if (randomizeDecksOn) {
+            var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
+        while (tempProbabilityOrder.indexOf("high") == probabilityOrder.indexOf("high")) {
+            tempProbabilityOrder = shuffle(tempProbabilityOrder);
+        }
+    }
+};
+
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
 const trial = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: () => {
-        return (
-            '<p style="color: ' +
-            jsPsych.timelineVariable("colour", true) +
-            '">' +
-            jsPsych.timelineVariable("text", true) +
-            "</p>"
-        );
+        let html =
+            "<div class='image-container'>" +
+            "<img class='stimuli-left' src='" +
+            jsPsych.timelineVariable("left", true) +
+            "'>" +
+            "<img class='stimuli-middle' src='" +
+            jsPsych.timelineVariable("middle", true) +
+            "'>" +
+            "<img class='stimuli-right' src='" +
+            jsPsych.timelineVariable("right", true) +
+            "'>" +
+            "</div>";
+        return html;
     },
-    choices: ["n", "y"],
-    data: {
-        colour: jsPsych.timelineVariable("colour"),
-        text: jsPsych.timelineVariable("text"),
-        condition: jsPsych.timelineVariable("condition"),
-        workerId: workerId,
-        interview_date: today,
-    },
+    choices: ["1", "2", "3"],
+    // data: {
+    //     colour: jsPsych.timelineVariable("colour"),
+    //     text: jsPsych.timelineVariable("text"),
+    //     condition: jsPsych.timelineVariable("condition"),
+    //     workerId: workerId,
+    //     interview_date: today,
+    // },
 };
 
 /*define procedure*/
-const procedure = {
+const firstHalf = {
     timeline: [fixation, trial],
-    timeline_variables: stroopVariables,
+    timeline_variables: firstHalfChoices,
+};
+
+const secondHalf = {
+    timeline: [fixation, trial],
+    timeline_variables: secondHalfChoices,
 };
 
 const dataSave = {
