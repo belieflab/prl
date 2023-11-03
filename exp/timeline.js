@@ -45,10 +45,14 @@ const randomizeDecks = {
         // randomize deck contingencies
         if (randomizeDecksOn) {
             var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-        while (tempProbabilityOrder.indexOf("high") == probabilityOrder.indexOf("high")) {
-            tempProbabilityOrder = shuffle(tempProbabilityOrder);
+            while (
+                tempProbabilityOrder.indexOf("high") ==
+                probabilityOrder.indexOf("high")
+            ) {
+                tempProbabilityOrder = shuffle(tempProbabilityOrder);
+            }
         }
-    }
+    },
 };
 
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/

@@ -1,17 +1,22 @@
 # Probabalistic Reversal Learning Task
 
-easy/hard hard/easy easy/easy hard/hard
 4 blocks
 40 trails per block
+
 3 practice trials
- 
+
+## task versions
+easy/hard hard/easy easy/easy hard/hard
+
 expected uncertainty (probability reversal)
+"the encounter expected uncertainty as probability win or loss feedback (in different amojunts)
 "your job is to select the best deck" with the highest reward probability
 best check will change, find the best deck
 
 porbability of reward: [0.9, 0.5, 0.1] (easy)
 
 unexpected uncertainty (contigency shift)
+"re-assignment of reward probability between options"
 half way through the experiment, the best deck will change
 
 porbability of reward: [0.8, 0.4, 0.2] (hard)
@@ -33,7 +38,18 @@ two types of reversals:
         every 40 trials there is a reversal
         probabilities changes every 40 trails
         e.g. [0.9, 0.5, 0.1] -> [0.1, 0.9, 0.5] (reversal)
-        if (thisProbability == "high") {
+      
+2. performance-based reversals:
+        how the user performs
+        based off users performance
+        if user select the best deck 90% of the time, then the best deck will change (e.g.)
+        if (streak >= maxStreak) {
+                        randomizeDecksOn = true;
+                    }
+        you can get one strike and still maintain a streak
+        the second strike will reset both strike and streak
+
+          if (thisProbability == "high") {
                         streak += 1;
                     } else {
                         if (streak > 0) {
@@ -45,15 +61,11 @@ two types of reversals:
                             strikes = 0;
                         }
                     }
-2. performance-based reversals:
-        how the user performs
-        based off users performance
-        if user select the best deck 90% of the time, then the best deck will change (e.g.)
-        if (streak >= maxStreak) {
-                        randomizeDecksOn = true;
-                    }
-        you can get one strike and still maintain a streak
-        the second strike will reset both strike and streak
+
+                    streak increses up to 9
+                    you can keep streak if you get two strikes
+                    if you get three strikes, then streak and strikes reset
+
 
 at 81st trial there is a shift to the hard condition (and also a randomization of the deck probabilities)
 

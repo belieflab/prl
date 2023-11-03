@@ -76,7 +76,47 @@ switch (version) {
         var right = "stim/"+version+"/"+stimuliSet+"/"+stimuliColor[stimuliSet][2]+fileExtension;
         const deckPositions = [left, middle, right];
 
-        const probabilityNames = ["high", "medium", "low"];
+
+// Shuffles an array.
+const shuffle = (array) => {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex  = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue      = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex]  = temporaryValue;
+    }
+  
+    return array;
+  };
+
+  // Makes a deep copy of an object or array
+const deepCopy = (obj)=>  {
+    if (Object.prototype.toString.call(obj) === '[object Array]') {
+        var out = [], i = 0, len = obj.length;
+        for ( ; i < len; i++ ) {
+            out[i] = arguments.callee(obj[i]);
+        }
+        return out;
+    }
+    if (typeof obj === 'object') {
+        var out = {}, i;
+        for ( i in obj ) {
+            out[i] = arguments.callee(obj[i]);
+        }
+        return out;
+    }
+    return obj;
+}
+
+        let probabilityNames = ["high", "medium", "low"];
         let probabilityOrder = shuffle(deepCopy(probabilityNames));
 
         let deckColorOrder = shuffle(stimuliColor[[stimuliSet]]);
@@ -117,25 +157,6 @@ const randomIntFromInterval = (min, max) =>{
 
 
 
-// Shuffles an array.
-const shuffle = (array) => {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex  = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue      = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex]  = temporaryValue;
-    }
-  
-    return array;
-  }
 
 
 
@@ -148,9 +169,9 @@ let breakTrials = [];
 
 
 let streak = 0;
-let maxStreak = 9;
+const maxStreak = 9; // measure of volatility mu3 hgf
 let strikes = 0;
-let maxStrikes = 2;
+const maxStrikes = 2;
 let randomizeDecksOn = false;
 let interactiveInstructionsOn = false;
 
@@ -175,13 +196,13 @@ let score = 0;
 
 // Map probabilities to colors
 // uses lodash library for zipObject function
-let probabilityToColor = _.zipObject(probabilityOrder, deckColorOrder);
-let positionToProbability = _.zipObject(deckPositions, probabilityOrder);
-let probabilityToPosition = _.zipObject(probabilityOrder, deckPositions);
-let positionToColor = _.zipObject(deckPositions, deckColorOrder);
+// let probabilityToColor = _.zipObject(probabilityOrder, deckColorOrder);
+// let positionToProbability = _.zipObject(deckPositions, probabilityOrder);
+// let probabilityToPosition = _.zipObject(probabilityOrder, deckPositions);
+// let positionToColor = _.zipObject(deckPositions, deckColorOrder);
 // let keyToPosition = _.zipObject(responseKeyList, deckPositions);
 // let keyToProbability = _.zipObject(responseKeyList, probabilityOrder);
-let theseProbabilities = _.zipObject(probabilityNames, firstHalfProbabilities);
+// let theseProbabilities = _.zipObject(probabilityNames, firstHalfProbabilities);
 
 let trialProbabilityArray = [];
 
