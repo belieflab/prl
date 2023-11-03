@@ -9,6 +9,7 @@
 easy/hard hard/easy easy/easy hard/hard
 
 expected uncertainty (probability reversal)
+that each deck contains both winning and losing cards, but in different amounts
 "the encounter expected uncertainty as probability win or loss feedback (in different amojunts)
 "your job is to select the best deck" with the highest reward probability
 best check will change, find the best deck
