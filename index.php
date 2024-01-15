@@ -7,15 +7,18 @@ require_once 'exp/conf.php';
 <html>
 
 <head>
+  <!-- add the title of the experiment that would be seen in the browser -->
   <title><?php echo $experimentName; ?></title>
   <!-- PHP wrapper libraries -->
   <script type="text/javascript" src="db/validate.js"></script>
-  <script type="text/javascript" src="db/jquery-3.5.1.min.js"></script>
-  <!-- jsPsych CDN libraries -->
-  <script src="https://unpkg.com/jspsych@7.3.3"></script>
-  <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jQuery/jquery-3.5.1.min.js"></script>
+  <!-- jsPsych library -->
+  <script type="text/javascript" src="jsPsych/jspsych.js"></script>
   <!-- jsPsych Plugins (add more here) -->
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+  <script type="text/javascript" src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+  <script type="text/javascript" src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
+  <script type="text/javascript" src="jsPsych/plugins/jspsych-video-keyboard-response.js"></script>
+  <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css">
   </link>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -44,9 +47,8 @@ require_once 'exp/conf.php';
   ?>
 </body>
 <footer>
-  <!-- load experiment dependencies -->
-  <script type="text/javascript" src="exp/fn.js"></script>
   <script type="text/javascript" src="exp/lang.js"></script>
+  <script type="text/javascript" src="exp/fn.js"></script>
   <script type="text/javascript" src="exp/var.js"></script>
   <script>
     // show page when loaded 
