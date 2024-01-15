@@ -5,11 +5,11 @@ const jsPsych = initJsPsych({
     preload_images: [],
 });
 
-const timeline = [];
+let timeline = [];
 
 /*define instructions*/
-const instructions = {
-    type: jsPsychHtmlKeyboardResponse,
+let instructions = {
+    type: "html-keyboard-response",
     stimulus: `
     <p> Hello Ivy! Welcome to the server side experiment!</p>
     <p> In this experiment you will be presented with the words red and green. Please press the key "y" if the word is congruent or "n" if the word is incongruent </p>
