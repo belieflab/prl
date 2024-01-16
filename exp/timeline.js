@@ -9,7 +9,7 @@ let timeline = [];
 
 /*define instructions*/
 let instructions = {
-    type: "html-keyboard-response",
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: `
     <p> Hello Ivy! Welcome to the server side experiment!</p>
     <p> In this experiment you will be presented with the words red and green. Please press the key "y" if the word is congruent or "n" if the word is incongruent </p>
@@ -84,15 +84,15 @@ const trial = {
 };
 
 /*define procedure*/
-const firstHalf = {
-    timeline: [fixation, trial],
-    timeline_variables: firstHalfChoices,
-};
+// const firstHalf = {
+//     timeline: [fixation, trial],
+//     timeline_variables: firstHalfChoices,
+// };
 
-const secondHalf = {
-    timeline: [fixation, trial],
-    timeline_variables: secondHalfChoices,
-};
+// const secondHalf = {
+//     timeline: [fixation, trial],
+//     timeline_variables: secondHalfChoices,
+// };
 
 const dataSave = {
     type: jsPsychHtmlKeyboardResponse,

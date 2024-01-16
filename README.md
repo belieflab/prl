@@ -1,4 +1,9 @@
+## Dependencies
+PHP Version 7.x
+
 # Probabalistic Reversal Learning Task
+
+
 
 4 blocks
 40 trails per block

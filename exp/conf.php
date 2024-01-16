@@ -24,22 +24,62 @@ if (isset($_GET["PROLIFIC_PID"])) {
   $subjectId = $_GET["PROLIFIC_PID"];
 }
 
-if (isset($_GET["src_subject_id"])) {
-  $src_subject_id = $_GET["src_subject_id"];
-  $subjectId = $_GET["src_subject_id"];
-}
+if ($_GET["participantId"]) {
+    $participantId = $_GET["participantId"];
+    $subjectId = $_GET["participantId"];
+  }
 
-?>
+  if ($_GET["src_subject_id"]) {
+    $src_subject_id = $_GET["src_subject_id"];
+    $subjectId = $_GET["src_subject_id"];
+    
+    // these are omnibus data base variables which will get passed from participant portal
+    $studyId = $_GET["studyId"];
+    $candidateId = $_GET["candidateId"];
+    // these are NDA required variables which will get passed from participant portal
+    $subjectKey = $_GET["subjectkey"];
+    $consortId = $_GET["src_subject_id"];
+    $sexAtBirth = $_GET["sex"];
+    $institutionAlias = $_GET["site"];
+    $ageInMonths = $_GET["interview_age"];
+    $groupStatus = $_GET["phenotype"];
+    $visit = $_GET["visit"];
+  }
+
+/**
+ * Get the hash of the current git HEAD
+ * @param str $branch The git branch to check
+ * @return mixed Either the hash or a boolean false
+ */
+
+ function gitCommitHash( $branch='master' ) {
+    if ( $hash = file_get_contents( sprintf( '.git/refs/heads/%s', $branch ) ) ) {
+      return "version: ".strval(substr(trim($hash),-7));
+    } else {
+      return false;
+    }
+  }
+  ?>
 
 <script type="text/javascript">
     const experimentName = "<?php echo $experimentName; ?>";
     const experimentAlias = "<?php echo $experimentAlias; ?>";
     const workerId = "<?php echo $workerId; ?>";
     const PROLIFIC_PID = "<?php echo $PROLIFIC_PID; ?>";
+    const participantId = "<?php echo $participantId; ?>";
     let src_subject_id = "<?php echo $src_subject_id; ?>";
     let subjectId = "<?php echo $subjectId; ?>";
     const language = "<?php echo $language; ?>";
     const adminEmail = "joshua.kenney@yale.edu";
+    const feedbackLink = "https://belieflab.yale.edu/omnibus/eCRFs/feedback/tasks/kamin.php?candidateId=<?php echo $candidateId?>&studyId=<?php echo $studyId?>";
+    // these are NDA required variables which will get passed from participant portal 
+    const GUID = "<?php echo $subjectKey?>";
+    const subjectID = "<?php echo $consortId?>";
+    const sexAtBirth = "<?php echo $sexAtBirth?>";
+    const siteNumber = "<?php echo $institutionAlias?>";
+    const ageAtAssessment = "<?php echo $ageInMonths?>";
+    const groupStatus = "<?php echo $groupStatus?>";
+    const visit = "<?php echo $visit?>";
 </script>
 
 
@@ -74,7 +114,7 @@ switch (version) {
         var left = "stim/"+version+"/"+stimuliSet+"/"+stimuliColor[stimuliSet][0]+fileExtension;
         var middle = "stim/"+version+"/"+stimuliSet+"/"+stimuliColor[stimuliSet][1]+fileExtension;
         var right = "stim/"+version+"/"+stimuliSet+"/"+stimuliColor[stimuliSet][2]+fileExtension;
-        const deckPositions = [left, middle, right];
+        //const deckPositions = [left, middle, right];
 
 
 // Shuffles an array.
@@ -98,37 +138,37 @@ const shuffle = (array) => {
   };
 
   // Makes a deep copy of an object or array
-const deepCopy = (obj)=>  {
-    if (Object.prototype.toString.call(obj) === '[object Array]') {
-        var out = [], i = 0, len = obj.length;
-        for ( ; i < len; i++ ) {
-            out[i] = arguments.callee(obj[i]);
-        }
-        return out;
-    }
-    if (typeof obj === 'object') {
-        var out = {}, i;
-        for ( i in obj ) {
-            out[i] = arguments.callee(obj[i]);
-        }
-        return out;
-    }
-    return obj;
-}
+// const deepCopy = (obj)=>  {
+//     if (Object.prototype.toString.call(obj) === '[object Array]') {
+//         var out = [], i = 0, len = obj.length;
+//         for ( ; i < len; i++ ) {
+//             out[i] = arguments.callee(obj[i]);
+//         }
+//         return out;
+//     }
+//     if (typeof obj === 'object') {
+//         var out = {}, i;
+//         for ( i in obj ) {
+//             out[i] = arguments.callee(obj[i]);
+//         }
+//         return out;
+//     }
+//     return obj;
+// }
 
-        let probabilityNames = ["high", "medium", "low"];
-        let probabilityOrder = shuffle(deepCopy(probabilityNames));
+        // let probabilityNames = ["high", "medium", "low"];
+        // let probabilityOrder = shuffle(deepCopy(probabilityNames));
 
-        let deckColorOrder = shuffle(stimuliColor[[stimuliSet]]);
+        // let deckColorOrder = shuffle(stimuliColor[[stimuliSet]]);
 
 
-        var probabilityToColor = _.zipObject(probabilityOrder, deckColorOrder);
-        var positionToProbability = _.zipObject(deckPositions, probabilityOrder);
-        var probabilityToPosition = _.zipObject(probabilityOrder, deckPositions);
-        var positionToColor = _.zipObject(deckPositions, deckColorOrder);
-        var keyToPosition = _.zipObject(responseKeyList, deckPositions);
-        var keyToProbability = _.zipObject(responseKeyList, probabilityOrder);
-        var theseProbabilities = _.zipObject(probabilityNames, firstHalfProbabilities);
+        // var probabilityToColor = _.zipObject(probabilityOrder, deckColorOrder);
+        // var positionToProbability = _.zipObject(deckPositions, probabilityOrder);
+        // var probabilityToPosition = _.zipObject(probabilityOrder, deckPositions);
+        // var positionToColor = _.zipObject(deckPositions, deckColorOrder);
+        // var keyToPosition = _.zipObject(responseKeyList, deckPositions);
+        // var keyToProbability = _.zipObject(responseKeyList, probabilityOrder);
+        // var theseProbabilities = _.zipObject(probabilityNames, firstHalfProbabilities);
 
 
         break;
@@ -160,8 +200,8 @@ const randomIntFromInterval = (min, max) =>{
 
 
 
-let firstHalfProbabilities = probabilities[randomIntFromInterval(0, 0)];
-let secondHalfProbabilities = probabilities[randomIntFromInterval(1, 1)];
+// let firstHalfProbabilities = probabilities[randomIntFromInterval(0, 0)];
+// let secondHalfProbabilities = probabilities[randomIntFromInterval(1, 1)];
 let numBlocks = 4;
 let trialsPerBlock = 40;
 let totalTrials = numBlocks * trialsPerBlock;
