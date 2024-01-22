@@ -1,16 +1,27 @@
-## Dependencies
-PHP Version 7.x
-
 # Probabalistic Reversal Learning Task
+[Placeholder for description of PRL task]
+* Primary outcome variables (e.g., win-switching)
+* Description of PRL rule strategy, etc
+* Adopt task information from belieflab wiki
+## Dependencies
+PHP Version 7.x or PHP Version 8.x
+## Requirements: 
+* Transpile code from socialPRL (github.com/belieflab/socialPRL) to prl (github.com/belieflab/prl)
+* Add in Trevor's 'sabotage' version of PRL for a total of three PRL versions ('decks', 'avatars', 'sabotage')
+* Add in additional end-of-task questions
+* Have different language versions of the PRL
+## Responsibilities:
+* (Praveen and Josh) Compile PRL instructions in jsPsych framework
+
 
 
 
 4 blocks
-40 trails per block
+40 trials per block
 
 3 practice trials
 
-## task versions
+## task conditions
 easy/hard hard/easy easy/easy hard/hard
 
 expected uncertainty (probability reversal)

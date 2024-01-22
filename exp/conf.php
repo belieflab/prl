@@ -5,8 +5,8 @@
 //***********************************//
 
 // SET EXPERIMENT NAME
-$experimentName = 'Stroop Task';
-$experimentAlias = 'stroop';
+$experimentName = 'Probabilistic Reversal Learning Task';
+$experimentAlias = 'prl';
 
 // SELECT LANGUAGE
 $language = 'english';
@@ -15,6 +15,12 @@ $language = 'english';
 ?>
 <script type="text/javascript">
     const language = "<?php echo $language; ?>";
+    const version = "deck";
+    //const version = "avatar";
+    //const version = "sabotage";
+    const bonus = 2; // in dollars
+    const percentile = 25; // cut-off performance percentile for bonus
+
 </script>
 
 <?php

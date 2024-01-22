@@ -7,15 +7,21 @@ const jsPsych = initJsPsych({
 
 let timeline = [];
 
-/*define instructions*/
-let instructions = {
+/*define welcome message*/
+const welcome = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `
-    <p> Hello Ivy! Welcome to the server side experiment!</p>
-    <p> In this experiment you will be presented with the words red and green. Please press the key "y" if the word is congruent or "n" if the word is incongruent </p>
-    <p> Press Space to continue. </p>
+    <p> Welcome to the experiment!</p>
+    <p> Press any key to begin. </p>
     `,
-    key_forward: " ",
+    choice: "NO_KEYS",
+};
+
+/*define task instructions*/
+const instruction1 = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: instruction1_stim,
+    choice: "NO_KEYS",
 };
 
 /*add fixation*/

@@ -1,3 +1,4 @@
+// Purpose of var.js: To include all global variables (e.g., trialIterator) 
 let trialIterator = 1;
 
 /*define stroop_variables(stroop stimuli)*/
