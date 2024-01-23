@@ -1,6 +1,28 @@
 <?php
 require_once 'db/data.php';
 require_once 'exp/conf.php';
+$directoryDeck = 'stim/deck/0/';
+$directoryAvatar = 'stim/avatar/0/';
+$decks = scandir($directoryDeck);
+$avatars = scandir($directoryAvatar);
+$fileArrayDeck = [];
+$fileArrayAvatar = [];
+
+// deck is black, blue, red
+foreach ($decks as $deck) {
+  // removes . and .. from element vector
+  if ($deck !== '.' && $deck !== '..') {
+        $fileArrayDeck[] = $directoryDeck.$deck;
+  }
+}
+foreach ($avatars as $avatar) {
+  if ($avatar !== '.' && $avatar !== '..') {
+    $fileArrayAvatar[] = $directoryAvatar.$avatar;
+  }
+}
+
+$fileArrayDeckJSON = json_encode($fileArrayDeck);
+$fileArrayAvatarJSON = json_encode($fileArrayAvatar);
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +41,10 @@ require_once 'exp/conf.php';
   <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
   </link>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script>
+      const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
+    const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
+  </script>
 </head>
 
 <body id='unload' onbeforeunload="return areYouSure()">

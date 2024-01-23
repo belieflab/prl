@@ -12,6 +12,8 @@ PHP Version 7.x or PHP Version 8.x
 * Have different language versions of the PRL
 ## Responsibilities:
 * (Praveen and Josh) Compile PRL instructions in jsPsych framework
+* Add objects for displaying cards/avatars 
+* Add image_preload
 
 
 

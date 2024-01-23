@@ -24,6 +24,32 @@ const instruction1 = {
     choice: "NO_KEYS",
 };
 
+/*display 3 cards/avatars*/
+const cues = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: function () {
+        var html;
+                html =
+                    "<div class='image-container'>" +
+                    "<img src='" +
+                    stim[0]
+                    "'>" +
+                    "<img src='" +
+                    stim[1]
+                    "'>" +
+                    "<img src='" +
+                    stim[2]
+                    "'>" +
+                    "</div>";
+            
+        
+        return html;
+    },
+    trial_duration: 1000,
+    response_ends_trial: false,
+
+}
+
 /*add fixation*/
 const fixation = {
     type: jsPsychHtmlKeyboardResponse,
@@ -68,13 +94,13 @@ const trial = {
         let html =
             "<div class='image-container'>" +
             "<img class='stimuli-left' src='" +
-            jsPsych.timelineVariable("left", true) +
+            stim[0] +
             "'>" +
             "<img class='stimuli-middle' src='" +
-            jsPsych.timelineVariable("middle", true) +
+            stim[1] +
             "'>" +
             "<img class='stimuli-right' src='" +
-            jsPsych.timelineVariable("right", true) +
+            stim[2] +
             "'>" +
             "</div>";
         return html;
