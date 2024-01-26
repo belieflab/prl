@@ -24,6 +24,13 @@ const instruction1 = {
     choice: "NO_KEYS",
 };
 
+/*define task instructions*/
+const instruction2 = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: instruction2_stim,
+    choice: "NO_KEYS",
+};
+
 /*display 3 cards/avatars*/
 const cues = {
     type: jsPsychHtmlKeyboardResponse,

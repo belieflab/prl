@@ -42,7 +42,7 @@ $fileArrayAvatarJSON = json_encode($fileArrayAvatar);
   </link>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script>
-      const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
+    const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
     const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
   </script>
 </head>
@@ -73,8 +73,8 @@ $fileArrayAvatarJSON = json_encode($fileArrayAvatar);
 <footer>
   <!-- load experiment dependencies -->
   <script type="text/javascript" src="exp/fn.js"></script>
-  <script type="text/javascript" src="exp/lang.js"></script>
   <script type="text/javascript" src="exp/var.js"></script>
+  <script type="text/javascript" src="exp/lang.js"></script>  
   <script>
     // show page when loaded 
     window.onload = function() {
