@@ -114,7 +114,7 @@ const cues = {
     },
     choices: ["1", "2", "3"],
     trial_duration: 3000,
-    response_ends_trial: true,
+    response_ends_trial: false,
     // data: {
     //     colour: jsPsych.timelineVariable("colour"),
     //     text: jsPsych.timelineVariable("text"),
@@ -127,11 +127,11 @@ const cues = {
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
 const feedback = {
     type: jsPsychHtmlKeyboardResponse,
-    choices: ["1", "2", "3"],
+    choice: "NO_KEYS",
     on_load: function () {
         // need to find v7 equivalent of jsPsych.data.get().last(1).values()[0].key_press; which is from bayesianGhost v6.3
         // this doesn't work for v7 but is here temporarily for logic
-        let response = jsPsych.data.get().last(1).values()[0].key_press;
+        let response = jsPsych.data.get().last(1).values()[0].response;
         // jsPsych is not a thing in v7 "the global 'jsPsych' variable is no longer available in jsPsych v7"
         // maybe we can just use screenshot of +100 or -50
     },
@@ -150,7 +150,7 @@ const feedback = {
             "</div>";
         return html;
     },
-    trial_duration: 3000,
+    trial_duration: 1000,
     response_ends_trial: false,
     // data: {
     //     colour: jsPsych.timelineVariable("colour"),
