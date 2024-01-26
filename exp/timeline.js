@@ -32,30 +32,30 @@ const instruction2 = {
 };
 
 /*display 3 cards/avatars*/
-const cues = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: function () {
-        var html;
-                html =
-                    "<div class='image-container'>" +
-                    "<img src='" +
-                    stim[0]
-                    "'>" +
-                    "<img src='" +
-                    stim[1]
-                    "'>" +
-                    "<img src='" +
-                    stim[2]
-                    "'>" +
-                    "</div>";
+// const cues = {
+//     type: jsPsychHtmlKeyboardResponse,
+//     stimulus: function () {
+//         var html;
+//                 html =
+//                     "<div class='image-container'>" +
+//                     "<img src='" +
+//                     stim[0]
+//                     "'>" +
+//                     "<img src='" +
+//                     stim[1]
+//                     "'>" +
+//                     "<img src='" +
+//                     stim[2]
+//                     "'>" +
+//                     "</div>";
             
         
-        return html;
-    },
-    trial_duration: 1000,
-    response_ends_trial: false,
+//         return html;
+//     },
+//     trial_duration: 1000,
+//     response_ends_trial: false,
 
-}
+// }
 
 /*add fixation*/
 const fixation = {
@@ -95,7 +95,7 @@ const randomizeDecks = {
 };
 
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
-const trial = {
+const cues = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: () => {
         let html =
@@ -113,6 +113,8 @@ const trial = {
         return html;
     },
     choices: ["1", "2", "3"],
+    trial_duration: 3000,
+    response_ends_trial: true,
     // data: {
     //     colour: jsPsych.timelineVariable("colour"),
     //     text: jsPsych.timelineVariable("text"),
@@ -121,6 +123,47 @@ const trial = {
     //     interview_date: today,
     // },
 };
+
+/*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
+const feedback = {
+    type: jsPsychHtmlKeyboardResponse,
+    choices: ["1", "2", "3"],
+    on_load: function () {
+        // need to find v7 equivalent of jsPsych.data.get().last(1).values()[0].key_press; which is from bayesianGhost v6.3
+        // this doesn't work for v7 but is here temporarily for logic
+        let response = jsPsych.data.get().last(1).values()[0].key_press;
+        // jsPsych is not a thing in v7 "the global 'jsPsych' variable is no longer available in jsPsych v7"
+        // maybe we can just use screenshot of +100 or -50
+    },
+    stimulus: () => {
+        let html =
+            "<div class='image-container'>" +
+            "<img class='stimuli-left' src='" +
+            stim[0] +
+            "'>" +
+            "<img class='stimuli-middle' src='" +
+            stim[1] +
+            "'>" +
+            "<img class='stimuli-right' src='" +
+            stim[2] +
+            "'>" +
+            "</div>";
+        return html;
+    },
+    trial_duration: 3000,
+    response_ends_trial: false,
+    // data: {
+    //     colour: jsPsych.timelineVariable("colour"),
+    //     text: jsPsych.timelineVariable("text"),
+    //     condition: jsPsych.timelineVariable("condition"),
+    //     workerId: workerId,
+    //     interview_date: today,
+    // },
+};
+
+let procedureTrial = {
+    timeline: [fixation, cues, feedback],    
+}
 
 /*define procedure*/
 // const firstHalf = {

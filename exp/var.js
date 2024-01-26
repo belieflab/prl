@@ -16,6 +16,7 @@ stimRandomize = jsPsych.randomization.repeat(stim,1);
 
 contingency = ["high","medium","low"];
 probability = [0.9,0.5,0.1];
+positions = ["left", "middle", "right"];
 let rewardProbabilityFirstHalf = [
     {
         contingency: contingency[0],
@@ -40,6 +41,7 @@ let rewardProbabilityRandomizeFirstHalf = jsPsych.randomization.repeat(rewardPro
 
 contingency = ["high","medium","low"];
 probability = [0.8,0.4,0.2];
+positions = ["left", "middle", "right"];
 let rewardProbabilitySecondHalf = [
     {
         contingency: contingency[0],
