@@ -21,14 +21,49 @@ const welcome = {
 const instruction1 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instruction1_stim,
-    choice: "NO_KEYS",
+    choices: ["0"],
 };
 
 /*define task instructions*/
 const instruction2 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instruction2_stim,
-    choice: "NO_KEYS",
+    choices: ["1"],
+};
+
+/*define task instructions*/
+const instruction3 = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: instruction3_stim,
+    choices: ["2"],
+};
+
+/*define task instructions*/
+const instruction4 = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: instruction4_stim,
+    choices: ["3"],
+};
+
+/*define task instructions*/
+const instruction5 = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: instruction5_stim,
+    choices: ["0"],
+};
+
+/*define task instructions*/
+const instruction6 = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: instruction6_stim,
+    choices: ["0"],
+};
+
+
+const endPracticeInstructions = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: endPracticeInstructions_stim,
+    choices: ["0"],
 };
 
 /*display 3 cards/avatars*/
@@ -113,7 +148,7 @@ const cues = {
         return html;
     },
     choices: ["1", "2", "3"],
-    trial_duration: 3000,
+    trial_duration: 1000,
     response_ends_trial: false,
     // data: {
     //     colour: jsPsych.timelineVariable("colour"),
@@ -160,6 +195,10 @@ const feedback = {
     //     interview_date: today,
     // },
 };
+
+let practiceTrial = {
+    timeline: [fixation, cues, feedback],    
+}
 
 let procedureTrial = {
     timeline: [fixation, cues, feedback],    

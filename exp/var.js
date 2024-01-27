@@ -1,15 +1,18 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator) 
 let trialIterator = 1;
 let stim;
+let outcome;
 let contingency;
 let probability;
 
 //selecting the stimuli based on version (deck or avatar)
 if (version === "deck") {
     stim = stimArrayDeck;
+    outcome = outcomeArray;
 }
 if (version === "avatar") {
     stim = stimArrayAvatar;
+    outcome = outcomeArray;
 }
 
 stimRandomize = jsPsych.randomization.repeat(stim,1);

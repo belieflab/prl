@@ -3,10 +3,13 @@ require_once 'db/data.php';
 require_once 'exp/conf.php';
 $directoryDeck = 'stim/deck/0/';
 $directoryAvatar = 'stim/avatar/0/';
+$directoryOutcome = 'stim/outcome/';
 $decks = scandir($directoryDeck);
 $avatars = scandir($directoryAvatar);
+$outcomes = scandir($directoryOutcome);
 $fileArrayDeck = [];
 $fileArrayAvatar = [];
+$fileArrayOutcome = [];
 
 // deck is black, blue, red
 foreach ($decks as $deck) {
@@ -20,9 +23,15 @@ foreach ($avatars as $avatar) {
     $fileArrayAvatar[] = $directoryAvatar.$avatar;
   }
 }
+foreach ($outcomes as $outcome) {
+  if ($outcome !== '.' && $outcome !== '..') {
+    $fileArrayOutcome[] = $directoryOutcome.$outcome;
+  }
+}
 
 $fileArrayDeckJSON = json_encode($fileArrayDeck);
 $fileArrayAvatarJSON = json_encode($fileArrayAvatar);
+$fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +53,7 @@ $fileArrayAvatarJSON = json_encode($fileArrayAvatar);
   <script>
     const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
     const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
+    const outcomeArray = <?php echo $fileArrayOutcomeJSON; ?>;
   </script>
 </head>
 
