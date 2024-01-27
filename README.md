@@ -15,8 +15,16 @@ PHP Version 7.x or PHP Version 8.x
 * Add objects for displaying cards/avatars 
 * Add image_preload
 
-
-
+## Structure
+# Trial structure
+* fixation
+* cues
+* - stimulus
+* - duration
+* - 
+* feedback
+* confidence
+# Task structure
 
 4 blocks
 40 trials per block
