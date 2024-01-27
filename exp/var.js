@@ -1,4 +1,4 @@
-// Purpose of var.js: To include all global variables (e.g., trialIterator) 
+// Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 1;
 let stim;
 let outcome;
@@ -15,54 +15,58 @@ if (version === "avatar") {
     outcome = outcomeArray;
 }
 
-stimRandomize = jsPsych.randomization.repeat(stim,1);
+stimRandomize = shuffleArray(stim);
 
-contingency = ["high","medium","low"];
-probability = [0.9,0.5,0.1];
+contingency = ["high", "medium", "low"];
+probability = [0.9, 0.5, 0.1];
 positions = ["left", "middle", "right"];
 let rewardProbabilityFirstHalf = [
     {
         contingency: contingency[0],
         probability: probability[0],
-        deck: stimRandomize
+        deck: stimRandomize,
     },
 
     {
         contingency: contingency[1],
         probability: probability[1],
-        deck: stimRandomize
+        deck: stimRandomize,
     },
 
     {
         contingency: contingency[2],
         probability: probability[2],
-        deck: stimRandomize
+        deck: stimRandomize,
     },
 ];
 
-let rewardProbabilityRandomizeFirstHalf = jsPsych.randomization.repeat(rewardProbabilityFirstHalf,1);
+let rewardProbabilityRandomizeFirstHalf = shuffleArray(
+    rewardProbabilityFirstHalf
+);
 
-contingency = ["high","medium","low"];
-probability = [0.8,0.4,0.2];
+contingency = ["high", "medium", "low"];
+probability = [0.8, 0.4, 0.2];
 positions = ["left", "middle", "right"];
 let rewardProbabilitySecondHalf = [
     {
         contingency: contingency[0],
         probability: probability[0],
-        deck: stimRandomize
+        deck: stimRandomize,
     },
 
     {
         contingency: contingency[1],
         probability: probability[1],
-        deck: stimRandomize
+        deck: stimRandomize,
     },
 
     {
         contingency: contingency[2],
         probability: probability[2],
-        deck: stimRandomize
+        deck: stimRandomize,
     },
 ];
 
-let rewardProbabilityRandomizeSecondHalf = jsPsych.randomization.repeat(rewardProbabilitySecondHalf,1);
+let rewardProbabilityRandomizeSecondHalf = shuffleArray(
+    rewardProbabilitySecondHalf
+);
