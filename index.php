@@ -19,6 +19,8 @@ foreach ($decks as $deck) {
   if ($deck !== '.' && $deck !== '..') {
         $fileArrayDeck[] = $directoryDeck.$deck;
   }
+
+
 }
 foreach ($avatars as $avatar) {
   if ($avatar !== '.' && $avatar !== '..') {

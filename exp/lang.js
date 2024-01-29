@@ -69,10 +69,10 @@ switch (language) {
                 "<br /><br />" +
                 "<div class='image-container'>" +
                 "<img class='stimuli-left' src='" +
-                outcome[1] +
+                outcome[0] +
                 "'>" +
                 "<img class='stimuli-middle' src='" +
-                outcome[2] +
+                outcome[1] +
                 "'>" +
                 "</div>" +
                 "<br /><br />" +
