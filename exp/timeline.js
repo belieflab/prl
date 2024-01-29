@@ -230,9 +230,11 @@ const trialFeedback = {
         // find out location of highest probability deck
 
         let targetProbability = 0.9;
+        // let targetContingency = "high"
 
         let index = rewardProbabilityFirstHalf.findIndex(
             (obj) => obj.probability === targetProbability
+            // (obj) => obj.contingency === targetContingency
         );
 
         console.log(
@@ -241,7 +243,14 @@ const trialFeedback = {
             "is:",
             index
         );
+        // console.log(
+        //     "Index of object with 'high' probability",
+        //     targetContingency,
+        //     "is:",
+        //     index
+        // );
         let html;
+        // users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
         if (response == "1" && index == 0) {
             html =
                 "<div class='image-container'>" +
@@ -312,6 +321,7 @@ const trialFeedback = {
                 "'>" +
                 "</div>";
             strike += 1;
+            // maxStrike will be 3; can have strike count of 2 and keep streak
             if (strike == maxStrike) {
                 strike = 0;
                 streak = 0;

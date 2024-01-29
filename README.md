@@ -89,9 +89,9 @@ two types of reversals:
                         }
                     }
 
-                    streak increses up to 9
+                    streak increses up to 9; once it gets to 9, reset
                     you can keep streak if you get two strikes
-                    if you get three strikes, then streak and strikes reset
+                    if you get three strikes, then streak and strikes reset; once it gets to 3, reset
 
 
 at 81st trial there is a shift to the hard condition (and also a randomization of the deck probabilities)
