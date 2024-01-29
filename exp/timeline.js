@@ -1,3 +1,5 @@
+const { max } = require("lodash");
+
 const jsPsych = initJsPsych({
     show_progress_bar: true,
     preload_video: [],
@@ -309,6 +311,11 @@ const trialFeedback = {
                 "stim/outcome/lose.jpg" +
                 "'>" +
                 "</div>";
+            strike += 1;
+            if (strike == maxStrike) {
+                strike = 0;
+                streak = 0;
+            }
         }
         return html;
     },
