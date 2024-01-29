@@ -28,8 +28,8 @@ const instruction1 = {
 const instruction2 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instruction2_stim,
-    choices: ['1'],
-  };
+    choices: ["1"],
+};
 
 /*define task instructions*/
 const instruction3 = {
@@ -59,7 +59,6 @@ const instruction6 = {
     choices: ["0"],
 };
 
-
 const endPracticeInstructions = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: endPracticeInstructions_stim,
@@ -83,8 +82,7 @@ const endPracticeInstructions = {
 //                     stim[2]
 //                     "'>" +
 //                     "</div>";
-            
-        
+
 //         return html;
 //     },
 //     trial_duration: 1000,
@@ -147,9 +145,10 @@ const cues = {
             "</div>";
         return html;
     },
-    choices: ["1", "2", "3"],
-    trial_duration: 1000,
-    response_ends_trial: false,
+    choice: ["1", "2", "3"],
+
+    // trial_duration: 1,
+    response_ends_trial: true,
     // data: {
     //     colour: jsPsych.timelineVariable("colour"),
     //     text: jsPsych.timelineVariable("text"),
@@ -163,60 +162,57 @@ const cues = {
 const feedback = {
     type: jsPsychHtmlKeyboardResponse,
     choice: "NO_KEYS",
-    on_load: function () {
-        // need to find v7 equivalent of jsPsych.data.get().last(1).values()[0].key_press; which is from bayesianGhost v6.3
-        // this doesn't work for v7 but is here temporarily for logic
-        let response = jsPsych.data.get().last(1).values()[0].response;
-        // jsPsych is not a thing in v7 "the global 'jsPsych' variable is no longer available in jsPsych v7"
-        // maybe we can just use screenshot of +100 or -50
-        if (response === '1'){
-            let html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                shuffleArray(outcome)[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                stim[1] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                stim[2] +
-                "'>" +
-                "</div>";
-            }
-        if (response === '2'){
-            let html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                stim[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                shuffleArray(outcome)[0] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                stim[2] +
-                "'>" +
-                "</div>";
-            }
-        if (response === '3'){
-            let html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                stim[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                stim[1] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                shuffleArray(outcome)[0] +
-                "'>" +
-                "</div>";
-            }
-    },
+
     stimulus: () => {
-        html;
+        let data = jsPsych.data.get().last(1).values(); // Assuming this is async
+        let response = data[0].response;
+        console.log(response);
+
+        let html;
+        if (response == "1") {
+            html =
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                shuffleArray(outcome)[0] +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                stim[1] +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                stim[2] +
+                "'>" +
+                "</div>";
+        } else if (response == "2") {
+            html =
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                stim[0] +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                shuffleArray(outcome)[0] +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                stim[2] +
+                "'>" +
+                "</div>";
+        } else if (response == "3") {
+            html =
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                stim[0] +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                stim[1] +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                shuffleArray(outcome)[0] +
+                "'>" +
+                "</div>";
+        }
+        return html;
     },
-    trial_duration: 1000,
     response_ends_trial: false,
+    trial_duration: 1000,
     // data: {
     //     colour: jsPsych.timelineVariable("colour"),
     //     text: jsPsych.timelineVariable("text"),
@@ -229,13 +225,13 @@ const feedback = {
 let practiceTrial = {
     timeline: [fixation, cues, feedback],
     repetitions: 3,
-}
+};
 
 let procedureTrial = {
     timeline: [fixation, cues, feedback],
     repetitions: 10,
-    timeline_variables: rewardProbabilityFirstHalf     
-}
+    timeline_variables: rewardProbabilityFirstHalf,
+};
 
 /*define procedure*/
 // const firstHalf = {
