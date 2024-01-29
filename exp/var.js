@@ -5,6 +5,11 @@ let outcome;
 let contingency;
 let probability;
 
+let streak = 0;
+let strike = 0;
+
+let maxStreak = 9;
+
 //selecting the stimuli based on version (deck or avatar)
 if (version === "deck") {
     stim = stimArrayDeck;

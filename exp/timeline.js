@@ -159,7 +159,7 @@ const cues = {
 };
 
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
-const feedback = {
+const practiceFeedback = {
     type: jsPsychHtmlKeyboardResponse,
     choice: "NO_KEYS",
 
@@ -213,24 +213,117 @@ const feedback = {
     },
     response_ends_trial: false,
     trial_duration: 1000,
-    // data: {
-    //     colour: jsPsych.timelineVariable("colour"),
-    //     text: jsPsych.timelineVariable("text"),
-    //     condition: jsPsych.timelineVariable("condition"),
-    //     workerId: workerId,
-    //     interview_date: today,
-    // },
+};
+
+const trialFeedback = {
+    type: jsPsychHtmlKeyboardResponse,
+    choice: "NO_KEYS",
+
+    stimulus: () => {
+        let data = jsPsych.data.get().last(1).values(); // Assuming this is async
+        let response = data[0].response;
+        console.log(response);
+
+        // need logic to determine which image to show
+        // find out location of highest probability deck
+
+        let targetProbability = 0.9;
+
+        let index = rewardProbabilityFirstHalf.findIndex(
+            (obj) => obj.probability === targetProbability
+        );
+
+        console.log(
+            "Index of object with probability",
+            targetProbability,
+            "is:",
+            index
+        );
+        let html;
+        if (response == "1" && index == 0) {
+            html =
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                "stim/outcome/win.jpg" +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                stim[1] +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                stim[2] +
+                "'>" +
+                "</div>";
+            streak += 1;
+            if (streak == maxStreak) {
+                streak = 0;
+                shuffleArray(rewardProbabilityFirstHalf);
+            }
+        } else if (response == "2" && index == 1) {
+            html =
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                stim[0] +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                "stim/outcome/win.jpg" +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                stim[2] +
+                "'>" +
+                "</div>";
+            streak += 1;
+            if (streak == maxStreak) {
+                streak = 0;
+                shuffleArray(rewardProbabilityFirstHalf);
+            }
+        } else if (response == "3" && index == 2) {
+            html =
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                stim[0] +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                stim[1] +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                "stim/outcome/win.jpg" +
+                "'>" +
+                "</div>";
+            streak += 1;
+            if (streak == maxStreak) {
+                streak = 0;
+                shuffleArray(rewardProbabilityFirstHalf);
+            }
+        } else {
+            // need addtional logic to determine which image to show
+            // we have 3!
+            html =
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                "stim/outcome/lose.jpg" +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                "stim/outcome/lose.jpg" +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                "stim/outcome/lose.jpg" +
+                "'>" +
+                "</div>";
+        }
+        return html;
+    },
+    response_ends_trial: false,
+    trial_duration: 1000,
 };
 
 let practiceTrial = {
-    timeline: [fixation, cues, feedback],
+    timeline: [fixation, cues, practiceFeedback],
     repetitions: 3,
 };
 
 let procedureTrial = {
-    timeline: [fixation, cues, feedback],
-    repetitions: 10,
-    timeline_variables: rewardProbabilityFirstHalf,
+    timeline: [fixation, cues, trialFeedback],
+    repetitions: 40,
 };
 
 /*define procedure*/
