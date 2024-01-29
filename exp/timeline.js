@@ -28,8 +28,8 @@ const instruction1 = {
 const instruction2 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instruction2_stim,
-    choices: ["1"],
-};
+    choices: ['1'],
+  };
 
 /*define task instructions*/
 const instruction3 = {
@@ -197,7 +197,8 @@ const feedback = {
 };
 
 let practiceTrial = {
-    timeline: [fixation, cues, feedback],    
+    timeline: [fixation, cues, feedback],
+    repetitions: 3
 }
 
 let procedureTrial = {
