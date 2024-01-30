@@ -1,5 +1,3 @@
-const { max } = require("lodash");
-
 const jsPsych = initJsPsych({
     show_progress_bar: true,
     preload_video: [],
