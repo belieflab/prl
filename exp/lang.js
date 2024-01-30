@@ -67,11 +67,11 @@ switch (language) {
                 "an additional 100 points ('winning' cards) or take away 50 points ('losing' cards). " +
                 "Below you can see what those cards look like." +
                 "<br /><br />" +
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
+                "<div class='outcome-container'>" +
+                "<img class='outcome-left' src='" +
                 outcome[0] +
                 "'>" +
-                "<img class='stimuli-middle' src='" +
+                "<img class='outcome-right' src='" +
                 outcome[1] +
                 "'>" +
                 "</div>" +

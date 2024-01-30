@@ -322,7 +322,7 @@ p.bold {
     cursor: default;
 }
 
-.image-container {
+.image-container { 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -344,4 +344,29 @@ p.bold {
     margin-left: 10px; /* Adjust the left margin to your desired value */
     margin-right: 10px; /* Adjust the right margin to your desired value */
 }
+
+.outcome-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.outcome-left {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+    margin-right: 10px; /* Adjust the right margin to your desired value */
+}
+.outcome-right {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+    margin-left: 10px; /* Adjust the left margin to your desired value */
+    margin-right: 10px; /* Adjust the right margin to your desired value */
+}
+
+
+
 
