@@ -28,6 +28,8 @@ PHP Version 7.x or PHP Version 8.x
 
 4 blocks
 40 trials per block
+1-40, 41-80, 81-120, 121-160
+note that: index starts at 0, so when index = 40, trail = 41, so switch on trial 41 (which is index = 40)
 
 3 practice trials
 
