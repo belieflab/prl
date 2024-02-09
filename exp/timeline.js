@@ -331,11 +331,18 @@ let practiceTrial = {
     repetitions: 3,
 };
 
-let procedureTrial = {
+let procedureTrialFirstHalf = {
     timeline: [fixation, cues, trialFeedback],
-    repetitions: 40,
+    repetitions: 80,
     timelineVariable: firstHalf,
 };
+
+// let procedureTrialSecondHalf = {
+//     timeline: [fixation, cues, trialFeedback],
+//     repetitions: 80,
+//     timelineVariable: secondHalf,
+// };
+
 
 /*define procedure*/
 // const firstHalf = {

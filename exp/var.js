@@ -25,24 +25,37 @@ const positions = ["left", "middle", "right"]; //regardless of version, there wi
 // switch easy-easy, easy-hard, hard-easy, hard-hard
 switch (difficulty) {
     case 'easy-easy':
-        firstHalf = [
+      firstHalf = [
             {"high": 0.9, "medium": 0.5, "low": 0.1}, 
         ];
-        secondHalf = [
+      secondHalf = [
             {"high": 0.9, "medium": 0.5, "low": 0.1}
         ]
         break;
     case 'easy-hard':
-        probabilities = [[0.9, 0.5, 0.1], [0.8, 0.4, 0.2]];
-
+      firstHalf = [
+            {"high": 0.9, "medium": 0.5, "low": 0.1}, 
+        ];
+      secondHalf = [
+            {"high": 0.8, "medium": 0.4, "low": 0.2}
+        ]
         break; 
     case 'hard-easy':
-        probabilities = [[0.8, 0.4, 0.2], [0.9, 0.5, 0.1]];
+      firstHalf = [
+            {"high": 0.8, "medium": 0.4, "low": 0.2}, 
+        ];
+      secondHalf = [
+            {"high": 0.9, "medium": 0.5, "low": 0.1}
+        ]
         break;
-    case 'hard-hard':
-        probabilities = [[0.8, 0.4, 0.2], [0.8, 0.4, 0.2]];
-        break;
-
+    case 'hard-hard': 
+      firstHalf = [
+            {"high": 0.8, "medium": 0.4, "low": 0.2}, 
+        ];
+      secondHalf = [
+            {"high": 0.8, "medium": 0.4, "low": 0.2}
+        ]
+  break;
 }
 
 // Function to shuffle the keys of an object
@@ -74,7 +87,7 @@ function shuffleKeys(obj) {
     // Format into desired structure
     var rewardProbabilitySecondHalf = [];
   
-    firstHalf.forEach(function(obj) {
+    secondHalf.forEach(function(obj) {
       var shuffledObj = shuffleKeys(obj);
       Object.keys(shuffledObj).forEach(function(key) {
         rewardProbabilitySecondHalf.push({
