@@ -227,19 +227,14 @@ const trialFeedback = {
         // need logic to determine which image to show
         // find out location of highest probability deck
 
-        let targetProbability = 0.9;
-        // let targetContingency = "high"
 
-        let index = rewardProbabilityFirstHalf.findIndex(
-            (obj) => obj.probability === targetProbability
-            // (obj) => obj.contingency === targetContingency
-        );
+
+
+        let targetProbabilityIndex = rewardProbabilityFirstHalf.findIndex(obj => obj.contingency === "high");
 
         console.log(
-            "Index of object with probability",
-            targetProbability,
-            "is:",
-            index
+            "Index of object with probability high is:"+
+            targetProbabilityIndex
         );
         // console.log(
         //     "Index of object with 'high' probability",
@@ -249,7 +244,7 @@ const trialFeedback = {
         // );
         let html;
         // users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
-        if (response == "1" && index == 0) {
+        if (response == "1" && targetProbabilityIndex == 0) {
             html =
                 "<div class='image-container'>" +
                 "<img class='stimuli-left' src='" +
@@ -267,7 +262,7 @@ const trialFeedback = {
                 streak = 0;
                 shuffleArray(rewardProbabilityFirstHalf);
             }
-        } else if (response == "2" && index == 1) {
+        } else if (response == "2" && targetProbabilityIndex == 1) {
             html =
                 "<div class='image-container'>" +
                 "<img class='stimuli-left' src='" +
@@ -285,7 +280,7 @@ const trialFeedback = {
                 streak = 0;
                 shuffleArray(rewardProbabilityFirstHalf);
             }
-        } else if (response == "3" && index == 2) {
+        } else if (response == "3" && targetProbabilityIndex == 2) {
             html =
                 "<div class='image-container'>" +
                 "<img class='stimuli-left' src='" +
@@ -339,6 +334,7 @@ let practiceTrial = {
 let procedureTrial = {
     timeline: [fixation, cues, trialFeedback],
     repetitions: 40,
+    timelineVariable: firstHalf,
 };
 
 /*define procedure*/

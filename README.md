@@ -14,6 +14,10 @@ PHP Version 7.x or PHP Version 8.x
 * (Praveen and Josh) Compile PRL instructions in jsPsych framework
 * Add objects for displaying cards/avatars 
 * Add image_preload
+## 02/08/2024 deadlines/important stuff
+* hard deadline for BLAM is 02/20/2024
+
+
 
 ## Structure
 # Trial structure
