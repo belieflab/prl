@@ -94,7 +94,6 @@ const randomizeDecks = {
         // randomize deck contingencies
         if (randomizeDecksOn) {
             var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-            // continue shuffling until 
             while ( //shuffle until "high" is not in the same position as it was
                 tempProbabilityOrder.indexOf("high") ==
                 probabilityOrder.indexOf("high")
@@ -228,6 +227,7 @@ const trialFeedback = {
             streak += 1;
             if (streak == maxStreak) {
                 streak = 0;
+                strike = 0;
                 let tempProbabilityOrder;
                 // Continue shuffling until "high" is not in the same position as it was
                 do {
@@ -256,6 +256,7 @@ const trialFeedback = {
             streak += 1;
             if (streak == maxStreak) {
                 streak = 0;
+                strike = 0;
                 let tempProbabilityOrder;
                 // Continue shuffling until "high" is not in the same position as it was
                 do {
@@ -284,6 +285,7 @@ const trialFeedback = {
             streak += 1;
             if (streak == maxStreak) {
                 streak = 0;
+                strike = 0;
                 let tempProbabilityOrder;
                 // Continue shuffling until "high" is not in the same position as it was
                 do {
