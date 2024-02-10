@@ -237,7 +237,7 @@ const trialFeedback = {
                 rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
                     contingency,
                     probability: tempProbabilityOrder[contingency],
-                    deck: stimRandomize
+                    // deck: stimRandomize //we don't need this here since its not shift from block to next block..?
                 }));
             }
         } else if (response == "2" && targetProbabilityIndex == 1) {
@@ -266,7 +266,7 @@ const trialFeedback = {
                 rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
                     contingency,
                     probability: tempProbabilityOrder[contingency],
-                    deck: stimRandomize
+                    // deck: stimRandomize
                 }));
             }
         } else if (response == "3" && targetProbabilityIndex == 2) {
@@ -295,7 +295,7 @@ const trialFeedback = {
                 rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
                     contingency,
                     probability: tempProbabilityOrder[contingency],
-                    deck: stimRandomize
+                    // deck: stimRandomize
                 }));
             }
         } else {
