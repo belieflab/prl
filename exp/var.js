@@ -61,46 +61,72 @@ switch (difficulty) {
 // Function to shuffle the keys of an object randomly while preserving corresponding values
 //  order of keys in object must be randomized, but we need to keep values associated with each key are still linked/mapped
 function shuffleKeys(obj) {
-    // get keys of input object; Object.keys() method returns an array containing keys of the object
+    
+    // in javascript, an object is a collection of key-value paires; each key is unique identifier for corresponding value within the object
+    //  keys are used to access the values assoc with them
+    //  no two keys within an objeect can have the same name
+    // in javascript objects, data are organized into properties, each of which consist of a key-value pair; objects can have multiple properties
+    
+    //Get keys and Shuffle:
+    //  retrieves array containing keys of input object 'obj' and sorts array of keys using
+    //    comparison function that will generate rand number between -0.5 and 0.5
     var shuffledKeys = Object.keys(obj).sort(() => Math.random() - 0.5);
+    //Create New Object:
+    //  initialize empty object that will store shuffled keys and corresponding values
     var shuffledObj = {};
+    //Iterate Over Shuffled Keys:
+    //  loops through each key in shuffled array
     shuffledKeys.forEach(function(key) {
+      //for each key in shuffled array, assign corresponding value from original input obj to shuffledObj
       shuffledObj[key] = obj[key];
     });
+    //Return Shuffled Object containing shuffled keys and corresponding values
     return shuffledObj;
   }
   
-  // Format into desired structure
-  var rewardProbabilityFirstHalf = [];
+  // Initialize an empty array to store the formatted data for the first half of the trials
+var rewardProbabilityFirstHalf = [];
   
-  firstHalf.forEach(function(obj) {
+// Iterate over each object representing probabilities for the first half of the trials
+firstHalf.forEach(function(obj) {
+    // Shuffle the keys of the current object (contingencies)
     var shuffledObj = shuffleKeys(obj);
-    Object.keys(shuffledObj).forEach(function(key) {
-      rewardProbabilityFirstHalf.push({
-        contingency: key,
-        probability: shuffledObj[key],
-        deck: stimRandomize // Assuming stimRandomize is defined somewhere
-      });
-    });
-  });
-  
-  console.log(rewardProbabilityFirstHalf);
-
-    // Format into desired structure
-    var rewardProbabilitySecondHalf = [];
-  
-    secondHalf.forEach(function(obj) {
-      var shuffledObj = shuffleKeys(obj);
-      Object.keys(shuffledObj).forEach(function(key) {
-        rewardProbabilitySecondHalf.push({
-          contingency: key,
-          probability: shuffledObj[key],
-          deck: stimRandomize // Assuming stimRandomize is defined somewhere
-        });
-      });
-    });
     
-    console.log(rewardProbabilitySecondHalf);
+    // Iterate over each shuffled key (contingency) in the current object
+    Object.keys(shuffledObj).forEach(function(key) {
+        // Construct an object representing a trial with shuffled contingency and its associated probability
+        rewardProbabilityFirstHalf.push({
+            contingency: key,                             // Assign the shuffled key as the contingency
+            probability: shuffledObj[key],                // Retrieve the probability associated with the contingency
+            deck: stimRandomize // Stimuli randomly chosen, based on version (deck or avatar)
+        });
+    });
+});
+
+// Output the formatted data for the first half of the trials to the console
+console.log("Reward probabilities for the first half of trials:", rewardProbabilityFirstHalf);
+
+// Initialize an empty array to store the formatted data for the second half of the trials
+var rewardProbabilitySecondHalf = [];
+  
+// Iterate over each object representing probabilities for the second half of the trials
+secondHalf.forEach(function(obj) {
+    // Shuffle the keys of the current object (contingencies)
+    var shuffledObj = shuffleKeys(obj);
+    
+    // Iterate over each shuffled key (contingency) in the current object
+    Object.keys(shuffledObj).forEach(function(key) {
+        // Construct an object representing a trial with shuffled contingency and its associated probability
+        rewardProbabilitySecondHalf.push({
+            contingency: key,                             // Assign the shuffled key as the contingency
+            probability: shuffledObj[key],                // Retrieve the probability associated with the contingency
+            deck: stimRandomize // Stimuli randomly chosen, based on version (deck or avatar)
+        });
+    });
+});
+
+// Output the formatted data for the second half of the trials to the console
+console.log("Reward probabilities for the second half of trials:", rewardProbabilitySecondHalf);
 
 // //look at switch (difficulty) which is based on vectors "probabilities"
 // let rewardProbabilityFirstHalf = [
