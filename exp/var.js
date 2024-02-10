@@ -1,8 +1,8 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 1; //index value of current trial starts at 1
 let stim; //defined as decks or avatars (refer to specific as stim[0])
-let firstHalf;
-let secondHalf;
+let firstHalf; //probabilities for first half of trials
+let secondHalf; //probabilites for second half
 
 let streak = 0;
 let strike = 0;
@@ -19,7 +19,7 @@ if (version === "avatar") {
 }
 const outcome = outcomeArray; //regardless of version, outcome win/lose is the same
 
-let stimRandomize = shuffleArray(stim);
+let stimRandomize = shuffleArray(stim); //shuffling stimuli array
 
 const positions = ["left", "middle", "right"]; //regardless of version, there will always be left, middle, right
 // switch easy-easy, easy-hard, hard-easy, hard-hard
@@ -58,8 +58,10 @@ switch (difficulty) {
   break;
 }
 
-// Function to shuffle the keys of an object
+// Function to shuffle the keys of an object randomly while preserving corresponding values
+//  order of keys in object must be randomized, but we need to keep values associated with each key are still linked/mapped
 function shuffleKeys(obj) {
+    // get keys of input object; Object.keys() method returns an array containing keys of the object
     var shuffledKeys = Object.keys(obj).sort(() => Math.random() - 0.5);
     var shuffledObj = {};
     shuffledKeys.forEach(function(key) {
