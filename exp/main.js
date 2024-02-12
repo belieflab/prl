@@ -10,7 +10,7 @@ timeline.push(practiceTrial)
 timeline.push(endPracticeInstructions)
 
 // Main experiment
-timeline.push(procedureTrial)
+timeline.push(procedureTrialFirstHalf)
 // timeline.push(procedure);
 // timeline.push(dataSave);
 // timeline.push(end);

@@ -110,14 +110,16 @@ const randomizeDecks = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: "reversal",
     trial_duration: 5000,
-    response_ends_trial: false,
+    response_ends_trial: false, //trial won't end automatically after response
     on_start: () => {
         let probabilityOrder = [];
-        probabilityOrder.append(shuffle(deepCopy(probabilityNames)));
+        // creates a deep copy of the 'probabilityNames' array; a deep copy means that new array is created with new instances of objects found in original array
+        //shuffle the deep copy of 'probabilityNames' array
+        probabilityOrder.push(shuffle(deepCopy(probabilityNames))); //changed .append to .push (.append is from Python syntax? so not js syntax?)
         // randomize deck contingencies
         if (randomizeDecksOn) {
             var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-            while (
+            while ( //shuffle until "high" is not in the same position as it was
                 tempProbabilityOrder.indexOf("high") ==
                 probabilityOrder.indexOf("high")
             ) {
@@ -224,107 +226,139 @@ const trialFeedback = {
         let response = data[0].response;
         console.log(response);
 
-        // need logic to determine which image to show
-        // find out location of highest probability deck
-
-
-
-
         let targetProbabilityIndex = rewardProbabilityFirstHalf.findIndex(obj => obj.contingency === "high");
 
         console.log(
-            "Index of object with probability high is:"+
+            "Index of object with probability high is:" +
             targetProbabilityIndex
         );
-        // console.log(
-        //     "Index of object with 'high' probability",
-        //     targetContingency,
-        //     "is:",
-        //     index
-        // );
+
         let html;
-        // users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
-        if (response == "1" && targetProbabilityIndex == 0) {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                "stim/outcome/win.jpg" +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                stim[1] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                stim[2] +
-                "'>" +
-                "</div>";
-            streak += 1;
-            if (streak == maxStreak) {
-                streak = 0;
-                shuffleArray(rewardProbabilityFirstHalf);
-            }
-        } else if (response == "2" && targetProbabilityIndex == 1) {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                stim[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                "stim/outcome/win.jpg" +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                stim[2] +
-                "'>" +
-                "</div>";
-            streak += 1;
-            if (streak == maxStreak) {
-                streak = 0;
-                shuffleArray(rewardProbabilityFirstHalf);
-            }
-        } else if (response == "3" && targetProbabilityIndex == 2) {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                stim[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                stim[1] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                "stim/outcome/win.jpg" +
-                "'>" +
-                "</div>";
-            streak += 1;
-            if (streak == maxStreak) {
-                streak = 0;
-                shuffleArray(rewardProbabilityFirstHalf);
-            }
-        } else {
-            // need addtional logic to determine which image to show
-            // we have 3!
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                "stim/outcome/lose.jpg" +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                "stim/outcome/lose.jpg" +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                "stim/outcome/lose.jpg" +
-                "'>" +
-                "</div>";
-            strike += 1;
-            // maxStrike will be 3; can have strike count of 2 and keep streak
-            if (strike == maxStrike) {
-                strike = 0;
-                streak = 0;
-            }
+
+        // Initiate contingency shift based on current trial (i.e., shift starts at trial 81)
+        totalTrials = 10;
+        //currentProb = trialIterator <= (totalTrials/2) ? firstHalf : secondHalf;
+
+        if (trialIterator <= (totalTrials/2)){
+            currentProb = firstHalf; // output win (+100) card
+          } else {
+            currentProb = secondHalf; // output lose (-50) card
         }
+
+        // logic to sample deck with respective reward probability
+        if (Math.random() <= currentProb[response-1]){
+            observedOutcome = outcome[1] // output win (+100) card
+          } else {
+            observedOutcome = outcome[0] // output lose (-50) card
+        }
+
+        // Maps reward probability for each response 
+        // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
+        if (response == "1") {
+            html =
+            "<div class='image-container'>" +
+            "<img class='stimuli-left' src='" +
+            // shuffleArray(outcome)[0] 
+            observedOutcome + // output win (+100) card based on first half reward probability set
+            "'>" +
+            "<img class='stimuli-middle' src='" +
+            stim[1] +
+            "'>" +
+            "<img class='stimuli-right' src='" +
+            stim[2] +
+            "'>" +
+            "</div>";                     
+
+        } else if (response == "2") {
+            html =
+            "<div class='image-container'>" +
+            "<img class='stimuli-left' src='" +
+            stim[0] +
+            "'>" +
+            "<img class='stimuli-middle' src='" +
+            observedOutcome +
+            "'>" +
+            "<img class='stimuli-right' src='" +
+            stim[2] +
+            "'>" +
+            "</div>";
+
+        } else if (response == "3") {
+            html =
+            "<div class='image-container'>" +
+            "<img class='stimuli-left' src='" +
+            stim[0] +
+            "'>" +
+            "<img class='stimuli-middle' src='" +
+            stim[1] +
+            "'>" +
+            "<img class='stimuli-right' src='" +
+            observedOutcome +
+            "'>" +
+            "</div>";
+        }
+
+        trialIterator = trialIterator + 1; // accumulating trials
         return html;
     },
     response_ends_trial: false,
     trial_duration: 1000,
 };
+
+// streak/strike logic that we need to revise
+// streak += 1;  
+// if (streak == maxStreak) {
+//     streak = 0;
+//     strike = 0;
+//     let tempProbabilityOrder;
+//     // Continue shuffling until "high" is not in the same position as it was
+//     do {
+//         tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
+//     } while (tempProbabilityOrder.indexOf("high") == targetProbabilityIndex);
+//     // Update rewardProbabilityFirstHalf with the shuffled probabilities
+//     rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
+//         contingency,
+//         probability: tempProbabilityOrder[contingency],
+//         // deck: stimRandomize //we don't need this here since its not shift from block to next block..?
+//     }));
+// }
+
+
+// streak += 1;
+// if (streak == maxStreak) {
+//     streak = 0;
+//     strike = 0;
+//     let tempProbabilityOrder;
+//     // Continue shuffling until "high" is not in the same position as it was
+//     do {
+//         tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
+//     } while (tempProbabilityOrder.indexOf("high") == targetProbabilityIndex);
+//     // Update rewardProbabilityFirstHalf with the shuffled probabilities
+//     rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
+//         contingency,
+//         probability: tempProbabilityOrder[contingency],
+//         // deck: stimRandomize
+//     }));
+// }
+
+// streak += 1;
+// if (streak == maxStreak) {
+//     streak = 0;
+//     strike = 0;
+//     let tempProbabilityOrder;
+//     // Continue shuffling until "high" is not in the same position as it was
+//     do {
+//         tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
+//     } while (tempProbabilityOrder.indexOf("high") == targetProbabilityIndex);
+//     // Update rewardProbabilityFirstHalf with the shuffled probabilities
+//     rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
+//         contingency,
+//         probability: tempProbabilityOrder[contingency],
+//         // deck: stimRandomize
+//     }));
+// }
+
+
 
 let practiceTrial = {
     timeline: [fixation, cues, practiceFeedback],

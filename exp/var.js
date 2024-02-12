@@ -26,34 +26,43 @@ const positions = ["left", "middle", "right"]; //regardless of version, there wi
 switch (difficulty) {
     case 'easy-easy':
       firstHalf = [
-            {"high": 0.9, "medium": 0.5, "low": 0.1}, 
+            //{"high": 0.9, "medium": 0.5, "low": 0.1},
+            0.9,0.5,0.1
         ];
+      
       secondHalf = [
-            {"high": 0.9, "medium": 0.5, "low": 0.1}
+            //{"high": 0.9, "medium": 0.5, "low": 0.1}
+            0.9,0.5,0.1
         ]
         break;
     case 'easy-hard':
       firstHalf = [
-            {"high": 0.9, "medium": 0.5, "low": 0.1}, 
+            //{"high": 0.9, "medium": 0.5, "low": 0.1},
+            0.9,0.5,0.1 
         ];
       secondHalf = [
-            {"high": 0.8, "medium": 0.4, "low": 0.2}
+            //{"high": 0.8, "medium": 0.4, "low": 0.2}
+            0.8,0.4,0.2
         ]
         break; 
     case 'hard-easy':
       firstHalf = [
-            {"high": 0.8, "medium": 0.4, "low": 0.2}, 
+            //{"high": 0.8, "medium": 0.4, "low": 0.2},
+            0.8,0.4,0.2
         ];
       secondHalf = [
-            {"high": 0.9, "medium": 0.5, "low": 0.1}
+            //{"high": 0.9, "medium": 0.5, "low": 0.1}
+            0.9,0.5,0.1
         ]
         break;
     case 'hard-hard': 
       firstHalf = [
-            {"high": 0.8, "medium": 0.4, "low": 0.2}, 
+            //{"high": 0.8, "medium": 0.4, "low": 0.2},
+            0.8,0.4,0.2
         ];
       secondHalf = [
-            {"high": 0.8, "medium": 0.4, "low": 0.2}
+            //{"high": 0.8, "medium": 0.4, "low": 0.2},
+            0.8,0.4,0.2
         ]
   break;
 }
