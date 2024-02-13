@@ -147,7 +147,7 @@ const cues = {
             "</div>";
         return html;
     },
-    choice: ["1", "2", "3"],
+    choices: ["1", "2", "3"],
 
     // trial_duration: 1,
     response_ends_trial: true,
@@ -163,7 +163,7 @@ const cues = {
 // practice trials
 const practiceFeedback = {
     type: jsPsychHtmlKeyboardResponse,
-    choice: "NO_KEYS",
+    choices: ["1", "2", "3"],
 
     stimulus: () => {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
@@ -220,7 +220,7 @@ const practiceFeedback = {
 // main trials, with embedded probabilistic reversal learning logic
 const trialFeedback = {
     type: jsPsychHtmlKeyboardResponse,
-    choice: "NO_KEYS",
+    choices: ["1", "2", "3"],
 
     // track choices on each trial
     stimulus: () => {
@@ -252,51 +252,51 @@ const trialFeedback = {
         if (trialIterator === 1*(totalTrials/totalBlocks) || trialIterator === 3*(totalTrials/totalBlocks)){
             let highestProbIndex;
             do {
-                highestProbIndex = currentProb.indexOf(Math.max(...currentProb));
-                currentProb = shuffleArray(currentProb);
-            } while (currentProb.indexOf(Math.max(...currentProb)) === highestProbIndex);
+                highestProbIndex = currentProbability.indexOf(Math.max(...currentProbability));
+                currentProbability = shuffleArray(currentProbability);
+            } while (currentProbability.indexOf(Math.max(...currentProbability)) === highestProbIndex);
 
-            streaks = 0;
-            strikes = 0;
+            streak = 0;
+            strike = 0;
         }
 
         // contingency shift
         if (trialIterator === 2*(totalTrials/totalBlocks)) {
             let highestProbIndex;
             do {
-                highestProbIndex = currentProb.indexOf(Math.max(...currentProb));
-                currentProb = shuffleArray([...phaseProb[1]]);
-            } while (currentProb.indexOf(Math.max(...currentProb)) === highestProbIndex);
+                highestProbIndex = currentProbability.indexOf(Math.max(...currentProbability));
+                currentProbability = shuffleArray([...phaseProb[1]]);
+            } while (currentProbability.indexOf(Math.max(...currentProbability)) === highestProbIndex);
             
-            streaks = 0;
-            strikes = 0;
+            streak = 0;
+            strike = 0;
         }
 
         // performance-dependent reversal every nine out of 10 consecutive selection of 'high' probability deck
-        if (currentProb[response-1] === Math.max(...currentProb)) {
-            streaks++;
-            if (streaks >= maxStreaks) {
+        if (currentProbability[response-1] === Math.max(...currentProbability)) {
+            streak++;
+            if (streak >= maxStreaks) {
                 let highestProbIndex;
                 do {
-                    highestProbIndex = currentProb.indexOf(Math.max(...currentProb));
-                    currentProb = shuffleArray(currentProb);
-                } while (currentProb.indexOf(Math.max(...currentProb)) === highestProbIndex);
+                    highestProbIndex = currentProbability.indexOf(Math.max(...currentProbability));
+                    currentProbability = shuffleArray(currentProbability);
+                } while (currentProbability.indexOf(Math.max(...currentProbability)) === highestProbIndex);
                 
-                streaks = 0;
-                strikes = 0;
+                streak = 0;
+                strike = 0;
             }
         } else {
-            if (strikes < maxStrikes) {
-                strikes++;
+            if (strike < maxStrikes) {
+                strike++;
             } else {
-                streaks = 0;
-                strikes = 0;
+                streak = 0;
+                strike = 0;
             }
         }
     
 
         // logic to sample deck with respective reward probability
-        if (Math.random() <= currentProb[response-1]){
+        if (Math.random() <= currentProbability[response-1]){
             observedOutcome = outcome[1] // output win (+100) card
           } else {
             observedOutcome = outcome[0] // output lose (-50) card
