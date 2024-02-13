@@ -324,16 +324,16 @@ const trialFeedback = {
         }
 
         // logic to sample deck with respective reward probability
-        win = Math.random() <= currentProbability[response - 1];
-        observedOutcome   = win ? outcome[1] : outcome[0];
+        // win = Math.random() <= currentProbability[response - 1];
+        // observedOutcome   = win ? outcome[1] : outcome[0];
 
 
         // logic to sample deck with respective reward probability
-        // if (Math.random() <= currentProbability[response - 1]) {
-        //     observedOutcome = outcome[1]; // output win (+100) card
-        // } else {
-        //     observedOutcome = outcome[0]; // output lose (-50) card
-        // }
+        if (Math.random() <= currentProbability[response - 1]) {
+            observedOutcome = outcome[0]; // output win (+100) card
+        } else {
+            observedOutcome = outcome[1]; // output lose (-50) card
+        }
 
         // Maps reward probability for each response
         // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
