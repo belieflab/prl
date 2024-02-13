@@ -330,9 +330,11 @@ const trialFeedback = {
 
         // logic to sample deck with respective reward probability
         if (Math.random() <= currentProbability[response - 1]) {
-            observedOutcome = outcome[0]; // output win (+100) card
+            // observedOutcome = outcome[0]; // output win (+100) card
+            observedOutcome = 'stim/outcome/scaled_win.jpg'
         } else {
-            observedOutcome = outcome[1]; // output lose (-50) card
+            // observedOutcome = outcome[1]; // output lose (-50) card
+            observedOutcome = 'stim/outcome/scaled_lose.jpg'
         }
 
         // Maps reward probability for each response
