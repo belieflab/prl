@@ -219,7 +219,7 @@ const practiceFeedback = {
                 stim[1] +
                 "'>" +
                 "<img class='stimuli-right' src='" +
-                shuffleArray(outcome)[0] +
+                shuffleArray(outcome)[1] +
                 "'>" +
                 "</div>";
         }
@@ -265,6 +265,7 @@ const trialFeedback = {
             trialIterator === 3 * (totalTrials / totalBlocks)
         ) {
             let highestProbIndex;
+            
             do {
                 highestProbIndex = currentProbability.indexOf(
                     Math.max(...currentProbability)
@@ -332,8 +333,10 @@ const trialFeedback = {
 
 
         // logic to sample deck with respective reward probability
+        // 'response - 1' will give position of probability value within currentProbability vector (index)
+        // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
         if (Math.random() <= currentProbability[response - 1]) {
-            // observedOutcome = outcome[0]; // output win (+100) card
+            // observedOutcome = outcome[0]; // output win (100) card
             observedOutcome = 'stim/outcome/scaled_win.jpg'
         } else {
             // observedOutcome = outcome[1]; // output lose (-50) card
@@ -341,7 +344,7 @@ const trialFeedback = {
         }
 
         // Maps reward probability for each response
-        // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
+
         if (response == "1") {
             html =
                 "<div class='image-container'>" +
