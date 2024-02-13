@@ -106,29 +106,30 @@ const fixedReversal = {
     on_start: () => {},
 };
 
-const randomizeDecks = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: "reversal",
-    trial_duration: 5000,
-    response_ends_trial: false, //trial won't end automatically after response
-    on_start: () => {
-        let probabilityOrder = [];
-        // creates a deep copy of the 'probabilityNames' array; a deep copy means that new array is created with new instances of objects found in original array
-        //shuffle the deep copy of 'probabilityNames' array
-        probabilityOrder.push(shuffle(deepCopy(probabilityNames))); //changed .append to .push (.append is from Python syntax? so not js syntax?)
-        // randomize deck contingencies
-        if (randomizeDecksOn) {
-            var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-            while (
-                //shuffle until "high" is not in the same position as it was
-                tempProbabilityOrder.indexOf("high") ==
-                probabilityOrder.indexOf("high")
-            ) {
-                tempProbabilityOrder = shuffle(tempProbabilityOrder);
-            }
-        }
-    },
-};
+// // MAYBE WILL BE REMOVED // //
+// const randomizeDecks = {
+//     type: jsPsychHtmlKeyboardResponse,
+//     stimulus: "reversal",
+//     trial_duration: 5000,
+//     response_ends_trial: false, //trial won't end automatically after response
+//     on_start: () => {
+//         let probabilityOrder = [];
+//         // creates a deep copy of the 'probabilityNames' array; a deep copy means that new array is created with new instances of objects found in original array
+//         //shuffle the deep copy of 'probabilityNames' array
+//         probabilityOrder.push(shuffle(deepCopy(probabilityNames))); //changed .append to .push (.append is from Python syntax? so not js syntax?)
+//         // randomize deck contingencies
+//         if (randomizeDecksOn) {
+//             var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
+//             while (
+//                 //shuffle until "high" is not in the same position as it was
+//                 tempProbabilityOrder.indexOf("high") ==
+//                 probabilityOrder.indexOf("high")
+//             ) {
+//                 tempProbabilityOrder = shuffle(tempProbabilityOrder);
+//             }
+//         }
+//     },
+// };
 
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
 const cues = {
@@ -343,7 +344,6 @@ const trialFeedback = {
             html =
                 "<div class='image-container'>" +
                 "<img class='stimuli-left' src='" +
-                // shuffleArray(outcome)[0]
                 observedOutcome + // output win (+100) card based on first half reward probability set
                 "'>" +
                 "<img class='stimuli-middle' src='" +
@@ -445,9 +445,9 @@ let practiceTrial = {
     repetitions: 3,
 };
 
-let procedureTrialFirstHalf = {
+let procedureTrial = {
     timeline: [fixation, cues, trialFeedback],
-    repetitions: 80,
+    repetitions: totalTrials,
     timelineVariable: firstHalf,
 };
 

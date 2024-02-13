@@ -1,6 +1,6 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 1; //index value of current trial starts at 1
-let totalTrials = 40; // total number of trials
+let totalTrials = 160; // total number of trials
 let totalBlocks = 4; //total number of blocks
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 let firstHalf; //probabilities for first half of trials
@@ -15,6 +15,7 @@ let currentProbability = shuffleArray([...phaseProb[0]]); // randomize initial r
 let streak = 0;
 let strike = 0;
 
+// how many continious correct choices to the best deck until changing best deck location 
 let maxStreaks = 9;
 let maxStrikes = 2;
 
@@ -25,11 +26,16 @@ if (version === "deck") {
 if (version === "avatar") {
     stim = stimArrayAvatar;
 }
+
+// // MAYBE REMOVE, outcome vector order not generalize to many CPs
 const outcome = outcomeArray; //regardless of version, outcome win/lose is the same
 
-let stimRandomize = shuffleArray(stim); //shuffling stimuli array
+// // MAYBE REMOVE // //
+//let stimRandomize = shuffleArray(stim); //shuffling stimuli array
 
-const positions = ["left", "middle", "right"]; //regardless of version, there will always be left, middle, right
+// // MAYBE REMOVE // // 
+//const positions = ["left", "middle", "right"]; //regardless of version, there will always be left, middle, right
+
 // switch easy-easy, easy-hard, hard-easy, hard-hard
 switch (difficulty) {
     case "easy-easy":
@@ -76,7 +82,7 @@ switch (difficulty) {
 }
 
 // Function to shuffle the keys of an object randomly while preserving corresponding values
-//  order of keys in object must be randomized, but we need to keep values associated with each key are still linked/mapped
+// order of keys in object must be randomized, but we need to keep values associated with each key are still linked/mapped
 function shuffleKeys(obj) {
     // get keys of input object; Object.keys() method returns an array containing keys of the object
     var shuffledKeys = Object.keys(obj).sort(() => Math.random() - 0.5);
@@ -101,8 +107,6 @@ firstHalf.forEach(function (obj) {
     });
 });
 
-console.log(rewardProbabilityFirstHalf);
-
 // Format into desired structure
 var rewardProbabilitySecondHalf = [];
 
@@ -116,54 +120,3 @@ secondHalf.forEach(function (obj) {
         });
     });
 });
-
-console.log(rewardProbabilitySecondHalf);
-
-// //look at switch (difficulty) which is based on vectors "probabilities"
-// let rewardProbabilityFirstHalf = [
-//     {
-//         contingency: contingencies[0][0],
-//         probability: probabilities[0][0],
-//         deck: stimRandomize,
-//     },
-
-//     {
-//         contingency: contingencies[0][1],
-//         probability: probabilities[0][1],
-//         deck: stimRandomize,
-//     },
-
-//     {
-//         contingency: contingencies[0][2],
-//         probability: probabilities[0][2],
-//         deck: stimRandomize,
-//     },
-// ];
-
-// let rewardProbabilityRandomizeFirstHalf = shuffleArray(
-//     rewardProbabilityFirstHalf
-// );
-
-// let rewardProbabilitySecondHalf = [
-//     {
-//         contingency: contingencies[1][0],
-//         probability: probabilities[1][0],
-//         deck: stimRandomize,
-//     },
-
-//     {
-//         contingency: contingency[1],
-//         probability: probabilities[1][1],
-//         deck: stimRandomize,
-//     },
-
-//     {
-//         contingency: contingency[2],
-//         probability: probabilities[1][2],
-//         deck: stimRandomize,
-//     },
-// ];
-
-// let rewardProbabilityRandomizeSecondHalf = shuffleArray(
-//     rewardProbabilitySecondHalf
-// );
