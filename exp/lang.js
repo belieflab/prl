@@ -26,12 +26,10 @@ switch (language) {
                     "<br /><br />" +
                     "Please press the zero (0) key to continue.";
                 instruction2_stim =
-                    "The card game is very simple: on each turn you will choose one of the " +
-                    "three decks below, so you can draw a card from it. You can choose a deck " +
-                    "using the ‘1’, ‘2’, or ‘3’ keys on your keyboard to choose the " +
-                    "left, middle, or right deck respectively." +
-                    "<br /><br />" +
-                    "Let's practice choosing decks. Please choose the <b>left</b> deck by pressing the '1' key." +
+                    "<p>The card game is very simple: on each turn you will choose one of the three decks below, so you can draw a card from it.</p>" +
+                    "<p>You can choose a deck using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> deck respectively.</p>" +
+                    "<p>Let's practice choosing decks.</p>" +
+                    "<p>Please choose the <strong>left</strong> deck by pressing the <strong>1</strong> key." +
                     "<div class='image-container'>" +
                     "<img class='stimuli-left' src='" +
                     stim[0] +
@@ -44,7 +42,7 @@ switch (language) {
                     "'>" +
                     "</div>";
                 instruction3_stim =
-                    "Great! Now choose the <b>middle</b> deck by pressing the '2' key." +
+                    "<p>Great! Now choose the <strong>middle</strong> deck by pressing the <strong>2</strong> key.</p>" +
                     "<div class='image-container'>" +
                     "<img class='stimuli-left' src='" +
                     stim[0] +
@@ -57,7 +55,7 @@ switch (language) {
                     "'>" +
                     "</div>";
                 instruction4_stim =
-                    "Excellent! Now choose the <b>right</b> deck by pressing the '3' key." +
+                    "<p>Exellent! Now choose the <strong>right</strong> deck by pressing the <strong>3</strong> key.</p>" +
                     "<div class='image-container'>" +
                     "<img class='stimuli-left' src='" +
                     stim[0] +
@@ -87,11 +85,12 @@ switch (language) {
                     "Please press the zero (0) key to continue.";
 
                 instruction6_stim =
-                    "However, there is one final catch: <b>there may be times when the best deck will change.</b>" +
-                    "<br /><br />" +
-                    "If you think the best deck has changed from what it was before, then try to find out the new best deck." +
-                    "<br /><br />" +
-                    "The following is a practice round of just 3 turns. The points you get here won’t change your final score, " +
+                    "<p>However, there is one final catch:</p>" +
+                    "<p><b>There may be times when the best deck will change!</b></p>" +
+                    "<p>If you think the best deck has changed from what it was before, then try to find out the new best deck.</p>" +
+                    "<br />" +
+                    "<p>The following is a practice round of just 3 turns.<p>" +
+                    "<p>The points you get here won’t change your final score, " +
                     "and the best deck will change between the practice round and when the real game starts." +
                     "<br /><br />" +
                     "Please press the zero (0) key to start the practice round.";

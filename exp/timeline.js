@@ -165,7 +165,15 @@ const cues = {
 const practiceFeedback = {
     type: jsPsychHtmlKeyboardResponse,
     choices: ["1", "2", "3"],
-
+    // debouncing key press
+    // on_start: async function (trial) {
+    //     return delayTrialStartIfNeeded().then(() => {
+    //         console.log("Trial starting, inputs enabled.");
+    //         // Now, inputs are enabled, and the trial is ready to start
+    //         // Any setup that needs to happen right before the trial starts can go here
+    //         // Since we are using jsPsychHtmlKeyboardResponse, jsPsych handles the response setup
+    //     });
+    // },
     stimulus: () => {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
         let response = data[0].response;
