@@ -1,14 +1,22 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 1; //index value of current trial starts at 1
+let totalTrials = 40; // total number of trials
+let totalBlocks = 4; //total number of blocks 
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 let firstHalf; //probabilities for first half of trials
 let secondHalf; //probabilites for second half
 
-let streak = 0;
-let strike = 0;
+const phaseProb = [
+  [0.9,0.5,0.1], // Phase 1 probabilities
+  [0.8,0.4,0.2] // Phase 2 probabilities
+];
+let currentProb = shuffleArray([...phaseProb[0]]); // randomize initial reward probability set for each individual
 
-let maxStreak = 9;
-let maxStrike = 2;
+let streaks = 0;
+let strikes = 0;
+
+let maxStreaks = 9;
+let maxStrikes = 2;
 
 //selecting the stimuli based on version (deck or avatar)
 if (version === "deck") {

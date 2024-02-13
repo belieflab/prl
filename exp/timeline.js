@@ -160,7 +160,7 @@ const cues = {
     // },
 };
 
-/*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
+// practice trials
 const practiceFeedback = {
     type: jsPsychHtmlKeyboardResponse,
     choice: "NO_KEYS",
@@ -217,33 +217,83 @@ const practiceFeedback = {
     trial_duration: 1000,
 };
 
+// main trials, with embedded probabilistic reversal learning logic
 const trialFeedback = {
     type: jsPsychHtmlKeyboardResponse,
     choice: "NO_KEYS",
 
+    // track choices on each trial
     stimulus: () => {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
         let response = data[0].response;
         console.log(response);
 
-        let targetProbabilityIndex = rewardProbabilityFirstHalf.findIndex(obj => obj.contingency === "high");
+        // let targetProbabilityIndex = rewardProbabilityFirstHalf.findIndex(obj => obj.contingency === "high");
 
-        console.log(
-            "Index of object with probability high is:" +
-            targetProbabilityIndex
-        );
+        // console.log(
+        //     "Index of object with probability high is:" +
+        //     targetProbabilityIndex
+        // );
 
         let html;
 
         // Initiate contingency shift based on current trial (i.e., shift starts at trial 81)
-        totalTrials = 10;
-        //currentProb = trialIterator <= (totalTrials/2) ? firstHalf : secondHalf;
+        //totalTrials = 10;
+        
+        // for easy-hard version
+        // if (trialIterator <= (totalTrials/2)){
+        //     currentProb = firstHalf; // phase 1 (trials 1-80) reward probability set
+        //   } else {
+        //     currentProb = secondHalf; // phase 2 (trials 81-160) reward probability set
+        // }
 
-        if (trialIterator <= (totalTrials/2)){
-            currentProb = firstHalf; // output win (+100) card
-          } else {
-            currentProb = secondHalf; // output lose (-50) card
+
+        // performance-independent reversal every 40 trials
+        if (trialIterator === 1*(totalTrials/totalBlocks) || trialIterator === 3*(totalTrials/totalBlocks)){
+            let highestProbIndex;
+            do {
+                highestProbIndex = currentProb.indexOf(Math.max(...currentProb));
+                currentProb = shuffleArray(currentProb);
+            } while (currentProb.indexOf(Math.max(...currentProb)) === highestProbIndex);
+
+            streaks = 0;
+            strikes = 0;
         }
+
+        // contingency shift
+        if (trialIterator === 2*(totalTrials/totalBlocks)) {
+            let highestProbIndex;
+            do {
+                highestProbIndex = currentProb.indexOf(Math.max(...currentProb));
+                currentProb = shuffleArray([...phaseProb[1]]);
+            } while (currentProb.indexOf(Math.max(...currentProb)) === highestProbIndex);
+            
+            streaks = 0;
+            strikes = 0;
+        }
+
+        // performance-dependent reversal every nine out of 10 consecutive selection of 'high' probability deck
+        if (currentProb[response-1] === Math.max(...currentProb)) {
+            streaks++;
+            if (streaks >= maxStreaks) {
+                let highestProbIndex;
+                do {
+                    highestProbIndex = currentProb.indexOf(Math.max(...currentProb));
+                    currentProb = shuffleArray(currentProb);
+                } while (currentProb.indexOf(Math.max(...currentProb)) === highestProbIndex);
+                
+                streaks = 0;
+                strikes = 0;
+            }
+        } else {
+            if (strikes < maxStrikes) {
+                strikes++;
+            } else {
+                streaks = 0;
+                strikes = 0;
+            }
+        }
+    
 
         // logic to sample deck with respective reward probability
         if (Math.random() <= currentProb[response-1]){
