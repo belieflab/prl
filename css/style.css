@@ -326,7 +326,7 @@ p.bold {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 600px;
+    width: 700px;
     margin: 0 auto;
 }
 
@@ -361,21 +361,35 @@ p.bold {
 
 .outcome-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Aligns children elements at the center of the container */
     align-items: center;
-    width: 400px;
+    width: 466.67px; /* This width can be adjusted if necessary */
     margin: 0 auto;
 }
 
-.outcome-left {
-    width: 200px;
-    height: 200px;
+.outcome-left,
+.outcome-right {
+    width: calc(
+        (100% - 10px) / 2
+    ); /* Allocates half the width to each, minus a 10px margin */
+    height: calc(
+        ((100% - 10px) / 2) * 1.4
+    ); /* Height is set to maintain the 1:1.4 aspect ratio */
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
+/* Ensures consistent spacing between the two elements */
 .outcome-right {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 10px;
-    margin-left: 10px; /* Ensures spacing between left and right elements */
+    margin-left: 10px; /* Only needed for the right element to space them out */
+}
+
+.outcome-left img,
+.outcome-right img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensures the images fit nicely within the specified dimensions */
 }

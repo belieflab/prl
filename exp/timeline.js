@@ -93,8 +93,8 @@ const endPracticeInstructions = {
 /*add fixation*/
 const fixation = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: "+",
-    trial_duration: 1000,
+    stimulus: "<div style='font-size:40px'>+</div>",
+    trial_duration: 500,
     response_ends_trial: false,
 };
 
@@ -119,7 +119,8 @@ const randomizeDecks = {
         // randomize deck contingencies
         if (randomizeDecksOn) {
             var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-            while ( //shuffle until "high" is not in the same position as it was
+            while (
+                //shuffle until "high" is not in the same position as it was
                 tempProbabilityOrder.indexOf("high") ==
                 probabilityOrder.indexOf("high")
             ) {
@@ -239,7 +240,7 @@ const trialFeedback = {
 
         // Initiate contingency shift based on current trial (i.e., shift starts at trial 81)
         //totalTrials = 10;
-        
+
         // for easy-hard version
         // if (trialIterator <= (totalTrials/2)){
         //     currentProb = firstHalf; // phase 1 (trials 1-80) reward probability set
@@ -247,41 +248,61 @@ const trialFeedback = {
         //     currentProb = secondHalf; // phase 2 (trials 81-160) reward probability set
         // }
 
-
         // performance-independent reversal every 40 trials
-        if (trialIterator === 1*(totalTrials/totalBlocks) || trialIterator === 3*(totalTrials/totalBlocks)){
+        if (
+            trialIterator === 1 * (totalTrials / totalBlocks) ||
+            trialIterator === 3 * (totalTrials / totalBlocks)
+        ) {
             let highestProbIndex;
             do {
-                highestProbIndex = currentProbability.indexOf(Math.max(...currentProbability));
+                highestProbIndex = currentProbability.indexOf(
+                    Math.max(...currentProbability)
+                );
                 currentProbability = shuffleArray(currentProbability);
-            } while (currentProbability.indexOf(Math.max(...currentProbability)) === highestProbIndex);
+            } while (
+                currentProbability.indexOf(Math.max(...currentProbability)) ===
+                highestProbIndex
+            );
 
             streak = 0;
             strike = 0;
         }
 
         // contingency shift
-        if (trialIterator === 2*(totalTrials/totalBlocks)) {
+        if (trialIterator === 2 * (totalTrials / totalBlocks)) {
             let highestProbIndex;
             do {
-                highestProbIndex = currentProbability.indexOf(Math.max(...currentProbability));
+                highestProbIndex = currentProbability.indexOf(
+                    Math.max(...currentProbability)
+                );
                 currentProbability = shuffleArray([...phaseProb[1]]);
-            } while (currentProbability.indexOf(Math.max(...currentProbability)) === highestProbIndex);
-            
+            } while (
+                currentProbability.indexOf(Math.max(...currentProbability)) ===
+                highestProbIndex
+            );
+
             streak = 0;
             strike = 0;
         }
 
         // performance-dependent reversal every nine out of 10 consecutive selection of 'high' probability deck
-        if (currentProbability[response-1] === Math.max(...currentProbability)) {
+        if (
+            currentProbability[response - 1] === Math.max(...currentProbability)
+        ) {
             streak++;
             if (streak >= maxStreaks) {
                 let highestProbIndex;
                 do {
-                    highestProbIndex = currentProbability.indexOf(Math.max(...currentProbability));
+                    highestProbIndex = currentProbability.indexOf(
+                        Math.max(...currentProbability)
+                    );
                     currentProbability = shuffleArray(currentProbability);
-                } while (currentProbability.indexOf(Math.max(...currentProbability)) === highestProbIndex);
-                
+                } while (
+                    currentProbability.indexOf(
+                        Math.max(...currentProbability)
+                    ) === highestProbIndex
+                );
+
                 streak = 0;
                 strike = 0;
             }
@@ -293,62 +314,59 @@ const trialFeedback = {
                 strike = 0;
             }
         }
-    
 
         // logic to sample deck with respective reward probability
-        if (Math.random() <= currentProbability[response-1]){
-            observedOutcome = outcome[1] // output win (+100) card
-          } else {
-            observedOutcome = outcome[0] // output lose (-50) card
+        if (Math.random() <= currentProbability[response - 1]) {
+            observedOutcome = outcome[1]; // output win (+100) card
+        } else {
+            observedOutcome = outcome[0]; // output lose (-50) card
         }
 
-        // Maps reward probability for each response 
+        // Maps reward probability for each response
         // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
         if (response == "1") {
             html =
-            "<div class='image-container'>" +
-            "<img class='stimuli-left' src='" +
-            // shuffleArray(outcome)[0] 
-            observedOutcome + // output win (+100) card based on first half reward probability set
-            "'>" +
-            "<img class='stimuli-middle' src='" +
-            stim[1] +
-            "'>" +
-            "<img class='stimuli-right' src='" +
-            stim[2] +
-            "'>" +
-            "</div>";                     
-
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                // shuffleArray(outcome)[0]
+                observedOutcome + // output win (+100) card based on first half reward probability set
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                stim[1] +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                stim[2] +
+                "'>" +
+                "</div>";
         } else if (response == "2") {
             html =
-            "<div class='image-container'>" +
-            "<img class='stimuli-left' src='" +
-            stim[0] +
-            "'>" +
-            "<img class='stimuli-middle' src='" +
-            observedOutcome +
-            "'>" +
-            "<img class='stimuli-right' src='" +
-            stim[2] +
-            "'>" +
-            "</div>";
-
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                stim[0] +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                observedOutcome +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                stim[2] +
+                "'>" +
+                "</div>";
         } else if (response == "3") {
             html =
-            "<div class='image-container'>" +
-            "<img class='stimuli-left' src='" +
-            stim[0] +
-            "'>" +
-            "<img class='stimuli-middle' src='" +
-            stim[1] +
-            "'>" +
-            "<img class='stimuli-right' src='" +
-            observedOutcome +
-            "'>" +
-            "</div>";
+                "<div class='image-container'>" +
+                "<img class='stimuli-left' src='" +
+                stim[0] +
+                "'>" +
+                "<img class='stimuli-middle' src='" +
+                stim[1] +
+                "'>" +
+                "<img class='stimuli-right' src='" +
+                observedOutcome +
+                "'>" +
+                "</div>";
         }
 
-        trialIterator = trialIterator + 1; // accumulating trials
+        trialIterator = trialIterator++; // accumulating trials
         return html;
     },
     response_ends_trial: false,
@@ -356,7 +374,7 @@ const trialFeedback = {
 };
 
 // streak/strike logic that we need to revise
-// streak += 1;  
+// streak += 1;
 // if (streak == maxStreak) {
 //     streak = 0;
 //     strike = 0;
@@ -373,7 +391,6 @@ const trialFeedback = {
 //     }));
 // }
 
-
 // streak += 1;
 // if (streak == maxStreak) {
 //     streak = 0;
@@ -407,8 +424,6 @@ const trialFeedback = {
 //         // deck: stimRandomize
 //     }));
 // }
-
-
 
 let practiceTrial = {
     timeline: [fixation, cues, practiceFeedback],
@@ -426,7 +441,6 @@ let procedureTrialFirstHalf = {
 //     repetitions: 80,
 //     timelineVariable: secondHalf,
 // };
-
 
 /*define procedure*/
 // const firstHalf = {
