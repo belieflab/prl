@@ -374,7 +374,7 @@ const trialFeedback = {
                 "</div>";
         }
 
-        trialIterator = trialIterator++; // accumulating trials
+        trialIterator++; // accumulating trials
         return html;
     },
     response_ends_trial: false,
