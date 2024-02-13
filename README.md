@@ -3,13 +3,29 @@
 * Primary outcome variables (e.g., win-switching)
 * Description of PRL rule strategy, etc
 * Adopt task information from belieflab wiki
+
 ## Dependencies
 PHP Version 7.x or PHP Version 8.x
-## Requirements: 
+
+## PRL General Requirements: 
 * Transpile code from socialPRL (github.com/belieflab/socialPRL) to prl (github.com/belieflab/prl)
 * Add in Trevor's 'sabotage' version of PRL for a total of three PRL versions ('decks', 'avatars', 'sabotage')
 * Add in additional end-of-task questions
 * Have different language versions of the PRL
+
+## PRL Logic Requirements:
+* Number of trials: 160
+* Number of choices: 3
+* Rewards: +100 or -50 
+* Accumulation of rewards (reward tally): display trial-by-trial reward as accumulated ones
+* Phase probability set: first 80 trials - [0.9 0.5 0.1]; last 80 trials - [0.8 0.4 0.2]
+* Performance-independent reversal: fixed reversal at every 40 trials
+* Performance-dependent reversal: variable reversals once nine consecutive choices of highest reward selection
+* Streak & strike: streak-strike logic with two allowed mistakes before resetting of streak/strike count 
+* Contingency shift: fixed shift at trial 80
+* Reset streak at fixed reversal/shift: fixed reversal and shift resets streak
+* Double shuffle if index of highest reward is same: ensuring that after every shuffle, the index of the highest reward probability changes
+
 ## Responsibilities:
 * (Praveen and Josh) Compile PRL instructions in jsPsych framework
 * Add objects for displaying cards/avatars 
