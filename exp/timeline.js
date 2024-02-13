@@ -65,6 +65,8 @@ const endPracticeInstructions = {
     choices: ["0"],
 };
 
+
+
 /*display 3 cards/avatars*/
 // const cues = {
 //     type: jsPsychHtmlKeyboardResponse,
@@ -440,6 +442,8 @@ const trialFeedback = {
 //     }));
 // }
 
+
+
 let practiceTrial = {
     timeline: [fixation, cues, practiceFeedback],
     repetitions: 3,
@@ -448,7 +452,6 @@ let practiceTrial = {
 let procedureTrial = {
     timeline: [fixation, cues, trialFeedback],
     repetitions: totalTrials,
-    timelineVariable: firstHalf,
 };
 
 // let procedureTrialSecondHalf = {

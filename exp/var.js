@@ -1,10 +1,13 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 1; //index value of current trial starts at 1
-let totalTrials = 160; // total number of trials
+let totalTrials = 40; // total number of trials
 let totalBlocks = 4; //total number of blocks
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 let firstHalf; //probabilities for first half of trials
 let secondHalf; //probabilites for second half
+
+let percentComplete = 25;
+let breakText;
 
 const phaseProb = [
     [0.9, 0.5, 0.1], // Phase 1 probabilities
