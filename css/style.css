@@ -322,7 +322,7 @@ p.bold {
     cursor: default;
 }
 
-.image-container { 
+.image-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -330,19 +330,33 @@ p.bold {
     margin: 0 auto;
 }
 
-.stimuli-left {
-    width: 300px;
-    height: 300px;
-    margin-bottom: 10px;
-    margin-right: 10px; /* Adjust the right margin to your desired value */
-}
+.stimuli-left,
 .stimuli-middle,
 .stimuli-right {
-    width: 300px;
-    height: 300px;
+    /* Updated width and height based on calculation */
+    width: calc(
+        (100% - 20px) / 3
+    ); /* Adjusted for 3 elements with 10px margins between them */
+    height: calc(((100% - 20px) / 3) * 1.4); /* Maintains 1:1.4 aspect ratio */
     margin-bottom: 10px;
-    margin-left: 10px; /* Adjust the left margin to your desired value */
-    margin-right: 10px; /* Adjust the right margin to your desired value */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Ensures consistent spacing between elements */
+.stimuli-middle,
+.stimuli-right {
+    margin-left: 10px;
+}
+
+.stimuli-left img,
+.stimuli-middle img,
+.stimuli-right img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 .outcome-container {
@@ -357,16 +371,11 @@ p.bold {
     width: 200px;
     height: 200px;
     margin-bottom: 10px;
-    margin-right: 10px; /* Adjust the right margin to your desired value */
 }
+
 .outcome-right {
     width: 200px;
     height: 200px;
     margin-bottom: 10px;
-    margin-left: 10px; /* Adjust the left margin to your desired value */
-    margin-right: 10px; /* Adjust the right margin to your desired value */
+    margin-left: 10px; /* Ensures spacing between left and right elements */
 }
-
-
-
-
