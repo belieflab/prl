@@ -65,8 +65,6 @@ const endPracticeInstructions = {
     choices: ["0"],
 };
 
-
-
 /*display 3 cards/avatars*/
 // const cues = {
 //     type: jsPsychHtmlKeyboardResponse,
@@ -266,16 +264,16 @@ const trialFeedback = {
             trialIterator === 1 * (totalTrials / totalBlocks) ||
             trialIterator === 3 * (totalTrials / totalBlocks)
         ) {
-            let highestProbIndex;
-            
+            let highestProbabilityIndex;
+
             do {
-                highestProbIndex = currentProbability.indexOf(
+                highestProbabilityIndex = currentProbability.indexOf(
                     Math.max(...currentProbability)
                 );
                 currentProbability = shuffleArray(currentProbability);
             } while (
                 currentProbability.indexOf(Math.max(...currentProbability)) ===
-                highestProbIndex
+                highestProbabilityIndex
             );
 
             streak = 0;
@@ -284,15 +282,15 @@ const trialFeedback = {
 
         // contingency shift
         if (trialIterator === 2 * (totalTrials / totalBlocks)) {
-            let highestProbIndex;
+            let highestProbabilityIndex;
             do {
-                highestProbIndex = currentProbability.indexOf(
+                highestProbabilityIndex = currentProbability.indexOf(
                     Math.max(...currentProbability)
                 );
                 currentProbability = shuffleArray([...phaseProb[1]]);
             } while (
                 currentProbability.indexOf(Math.max(...currentProbability)) ===
-                highestProbIndex
+                highestProbabilityIndex
             );
 
             streak = 0;
@@ -305,16 +303,16 @@ const trialFeedback = {
         ) {
             streak++;
             if (streak >= maxStreaks) {
-                let highestProbIndex;
+                let highestProbabilityIndex;
                 do {
-                    highestProbIndex = currentProbability.indexOf(
+                    highestProbabilityIndex = currentProbability.indexOf(
                         Math.max(...currentProbability)
                     );
                     currentProbability = shuffleArray(currentProbability);
                 } while (
                     currentProbability.indexOf(
                         Math.max(...currentProbability)
-                    ) === highestProbIndex
+                    ) === highestProbabilityIndex
                 );
 
                 streak = 0;
@@ -333,16 +331,15 @@ const trialFeedback = {
         // win = Math.random() <= currentProbability[response - 1];
         // observedOutcome   = win ? outcome[1] : outcome[0];
 
-
         // logic to sample deck with respective reward probability
         // 'response - 1' will give position of probability value within currentProbability vector (index)
         // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
         if (Math.random() <= currentProbability[response - 1]) {
             // observedOutcome = outcome[0]; // output win (100) card
-            observedOutcome = 'stim/outcome/scaled_win.jpg'
+            observedOutcome = "stim/outcome/scaled_win.jpg";
         } else {
             // observedOutcome = outcome[1]; // output lose (-50) card
-            observedOutcome = 'stim/outcome/scaled_lose.jpg'
+            observedOutcome = "stim/outcome/scaled_lose.jpg";
         }
 
         // Maps reward probability for each response
@@ -446,8 +443,6 @@ const trialFeedback = {
 //         // deck: stimRandomize
 //     }));
 // }
-
-
 
 let practiceTrial = {
     timeline: [fixation, cues, practiceFeedback],

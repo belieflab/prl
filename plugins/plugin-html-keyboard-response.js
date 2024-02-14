@@ -118,7 +118,7 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
             // Initialize lastResponseTime with the current timestamp when the trial starts
             var lastResponseTime = Date.now(); // Capture the start time of the trial
             var acceptResponse = true; // Flag to control whether responses should be accepted
-
+            var cooldownTimer = null;
             var after_response = (info) => {
                 console.log(
                     "Key press detected. Current acceptResponse flag:",
@@ -138,26 +138,25 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
                     "Time since last response: ",
                     timeSinceLastResponse
                 );
+                console.log("lastResponseTime: ", lastResponseTime);
 
-                if (timeSinceLastResponse < 300) {
+                if (timeSinceLastResponse < 250) {
                     console.log("Button mashing detected, response ignored.");
-                    // Temporarily disable further responses by cancelling the current listener
-                    if (typeof keyboardListener !== "undefined") {
-                        this.jsPsych.pluginAPI.cancelKeyboardResponse(
-                            keyboardListener
-                        );
-                    }
+                    acceptResponse = false;
+                    this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
 
-                    setTimeout(() => {
-                        // Re-enable responses after a delay by restarting the keyboard listener
-                        console.log("Responses re-enabled.");
+                    clearTimeout(cooldownTimer);
+                    cooldownTimer = setTimeout(() => {
+                        acceptResponse = true;
+                        lastResponseTime = Date.now();
+                        console.log("Cooldown over, accepting responses.");
                         this.startKeyboardListener(
                             after_response.bind(this),
                             trial.choices
                         );
-                    }, 300); // Adjust this delay as needed
+                    }, 250);
 
-                    return; // Ignore the current response
+                    return;
                 }
 
                 lastResponseTime = currentTime; // Update lastResponseTime for valid responses

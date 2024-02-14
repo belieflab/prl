@@ -74,12 +74,10 @@ switch (language) {
                     "<p>Below you can see what those cards look like:</p>" +
                     "<div class='outcome-container'>" +
                     "<img class='outcome-left' src='" +
-                    'stim/outcome/scaled_win.jpg' +
-                    // outcome[1] +  // MAYBE REMOVE, outcome vector order not generalize to many CPs
+                    "stim/outcome/scaled_win.jpg" +
                     "'>" +
                     "<img class='outcome-right' src='" +
-                    'stim/outcome/scaled_lose.jpg' +
-                    // outcome[0] + // MAYBE REMOVE, outcome vector order not generalize to many CPs
+                    "stim/outcome/scaled_lose.jpg" +
                     "'>" +
                     "</div>" +
                     "<p><strong>Note that each deck contains both winning and losing cards, but in different amounts.</strong></p>" +
