@@ -121,28 +121,28 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
             // Initialize this.lastResponseTime with the current timestamp when the trial starts
 
             var after_response = (info) => {
-                console.log(
-                    "Key press detected. Current acceptResponse flag:",
-                    this.acceptResponse
-                );
+                // console.log(
+                //     "Key press detected. Current acceptResponse flag:",
+                //     this.acceptResponse
+                // );
 
                 if (!this.acceptResponse) {
-                    console.log(
-                        "Response currently disabled, ignoring key press."
-                    );
+                    // console.log(
+                    //     "Response currently disabled, ignoring key press."
+                    // );
                     return; // Exit if we're not accepting responses
                 }
 
                 var currentTime = Date.now();
                 var timeSinceLastResponse = currentTime - this.lastResponseTime;
-                console.log(
-                    "Time since last response: ",
-                    timeSinceLastResponse
-                );
-                console.log("this.lastResponseTime: ", this.lastResponseTime);
+                // console.log(
+                //     "Time since last response: ",
+                //     timeSinceLastResponse
+                // );
+                // console.log("this.lastResponseTime: ", this.lastResponseTime);
 
                 if (timeSinceLastResponse < 150) {
-                    console.log("Button mashing detected, response ignored.");
+                    // console.log("Button mashing detected, response ignored.");
                     this.acceptResponse = false;
                     this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
 
@@ -150,7 +150,7 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
                     this.cooldownTimer = setTimeout(() => {
                         this.acceptResponse = true;
                         this.lastResponseTime = Date.now();
-                        console.log("Cooldown over, accepting responses.");
+                        // console.log("Cooldown over, accepting responses.");
                         this.startKeyboardListener(
                             after_response.bind(this),
                             trial.choices
