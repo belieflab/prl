@@ -12,9 +12,9 @@ let timeline = [];
 /*define welcome message*/
 const welcome = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus:
-        "<p> Welcome to the experiment!</p>" +
-        "<p> Press any key to begin. </p>",
+    stimulus: `
+        <p> Welcome to the experiment!</p>
+        <p> Press any key to begin. </p>`,
     choice: "NO_KEYS",
     on_load: function () {
         $(document).ready(function () {
@@ -66,6 +66,15 @@ const instruction6 = {
     stimulus: instruction6_stim,
     choices: ["0"],
 };
+
+const instructions = [
+    instruction1,
+    instruction2,
+    instruction3,
+    instruction4,
+    instruction5,
+    instruction6,
+];
 
 const endPracticeInstructions = {
     type: jsPsychHtmlKeyboardResponse,
@@ -382,7 +391,7 @@ const trialFeedback = {
 
 
 
-let practiceTrial = {
+const practiceTrial = {
     timeline: [fixation, cues, practiceFeedback],
     repetitions: 3,
 };
@@ -404,30 +413,43 @@ const dataSave = {
     stimulus: dataSaveAnimation,
     choices: "NO_KEYS",
     trial_duration: 5000,
-    on_finish: () => {
-        saveData(experimentAlias + "_" + subjectId, jsPsych.data.get().csv()); //function with file name and which type of file as the 2 arguments
-        document.getElementById("unload").onbeforeunload = ""; //removes popup (are you sure you want to exit) since data is saved now
-        // returns cursor functionality
-        $(document).ready(function () {
-            $("body").addClass("showCursor"); // returns cursor functionality
-            closeFullscreen(); // kill fullscreen
-        });
+    on_finish: function () {
+        saveDataPromise(
+            experimentAlias + "_" + subjectId,
+            jsPsych.data.get().csv()
+        )
+            .then((response) => {
+                console.log("Data saved successfully.", response);
+                // Update the stimulus content directly via DOM manipulation
+                const thankYou = `
+                <div class="body-white-theme">
+                    <p>Thank you!</p>
+                    <p>You have successfully completed the experiment and your data has been saved.</p>
+                    <!-- <p>To leave feedback on this task, please click the following link:</p> -->
+                    <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
+                    <!-- <p>Please wait for the experimenter to continue.</p> -->
+                    <p><i>You may now close the experiment window at any time.</i></p>
+                </div>`;
+                document.querySelector("#jspsych-content").innerHTML = thankYou;
+            })
+            .catch((error) => {
+                console.log("Failed to save data.", error);
+                // Update the stimulus content directly via DOM manipulation
+                const dataFailure = `
+                <div class="error-page">
+                    <p>Oh no!</p>
+                    <p>An error has occured and your data has not been saved.</p>
+                    <p>Please wait for the experimenter to continue.</p>
+                </div>`;
+                document.querySelector("#jspsych-content").innerHTML =
+                    dataFailure;
+            })
+            .finally(() => {
+                document.getElementById("unload").onbeforeunload = ""; // Removes popup
+                $("body").addClass("showCursor"); // Returns cursor functionality
+                closeFullscreen(); // Kill fullscreen
+            });
     },
-};
-
-const end = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus:
-        "<p style='color:white;'>Thank you!</p>" +
-        "<p style='color:white;'>You have successfully completed the experiment and your data has been saved.</p>" +
-        // "<p style='color:white;'>To leave feedback on this task, please click the following link:</p>"+
-        // "<p style='color:white;'><a href="+feedbackLink+">Leave Task Feedback!</a></p>"+
-        // "<p style='color:white;'>Please wait for the experimenter to continue.</p>"+
-        "<p style='color:white;'><i>You may now close the expriment window at anytime.</i></p>",
-    choices: "NO_KEYS",
-    // on_load: function() {
-    //   alert(reward);
-    // }
 };
 
 $.getScript("exp/main.js");
