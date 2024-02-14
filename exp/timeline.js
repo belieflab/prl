@@ -133,6 +133,18 @@ const randomizeDecks = {
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
 const cues = {
     type: jsPsychHtmlKeyboardResponse,
+    choices: ["1", "2", "3"], // Initially, there may be no keys allowed if you want to start in a "disabled" state
+
+    // on_start: function (trial) {
+    //     if (ignoreKeyPresses) {
+    //         // Temporarily clear choices to prevent responses
+    //         trial.choices = [];
+    //     }
+    //     if (!ignoreKeyPresses) {
+    //         trial.choices = ["1", "2", "3"];
+    //     }
+    // },
+
     stimulus: () => {
         let html =
             "<div class='image-container'>" +
@@ -148,10 +160,9 @@ const cues = {
             "</div>";
         return html;
     },
-    choices: ["1", "2", "3"],
+    response_ends_trial: true,
 
     // trial_duration: 1,
-    response_ends_trial: true,
     // data: {
     //     colour: jsPsych.timelineVariable("colour"),
     //     text: jsPsych.timelineVariable("text"),
@@ -165,15 +176,6 @@ const cues = {
 const practiceFeedback = {
     type: jsPsychHtmlKeyboardResponse,
     choices: ["1", "2", "3"],
-    // debouncing key press
-    // on_start: async function (trial) {
-    //     return delayTrialStartIfNeeded().then(() => {
-    //         console.log("Trial starting, inputs enabled.");
-    //         // Now, inputs are enabled, and the trial is ready to start
-    //         // Any setup that needs to happen right before the trial starts can go here
-    //         // Since we are using jsPsychHtmlKeyboardResponse, jsPsych handles the response setup
-    //     });
-    // },
     stimulus: () => {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
         let response = data[0].response;
