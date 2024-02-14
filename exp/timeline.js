@@ -1,5 +1,7 @@
 const jsPsych = initJsPsych({
     show_progress_bar: true,
+    message_progress_bar: 'PRL Completion Progress',    
+    auto_update_progress_bar: false,
     preload_video: [],
     preload_audio: [],
     preload_images: [],
@@ -18,6 +20,8 @@ const welcome = {
         $(document).ready(function () {
             $("body").addClass("hideCursor");
         });
+        // Hide progress bar from screen
+        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden";
     },
 };
 
@@ -25,7 +29,7 @@ const welcome = {
 const instruction1 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instruction1_stim,
-    choices: ["0"],
+    choices: ["0"],    
 };
 
 /*define task instructions*/
@@ -76,32 +80,11 @@ const endPracticeInstructions = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: endPracticeInstructions_stim,
     choices: ["0"],
+    on_load: function() {
+        // Make visible progress bar to screen
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible";
+      },
 };
-
-/*display 3 cards/avatars*/
-// const cues = {
-//     type: jsPsychHtmlKeyboardResponse,
-//     stimulus: function () {
-//         var html;
-//                 html =
-//                     "<div class='image-container'>" +
-//                     "<img src='" +
-//                     stim[0]
-//                     "'>" +
-//                     "<img src='" +
-//                     stim[1]
-//                     "'>" +
-//                     "<img src='" +
-//                     stim[2]
-//                     "'>" +
-//                     "</div>";
-
-//         return html;
-//     },
-//     trial_duration: 1000,
-//     response_ends_trial: false,
-
-// }
 
 /*add fixation*/
 const fixation = {
@@ -399,90 +382,31 @@ const trialFeedback = {
         }
 
         trialIterator++; // accumulating trials
+
         return html;
     },
     response_ends_trial: false,
     trial_duration: 1000,
 };
 
-// streak/strike logic that we need to revise
-// streak += 1;
-// if (streak == maxStreak) {
-//     streak = 0;
-//     strike = 0;
-//     let tempProbabilityOrder;
-//     // Continue shuffling until "high" is not in the same position as it was
-//     do {
-//         tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-//     } while (tempProbabilityOrder.indexOf("high") == targetProbabilityIndex);
-//     // Update rewardProbabilityFirstHalf with the shuffled probabilities
-//     rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
-//         contingency,
-//         probability: tempProbabilityOrder[contingency],
-//         // deck: stimRandomize //we don't need this here since its not shift from block to next block..?
-//     }));
-// }
 
-// streak += 1;
-// if (streak == maxStreak) {
-//     streak = 0;
-//     strike = 0;
-//     let tempProbabilityOrder;
-//     // Continue shuffling until "high" is not in the same position as it was
-//     do {
-//         tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-//     } while (tempProbabilityOrder.indexOf("high") == targetProbabilityIndex);
-//     // Update rewardProbabilityFirstHalf with the shuffled probabilities
-//     rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
-//         contingency,
-//         probability: tempProbabilityOrder[contingency],
-//         // deck: stimRandomize
-//     }));
-// }
-
-// streak += 1;
-// if (streak == maxStreak) {
-//     streak = 0;
-//     strike = 0;
-//     let tempProbabilityOrder;
-//     // Continue shuffling until "high" is not in the same position as it was
-//     do {
-//         tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-//     } while (tempProbabilityOrder.indexOf("high") == targetProbabilityIndex);
-//     // Update rewardProbabilityFirstHalf with the shuffled probabilities
-//     rewardProbabilityFirstHalf = tempProbabilityOrder.map(contingency => ({
-//         contingency,
-//         probability: tempProbabilityOrder[contingency],
-//         // deck: stimRandomize
-//     }));
-// }
 
 const practiceTrial = {
     timeline: [fixation, cues, practiceFeedback],
     repetitions: 3,
 };
 
-const procedureTrial = {
-    timeline: [fixation, cues, trialFeedback],
-    repetitions: totalTrials,
+
+let conditionalProgressMessage = {
+    timeline: [createProgressMessage(25)],
+    conditional_function: shouldShowProgressMessage
 };
 
-// let procedureTrialSecondHalf = {
-//     timeline: [fixation, cues, trialFeedback],
-//     repetitions: 80,
-//     timelineVariable: secondHalf,
-// };
 
-/*define procedure*/
-// const firstHalf = {
-//     timeline: [fixation, trial],
-//     timeline_variables: firstHalfChoices,
-// };
-
-// const secondHalf = {
-//     timeline: [fixation, trial],
-//     timeline_variables: secondHalfChoices,
-// };
+let procedureTrial = {
+    timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
+    repetitions: totalTrials,
+};
 
 const dataSave = {
     type: jsPsychHtmlKeyboardResponse,
