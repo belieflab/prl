@@ -140,7 +140,7 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
                 );
                 console.log("lastResponseTime: ", lastResponseTime);
 
-                if (timeSinceLastResponse < 250) {
+                if (timeSinceLastResponse < 150) {
                     console.log("Button mashing detected, response ignored.");
                     acceptResponse = false;
                     this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
@@ -154,7 +154,7 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
                             after_response.bind(this),
                             trial.choices
                         );
-                    }, 250);
+                    }, 150);
 
                     return;
                 }
