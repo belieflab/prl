@@ -54,7 +54,7 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <!-- jsPsych Plugins (add more here) -->
   <!-- <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script> -->
   <!-- custom jsPsych Plugins -->
-  <script src="plugins/plugin-html-keyboard-response.js"></script>
+  <script src="./wrap/plugins/plugin-html-keyboard-response.js"></script>
 
   <!-- general styling -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
