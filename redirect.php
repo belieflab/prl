@@ -6,7 +6,11 @@ require_once 'exp/conf.php';
 <html>
 
 <head>
-  <title><?php echo $experimentName; ?></title>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.title = experimentName;
+    });
+  </script>
 </head>
 
 <body id='unload' onbeforeunload="return areYouSure()">
