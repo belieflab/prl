@@ -333,11 +333,8 @@ p.bold {
 .stimuli-left,
 .stimuli-middle,
 .stimuli-right {
-    /* Updated width and height based on calculation */
-    width: calc(
-        (100% - 20px) / 3
-    ); /* Adjusted for 3 elements with 10px margins between them */
-    height: calc(((100% - 20px) / 3) * 1.4); /* Maintains 1:1.4 aspect ratio */
+    width: calc((100% - 20px) / 3);
+    height: calc(((100% - 20px) / 3) * 1.4);
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
@@ -345,7 +342,6 @@ p.bold {
     overflow: hidden;
 }
 
-/* Ensures consistent spacing between elements */
 .stimuli-middle,
 .stimuli-right {
     margin-left: 10px;
@@ -354,16 +350,33 @@ p.bold {
 .stimuli-left img,
 .stimuli-middle img,
 .stimuli-right img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+    width: auto; /* Adjusts width automatically */
+    height: 100%; /* Full height of the container */
+    max-width: none; /* Overrides previous max-width */
+    object-fit: contain; /* Ensures no cropping */
+}
+
+@media (max-width: 768px) {
+    .stimuli-left,
+    .stimuli-middle,
+    .stimuli-right {
+        width: calc((100% - 10px) / 2); /* Adjust for smaller screens */
+        height: auto; /* Adjust height dynamically */
+    }
+    .stimuli-middle {
+        margin-left: 10px;
+        margin-right: 10px; /* Adjust spacing for responsiveness */
+    }
+    .stimuli-right {
+        display: none; /* Hide or rearrange for small screens */
+    }
 }
 
 .outcome-container {
     display: flex;
     justify-content: center; /* Aligns children elements at the center of the container */
     align-items: center;
-    width: 466.67px; /* This width can be adjusted if necessary */
+    width: 450px; /* This width can be adjusted if necessary */
     margin: 0 auto;
 }
 
