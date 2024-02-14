@@ -10,11 +10,15 @@ let timeline = [];
 /*define welcome message*/
 const welcome = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `
-    <p> Welcome to the experiment!</p>
-    <p> Press any key to begin. </p>
-    `,
+    stimulus:
+        "<p> Welcome to the experiment!</p>" +
+        "<p> Press any key to begin. </p>",
     choice: "NO_KEYS",
+    on_load: function () {
+        $(document).ready(function () {
+            $("body").addClass("hideCursor");
+        });
+    },
 };
 
 /*define task instructions*/

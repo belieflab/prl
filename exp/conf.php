@@ -29,5 +29,7 @@ $language = 'english';
     const bonus = 2; // in dollars
     const percentile = 25; // cut-off performance percentile for bonus
 
+    // disable fullscreen and cursor lock for debugging
+    let test = true; // set to false for real experiment
 </script>
 
