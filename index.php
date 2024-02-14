@@ -3,7 +3,7 @@ require_once 'wrap/lib/data.php';
 require_once 'wrap/lib/nda.php';
 require_once 'exp/conf.php';
 
-$directoryDeck = 'stim/deck/0/';
+$directoryDeck = 'stim/deck/1/';
 $directoryAvatar = 'stim/avatar/0/';
 $directoryOutcome = 'stim/outcome/';
 $decks = scandir($directoryDeck);
@@ -19,8 +19,6 @@ foreach ($decks as $deck) {
   if ($deck !== '.' && $deck !== '..') {
         $fileArrayDeck[] = $directoryDeck.$deck;
   }
-
-
 }
 foreach ($avatars as $avatar) {
   if ($avatar !== '.' && $avatar !== '..') {

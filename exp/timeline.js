@@ -65,6 +65,8 @@ const endPracticeInstructions = {
     choices: ["0"],
 };
 
+
+
 /*display 3 cards/avatars*/
 // const cues = {
 //     type: jsPsychHtmlKeyboardResponse,
@@ -106,29 +108,30 @@ const fixedReversal = {
     on_start: () => {},
 };
 
-const randomizeDecks = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: "reversal",
-    trial_duration: 5000,
-    response_ends_trial: false, //trial won't end automatically after response
-    on_start: () => {
-        let probabilityOrder = [];
-        // creates a deep copy of the 'probabilityNames' array; a deep copy means that new array is created with new instances of objects found in original array
-        //shuffle the deep copy of 'probabilityNames' array
-        probabilityOrder.push(shuffle(deepCopy(probabilityNames))); //changed .append to .push (.append is from Python syntax? so not js syntax?)
-        // randomize deck contingencies
-        if (randomizeDecksOn) {
-            var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-            while (
-                //shuffle until "high" is not in the same position as it was
-                tempProbabilityOrder.indexOf("high") ==
-                probabilityOrder.indexOf("high")
-            ) {
-                tempProbabilityOrder = shuffle(tempProbabilityOrder);
-            }
-        }
-    },
-};
+// // MAYBE WILL BE REMOVED // //
+// const randomizeDecks = {
+//     type: jsPsychHtmlKeyboardResponse,
+//     stimulus: "reversal",
+//     trial_duration: 5000,
+//     response_ends_trial: false, //trial won't end automatically after response
+//     on_start: () => {
+//         let probabilityOrder = [];
+//         // creates a deep copy of the 'probabilityNames' array; a deep copy means that new array is created with new instances of objects found in original array
+//         //shuffle the deep copy of 'probabilityNames' array
+//         probabilityOrder.push(shuffle(deepCopy(probabilityNames))); //changed .append to .push (.append is from Python syntax? so not js syntax?)
+//         // randomize deck contingencies
+//         if (randomizeDecksOn) {
+//             var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
+//             while (
+//                 //shuffle until "high" is not in the same position as it was
+//                 tempProbabilityOrder.indexOf("high") ==
+//                 probabilityOrder.indexOf("high")
+//             ) {
+//                 tempProbabilityOrder = shuffle(tempProbabilityOrder);
+//             }
+//         }
+//     },
+// };
 
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
 const cues = {
@@ -218,7 +221,7 @@ const practiceFeedback = {
                 stim[1] +
                 "'>" +
                 "<img class='stimuli-right' src='" +
-                shuffleArray(outcome)[0] +
+                shuffleArray(outcome)[1] +
                 "'>" +
                 "</div>";
         }
@@ -264,6 +267,7 @@ const trialFeedback = {
             trialIterator === 3 * (totalTrials / totalBlocks)
         ) {
             let highestProbIndex;
+            
             do {
                 highestProbIndex = currentProbability.indexOf(
                     Math.max(...currentProbability)
@@ -326,19 +330,27 @@ const trialFeedback = {
         }
 
         // logic to sample deck with respective reward probability
+        // win = Math.random() <= currentProbability[response - 1];
+        // observedOutcome   = win ? outcome[1] : outcome[0];
+
+
+        // logic to sample deck with respective reward probability
+        // 'response - 1' will give position of probability value within currentProbability vector (index)
+        // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
         if (Math.random() <= currentProbability[response - 1]) {
-            observedOutcome = outcome[1]; // output win (+100) card
+            // observedOutcome = outcome[0]; // output win (100) card
+            observedOutcome = 'stim/outcome/scaled_win.jpg'
         } else {
-            observedOutcome = outcome[0]; // output lose (-50) card
+            // observedOutcome = outcome[1]; // output lose (-50) card
+            observedOutcome = 'stim/outcome/scaled_lose.jpg'
         }
 
         // Maps reward probability for each response
-        // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
+
         if (response == "1") {
             html =
                 "<div class='image-container'>" +
                 "<img class='stimuli-left' src='" +
-                // shuffleArray(outcome)[0]
                 observedOutcome + // output win (+100) card based on first half reward probability set
                 "'>" +
                 "<img class='stimuli-middle' src='" +
@@ -376,7 +388,7 @@ const trialFeedback = {
                 "</div>";
         }
 
-        trialIterator = trialIterator++; // accumulating trials
+        trialIterator++; // accumulating trials
         return html;
     },
     response_ends_trial: false,
@@ -435,15 +447,16 @@ const trialFeedback = {
 //     }));
 // }
 
+
+
 let practiceTrial = {
     timeline: [fixation, cues, practiceFeedback],
     repetitions: 3,
 };
 
-let procedureTrialFirstHalf = {
+let procedureTrial = {
     timeline: [fixation, cues, trialFeedback],
-    repetitions: 80,
-    timelineVariable: firstHalf,
+    repetitions: totalTrials,
 };
 
 // let procedureTrialSecondHalf = {

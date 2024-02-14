@@ -10,10 +10,11 @@ timeline.push(practiceTrial)
 timeline.push(endPracticeInstructions)
 
 // Main experiment
-timeline.push(procedureTrialFirstHalf)
+timeline.push(procedureTrial)
 // timeline.push(procedure);
 // timeline.push(dataSave);
 // timeline.push(end);
 
 // run the experiment
 jsPsych.run(timeline);
+
