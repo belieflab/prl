@@ -287,7 +287,7 @@ const trialFeedback = {
                 highestProbabilityIndex = currentProbability.indexOf(
                     Math.max(...currentProbability)
                 );
-                currentProbability = shuffleArray([...phaseProb[1]]);
+                currentProbability = shuffleArray([...phaseProbabilities[1]]);
             } while (
                 currentProbability.indexOf(Math.max(...currentProbability)) ===
                 highestProbabilityIndex

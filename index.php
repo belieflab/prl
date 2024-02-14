@@ -78,9 +78,9 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
  <!-- load wrapper dependencies -->
  <script type="text/javascript" src="wrap/exp/fn.js"></script>
   <!-- load experiment dependencies -->
+  <script type="text/javascript" src="exp/fn.js"></script>
   <script type="text/javascript" src="exp/var.js"></script>
   <script type="text/javascript" src="exp/lang.js"></script>
-  <script type="text/javascript" src="exp/fn.js"></script>
   <script>
     // show page when loaded 
     window.onload = function() {

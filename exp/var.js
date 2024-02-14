@@ -9,18 +9,18 @@ let secondHalf; //probabilites for second half
 let percentComplete = 25;
 let breakText;
 
-const phaseProb = [
+const phaseProbabilities = [
     [0.9, 0.5, 0.1], // Phase 1 probabilities
     [0.8, 0.4, 0.2], // Phase 2 probabilities
 ];
-let currentProbability = shuffleArray([...phaseProb[0]]); // randomize initial reward probability set for each individual
+let currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set for each individual
 
 let streak = 0;
 let strike = 0;
 
-// how many continious correct choices to the best deck until changing best deck location 
-let maxStreaks = 9;
-let maxStrikes = 2;
+// how many continious correct choices to the best deck until changing best deck location
+const maxStreaks = 9;
+const maxStrikes = 2;
 
 //selecting the stimuli based on version (deck or avatar)
 if (version === "deck") {
@@ -36,7 +36,7 @@ const outcome = outcomeArray; //regardless of version, outcome win/lose is the s
 // // MAYBE REMOVE // //
 //let stimRandomize = shuffleArray(stim); //shuffling stimuli array
 
-// // MAYBE REMOVE // // 
+// // MAYBE REMOVE // //
 //const positions = ["left", "middle", "right"]; //regardless of version, there will always be left, middle, right
 
 // switch easy-easy, easy-hard, hard-easy, hard-hard
@@ -84,24 +84,12 @@ switch (difficulty) {
         break;
 }
 
-// Function to shuffle the keys of an object randomly while preserving corresponding values
-// order of keys in object must be randomized, but we need to keep values associated with each key are still linked/mapped
-function shuffleKeys(obj) {
-    // get keys of input object; Object.keys() method returns an array containing keys of the object
-    var shuffledKeys = Object.keys(obj).sort(() => Math.random() - 0.5);
-    var shuffledObj = {};
-    shuffledKeys.forEach(function (key) {
-        shuffledObj[key] = obj[key];
-    });
-    return shuffledObj;
-}
-
 // Format into desired structure
-var rewardProbabilityFirstHalf = [];
+let rewardProbabilityFirstHalf = [];
 
-firstHalf.forEach(function (obj) {
-    var shuffledObj = shuffleKeys(obj);
-    Object.keys(shuffledObj).forEach(function (key) {
+firstHalf.forEach((obj) => {
+    let shuffledObj = shuffleKeys(obj);
+    Object.keys(shuffledObj).forEach((key) => {
         rewardProbabilityFirstHalf.push({
             contingency: key,
             probability: shuffledObj[key],
@@ -111,11 +99,11 @@ firstHalf.forEach(function (obj) {
 });
 
 // Format into desired structure
-var rewardProbabilitySecondHalf = [];
+let rewardProbabilitySecondHalf = [];
 
-secondHalf.forEach(function (obj) {
-    var shuffledObj = shuffleKeys(obj);
-    Object.keys(shuffledObj).forEach(function (key) {
+secondHalf.forEach((obj) => {
+    let shuffledObj = shuffleKeys(obj);
+    Object.keys(shuffledObj).forEach((key) => {
         rewardProbabilitySecondHalf.push({
             contingency: key,
             probability: shuffledObj[key],
