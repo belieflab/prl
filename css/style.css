@@ -1,3 +1,15 @@
+:root.light-theme {
+    --main-color: black; /* Switch main color to white */
+    --background-color: #f5f5f5; /* Assuming you want to invert the background as well */
+}
+
+:root.dark-theme {
+    --main-color: #f5f5f5; /* Assuming you want to invert the background as well */
+    --background-color: black; /* Switch main color to white */
+}
+
+/* You would add the 'white-theme' class to your <html> or <body> tag to apply this theme */
+
 .stim {
     padding: 25px 25px 25px 25px;
     height: 200px;
@@ -5,12 +17,20 @@
 }
 
 body {
-    background-color: #f5f5f5;
+    background-color: var(
+        --background-color
+    ); /* Background color, if you've defined it */
     font-family: Helvetica, Arial, sans-serif;
 }
 
 p {
-    color: black;
+    color: var(--main-color); /* Text color */
+}
+
+.error-page {
+    p {
+        color: red;
+    }
 }
 
 .attrition,
@@ -219,6 +239,10 @@ p.bold {
     }
 }
 
+.data-save-animation .end {
+    color: var(--main-color); /* Text color */
+}
+
 .sk-cube-grid {
     width: 40px;
     height: 40px;
@@ -228,7 +252,9 @@ p.bold {
 .sk-cube-grid .sk-cube {
     width: 33%;
     height: 33%;
-    background-color: white;
+    background-color: var(
+        --main-color
+    ); /* Background color, if you've defined it */
     float: left;
     -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
     animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
@@ -322,92 +348,6 @@ p.bold {
     cursor: default;
 }
 
-/* deck styling */
-.image-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%; /* Adapted for full width */
-    max-width: 700px; /* Max width to maintain layout on larger screens */
-    margin: 0 auto;
-    flex-wrap: wrap; /* Allow items to wrap as needed */
-}
-
-.stimuli-left,
-.stimuli-middle,
-.stimuli-right {
-    width: calc((100% - 20px) / 3); /* Original width calculation */
-    height: calc(((100% - 20px) / 3) * 1.4); /* Maintain aspect ratio */
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.stimuli-middle,
-.stimuli-right {
-    margin-left: 10px;
-}
-
-.stimuli-left img,
-.stimuli-middle img,
-.stimuli-right img {
-    width: auto;
-    height: 100%;
-    max-width: none;
-    object-fit: contain;
-}
-
-@media (max-width: 768px) {
-    .stimuli-left,
-    .stimuli-middle,
-    .stimuli-right {
-        /* Adjust width to fit all 3 items side by side on smaller screens */
-        width: calc((100% - 20px) / 3);
-        height: auto; /* Allow height to adjust automatically */
-    }
-
-    .stimuli-middle {
-        margin-left: 10px; /* Maintain spacing between cards */
-    }
-
-    .stimuli-right {
-        margin-left: 10px; /* Ensure consistency in spacing */
-    }
-}
-
-.outcome-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Adapt width for responsiveness */
-    max-width: 466.67px; /* Control layout on larger screens */
-    margin: 0 auto;
-}
-
-.outcome-left,
-.outcome-right {
-    width: calc(50% - 5px); /* Adjust for two items */
-    height: auto; /* Dynamic height */
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.outcome-right {
-    margin-left: 10px; /* Space between the two elements */
-}
-
-.outcome-left img,
-.outcome-right img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-}
-
 /* new consent */
 .screening {
     background-color: darkgray;
@@ -446,4 +386,8 @@ p.bold {
     .consent {
         max-width: 95%; /* Allows more width on smaller screens for better readability */
     }
+}
+
+.data-save-animation {
+    color: var(--main-color); /* Text color */
 }

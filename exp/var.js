@@ -1,7 +1,7 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 1; //index value of current trial starts at 1
-let totalTrials = 40; // total number of trials
-let totalBlocks = 4; //total number of blocks
+const totalTrials = 40; // total number of trials
+const totalBlocks = 4; //total number of blocks
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 let firstHalf; //probabilities for first half of trials
 let secondHalf; //probabilites for second half
@@ -18,7 +18,7 @@ let currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize 
 let streak = 0;
 let strike = 0;
 
-// how many continious correct choices to the best deck until changing best deck location
+// how many continuous correct choices to the best deck until changing best deck location
 const maxStreaks = 9;
 const maxStrikes = 2;
 
