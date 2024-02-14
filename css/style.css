@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: lightgray;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -376,7 +376,7 @@ p.bold {
     display: flex;
     justify-content: center; /* Aligns children elements at the center of the container */
     align-items: center;
-    width: 450px; /* This width can be adjusted if necessary */
+    width: 466.67px; /* This width can be adjusted if necessary */
     margin: 0 auto;
 }
 

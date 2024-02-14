@@ -65,6 +65,9 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
     class HtmlKeyboardResponsePlugin {
         constructor(jsPsych) {
             this.jsPsych = jsPsych;
+            this.lastResponseTime = Date.now(); // Initialize lastResponseTime to now
+            this.acceptResponse = true; // Initially accept responses
+            this.cooldownTimer = null; // Holds the reference to the cooldown timeout
         }
 
         // NEW!
@@ -115,17 +118,15 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
             };
 
             // NEW!
-            // Initialize lastResponseTime with the current timestamp when the trial starts
-            var lastResponseTime = Date.now(); // Capture the start time of the trial
-            var acceptResponse = true; // Flag to control whether responses should be accepted
-            var cooldownTimer = null;
+            // Initialize this.lastResponseTime with the current timestamp when the trial starts
+
             var after_response = (info) => {
                 console.log(
                     "Key press detected. Current acceptResponse flag:",
-                    acceptResponse
+                    this.acceptResponse
                 );
 
-                if (!acceptResponse) {
+                if (!this.acceptResponse) {
                     console.log(
                         "Response currently disabled, ignoring key press."
                     );
@@ -133,22 +134,22 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
                 }
 
                 var currentTime = Date.now();
-                var timeSinceLastResponse = currentTime - lastResponseTime;
+                var timeSinceLastResponse = currentTime - this.lastResponseTime;
                 console.log(
                     "Time since last response: ",
                     timeSinceLastResponse
                 );
-                console.log("lastResponseTime: ", lastResponseTime);
+                console.log("this.lastResponseTime: ", this.lastResponseTime);
 
                 if (timeSinceLastResponse < 150) {
                     console.log("Button mashing detected, response ignored.");
-                    acceptResponse = false;
+                    this.acceptResponse = false;
                     this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
 
-                    clearTimeout(cooldownTimer);
-                    cooldownTimer = setTimeout(() => {
-                        acceptResponse = true;
-                        lastResponseTime = Date.now();
+                    clearTimeout(this.cooldownTimer);
+                    this.cooldownTimer = setTimeout(() => {
+                        this.acceptResponse = true;
+                        this.lastResponseTime = Date.now();
                         console.log("Cooldown over, accepting responses.");
                         this.startKeyboardListener(
                             after_response.bind(this),
@@ -159,7 +160,7 @@ var jsPsychHtmlKeyboardResponse = (function (jspsych) {
                     return;
                 }
 
-                lastResponseTime = currentTime; // Update lastResponseTime for valid responses
+                this.lastResponseTime = currentTime; // Update this.lastResponseTime for valid responses
                 // end NEW
 
                 // after a valid response, the stimulus will have the CSS class 'responded'
