@@ -9,18 +9,17 @@
 
 // Instructions
 timeline.push(welcome);
-// timeline.push(...instructions);
+timeline.push(...instructions);
 
 // Practice
-// timeline.push(practiceTrial);
-// timeline.push(endPracticeInstructions);
+timeline.push(practiceTrial);
+timeline.push(endPracticeInstructions);
 
 // Main experiment
-// timeline.push(procedureTrial);
+timeline.push(procedureTrial);
 
 // Data saving and salutations
 timeline.push(dataSave);
-// timeline.push(end);
 
 // this is not needed as it is called in .wrap/fn/startExperiment()
 // commenting in will bypass validation
