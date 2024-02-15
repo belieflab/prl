@@ -1,6 +1,6 @@
 const jsPsych = initJsPsych({
     show_progress_bar: true,
-    message_progress_bar: 'PRL Completion Progress',    
+    message_progress_bar: 'Completion Progress',    
     auto_update_progress_bar: false,
     preload_video: [],
     preload_audio: [],
@@ -85,6 +85,16 @@ const endPracticeInstructions = {
         document.getElementById("jspsych-progressbar-container").style.visibility = "visible";
       },
 };
+
+
+
+
+// breakText = "You have completed the task. Your final score is " + score + ".\n" + '<br>' +
+// "You have successfully completed the experiment and your data has been saved.\n" + '<br>' +
+// "Please move on to the second part of the task at this link:\n" + '<br>' +
+// "<a href="+qualtrics+">Qualtrics</a>\n" + '<br>' +
+//     // "Please wait for the experimenter to continue.\n"+ '<br>' +
+// "You may now close the expriment window at anytime.\n";
 
 /*add fixation*/
 const fixation = {
@@ -338,6 +348,11 @@ const trialFeedback = {
             observedOutcome = "stim/outcome/scaled_lose.jpg";
         }
 
+        // calculates total points earned
+        win = Math.random() <= currentProbability[response - 1];
+        points      = win ? winPoints : losePoints;
+        score += points;
+
         // Maps reward probability for each response
 
         if (response == "1") {
@@ -382,6 +397,7 @@ const trialFeedback = {
         }
 
         trialIterator++; // accumulating trials
+   
 
         return html;
     },
@@ -396,12 +412,31 @@ const practiceTrial = {
     repetitions: 3,
 };
 
-
+// Present progress report messages at every quarter (%) trial
 let conditionalProgressMessage = {
-    timeline: [createProgressMessage(25)],
+    timeline: [{
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: function() {
+            let percentComplete = calculatePercentComplete();
+            // Create a progress message trial
+            return "You are " + percentComplete + "% done with the experiment. Please press the (0) key to proceed.";
+        },
+        on_finish: function(){
+            let percentComplete = calculatePercentComplete();
+            jsPsych.setProgressBar(percentComplete/100); // set progress bar to percentComplete full.
+        },
+        choices: ['0']
+    }],
     conditional_function: shouldShowProgressMessage
 };
 
+// ADD FINAL COMPLETION MESSAGE AT THE END OF EXPERIMENT
+// breakText = "You have completed the task. Your final score is " + score + ".\n" + '<br>' +
+// "You have successfully completed the experiment and your data has been saved.\n" + '<br>' +
+// "Please move on to the second part of the task at this link:\n" + '<br>' +
+// "<a href="+qualtrics+">Qualtrics</a>\n" + '<br>' +
+//     // "Please wait for the experimenter to continue.\n"+ '<br>' +
+// "You may now close the expriment window at anytime.\n";
 
 let procedureTrial = {
     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
@@ -419,12 +454,14 @@ const dataSave = {
             jsPsych.data.get().csv()
         )
             .then((response) => {
+                const score = score;
                 console.log("Data saved successfully.", response);
                 // Update the stimulus content directly via DOM manipulation
                 const thankYou = `
                 <div class="body-white-theme">
                     <p>Thank you!</p>
                     <p>You have successfully completed the experiment and your data has been saved.</p>
+                    <p>Your final score is ${score}.</p>
                     <!-- <p>To leave feedback on this task, please click the following link:</p> -->
                     <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
                     <!-- <p>Please wait for the experimenter to continue.</p> -->

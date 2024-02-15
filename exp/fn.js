@@ -39,26 +39,14 @@ const shuffleKeys = (obj) => {
 //     return tempProbabilityOrder;
 // }
 
-// Define the function to create a progress message trial
-function createProgressMessage(percentComplete) {
-    return {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: `You are ${percentComplete}% done with the experiment. Please press the (0) key to proceed.`,
-      on_finish: function(){
-        jsPsych.setProgressBar(percentComplete/100); // set progress bar to percentComplete full.
-    },
-      choices: ['0'], // Allow only the '0' key to be pressed
-    };
-  }
-  
-//   // Define a function to calculate the percentage done
+// Define a function to calculate the percentage done
   function calculatePercentComplete() {
     // Get the current trial index and divide by total number of trials
     let percentComplete = (trialIterator/totalTrials)*100;
     return Math.round(percentComplete); // Round to the nearest integer
   }
   
-  // Create a conditional function to decide whether to show the progress message
+// Create a conditional function to decide whether to show the progress message
   function shouldShowProgressMessage() {
     // Show the message after every 25% completion
     let percentComplete = calculatePercentComplete();
