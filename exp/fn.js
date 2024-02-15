@@ -7,6 +7,7 @@
  * @param {string} language - The selected language for translation. Supported languages
  *                            include English, French, and German. Defaults to English
  *                            for any other inputs or unsupported languages.
+ * @param {array} instructions - An array of instructions specified to be translated.
  */
 
 // Function to translate instructions based on selected language
