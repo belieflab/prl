@@ -1,5 +1,54 @@
 // Function to shuffle the keys of an object randomly while preserving corresponding values
 // order of keys in object must be randomized, but we need to keep values associated with each key are still linked/mapped
+/**
+ * Translates the text of consent-related buttons based on the selected language.
+ * Defaults to English if the selected language is unsupported.
+ *
+ * @param {string} language - The selected language for translation. Supported languages
+ *                            include English, French, and German. Defaults to English
+ *                            for any other inputs or unsupported languages.
+ */
+
+// Function to translate instructions based on selected language
+const translate = (language, ...instructions) => {
+    let consent, load; // Variables for the translated texts of the buttons
+    let translatedInstructions = []; // Array to store translated instructions
+
+    // Determine the translation based on the selected language
+    switch (language) {
+        case "french":
+            consent = "CONSENTEMENT";
+            load = "CHARGE";
+            translatedInstructions = instructions;
+            break;
+
+        case "german":
+            consent = "ZUSTIMMUNG";
+            load = "BELASTUNG";
+            translatedInstructions = instructions;
+            break;
+
+        default: // Default case for English and unsupported languages
+            consent = "CONSENT";
+            load = "LOAD";
+            translatedInstructions = instructions; // No translation needed, keep original instructions
+            break;
+    }
+
+    // Update the webpage elements with the translated text
+    document.getElementById("submitButton").innerHTML = consent; // Update consent button
+    document.getElementById("nextButton").innerHTML = load; // Update load/next button
+
+    // Assuming you have corresponding elements for instructions on your webpage
+    translatedInstructions.forEach((translatedInstruction, index) => {
+        let instructionElementId = `instruction${index + 1}_stim`;
+        if (document.getElementById(instructionElementId)) {
+            document.getElementById(instructionElementId).innerHTML =
+                translatedInstruction;
+        }
+    });
+};
+
 const shuffleKeys = (obj) => {
     // get keys of input object; Object.keys() method returns an array containing keys of the object
     let shuffledKeys = Object.keys(obj).sort(() => Math.random() - 0.5);
@@ -42,28 +91,25 @@ const shuffleKeys = (obj) => {
 // Define the function to create a progress message trial
 function createProgressMessage(percentComplete) {
     return {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: `You are ${percentComplete}% done with the experiment. Please press the (0) key to proceed.`,
-      on_finish: function(){
-        jsPsych.setProgressBar(percentComplete/100); // set progress bar to percentComplete full.
-    },
-      choices: ['0'], // Allow only the '0' key to be pressed
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `You are ${percentComplete}% done with the experiment. Please press the (0) key to proceed.`,
+        on_finish: function () {
+            jsPsych.setProgressBar(percentComplete / 100); // set progress bar to percentComplete full.
+        },
+        choices: ["0"], // Allow only the '0' key to be pressed
     };
-  }
-  
+}
+
 //   // Define a function to calculate the percentage done
-  function calculatePercentComplete() {
+function calculatePercentComplete() {
     // Get the current trial index and divide by total number of trials
-    let percentComplete = (trialIterator/totalTrials)*100;
+    let percentComplete = (trialIterator / totalTrials) * 100;
     return Math.round(percentComplete); // Round to the nearest integer
-  }
-  
-  // Create a conditional function to decide whether to show the progress message
-  function shouldShowProgressMessage() {
+}
+
+// Create a conditional function to decide whether to show the progress message
+function shouldShowProgressMessage() {
     // Show the message after every 25% completion
     let percentComplete = calculatePercentComplete();
     return [25, 50, 75].includes(percentComplete); // Show the message at 25%, 50%, and 75%
-  }
-  
-
-  
+}

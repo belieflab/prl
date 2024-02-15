@@ -9,7 +9,7 @@
 
 // Instructions
 timeline.push(welcome);
-timeline.push(...instructions);
+timeline.push(...instructionSet);
 
 // Practice
 timeline.push(practiceTrial);

@@ -1,6 +1,6 @@
 const jsPsych = initJsPsych({
     show_progress_bar: true,
-    message_progress_bar: 'PRL Completion Progress',    
+    message_progress_bar: "Completion Progress",
     auto_update_progress_bar: false,
     preload_video: [],
     preload_audio: [],
@@ -16,58 +16,60 @@ const welcome = {
         <p> Welcome to the experiment!</p>
         <p> Press any key to begin. </p>`,
     choice: "NO_KEYS",
-    on_load: function () {
-        $(document).ready(function () {
+    on_load: () => {
+        $(document).ready(() => {
             $("body").addClass("hideCursor");
         });
         // Hide progress bar from screen
-        document.getElementById("jspsych-progressbar-container").style.visibility = "hidden";
+        document.getElementById(
+            "jspsych-progressbar-container"
+        ).style.visibility = "hidden";
     },
 };
 
 /*define task instructions*/
 const instruction1 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instruction1_stim,
-    choices: ["0"],    
+    stimulus: instructions[0],
+    choices: ["0"],
 };
 
 /*define task instructions*/
 const instruction2 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instruction2_stim,
+    stimulus: instructions[1],
     choices: ["1"],
 };
 
 /*define task instructions*/
 const instruction3 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instruction3_stim,
+    stimulus: instructions[2],
     choices: ["2"],
 };
 
 /*define task instructions*/
 const instruction4 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instruction4_stim,
+    stimulus: instructions[3],
     choices: ["3"],
 };
 
 /*define task instructions*/
 const instruction5 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instruction5_stim,
+    stimulus: instructions[4],
     choices: ["0"],
 };
 
 /*define task instructions*/
 const instruction6 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instruction6_stim,
+    stimulus: instructions[5],
     choices: ["0"],
 };
 
-const instructions = [
+const instructionSet = [
     instruction1,
     instruction2,
     instruction3,
@@ -78,12 +80,14 @@ const instructions = [
 
 const endPracticeInstructions = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: endPracticeInstructions_stim,
+    stimulus: instructions[6],
     choices: ["0"],
-    on_load: function() {
+    on_load: function () {
         // Make visible progress bar to screen
-        document.getElementById("jspsych-progressbar-container").style.visibility = "visible";
-      },
+        document.getElementById(
+            "jspsych-progressbar-container"
+        ).style.visibility = "visible";
+    },
 };
 
 /*add fixation*/
@@ -389,19 +393,15 @@ const trialFeedback = {
     trial_duration: 1000,
 };
 
-
-
 const practiceTrial = {
     timeline: [fixation, cues, practiceFeedback],
     repetitions: 3,
 };
 
-
 let conditionalProgressMessage = {
     timeline: [createProgressMessage(25)],
-    conditional_function: shouldShowProgressMessage
+    conditional_function: shouldShowProgressMessage,
 };
-
 
 let procedureTrial = {
     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
