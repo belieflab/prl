@@ -4,10 +4,10 @@
 
 // Experiment Name
 const experimentName = "Probabilistic Reversal Learning Task"; // Displayed in the title bar of the browser
-const experimentAlias = "prl"; // Used in the data file name
+const experimentAlias = "prl"; // Used in the data file name, affects data saving
 
 // Experiment Language
-const language = "english"; // Language used for the experiment, affects data saving
+const language = "english"; // Language used for the experiment
 
 // UI Theme
 // Options: "light", "dark"
