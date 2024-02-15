@@ -475,11 +475,26 @@ const dataSave = {
             })
             .catch((error) => {
                 console.log("Failed to save data.", error);
+                // Check if the error object has 'error' property and use it, otherwise convert object to string
+                let errorMessage = error.error || JSON.stringify(error);
+                switch (errorMessage) {
+                    case '{"success":false}':
+                        errorMessage =
+                            "The ./data directory does not exit on this server.";
+                        break;
+                    case "timeout":
+                        errorMessage =
+                            "There was an error saving the file to disk.";
+                        break;
+                    default:
+                        errorMessage = "Unknown error.";
+                }
                 // Update the stimulus content directly via DOM manipulation
                 const dataFailure = `
                 <div class="error-page">
                     <p>Oh no!</p>
-                    <p>An error has occured and your data has not been saved.</p>
+                    <p>An error has occured and your data has not been saved:</p>
+                    <p>${errorMessage}</p>
                     <p>Please wait for the experimenter to continue.</p>
                 </div>`;
                 document.querySelector("#jspsych-content").innerHTML =
