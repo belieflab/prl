@@ -90,20 +90,6 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <script type="text/javascript" src="./exp/fn.js"></script>
   <script type="text/javascript" src="./exp/var.js"></script>
   <script type="text/javascript" src="./exp/lang.js"></script>
-  <script>
-    // show page when loaded 
-    window.onload = function() {
-      $(".loading").css({
-        display: "none"
-      });
-      $(".consent").css({
-        display: "block"
-      });
-      $(".buttonHolder").css({
-        display: "block"
-      });
-    };
-  </script>
 </footer>
 
 </html>
