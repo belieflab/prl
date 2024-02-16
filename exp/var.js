@@ -5,9 +5,9 @@ const totalBlocks = 4; //total number of blocks
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 let firstHalf; //probabilities for first half of trials
 let secondHalf; //probabilites for second half
-let winPoints           = 100;
-let losePoints          = -50;
-let score               = 0;
+let winPoints = 100;
+let losePoints = -50;
+let score = 0;
 
 const phaseProbabilities = [
     [0.9, 0.5, 0.1], // Phase 1 probabilities
@@ -23,11 +23,14 @@ const maxStreaks = 9;
 const maxStrikes = 2;
 
 //selecting the stimuli based on version (deck or avatar)
-if (version === "deck") {
-    stim = stimArrayDeck;
-}
-if (version === "avatar") {
-    stim = stimArrayAvatar;
+
+switch (version) {
+    case "deck":
+        stim = stimArrayDeck;
+        break;
+    case "avatar":
+        stim = stimArrayAvatar;
+        break;
 }
 
 // // MAYBE REMOVE, outcome vector order not generalize to many CPs
