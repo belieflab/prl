@@ -27,4 +27,9 @@ timeline.push(dataSave);
 
 // this is not needed as it is called in .wrap/fn/startExperiment()
 // commenting in will bypass validation
-// jsPsych.run(timeline);
+// but it's a nice debug mode!
+switch (debug) {
+    case true:
+        jsPsych.run(timeline);
+        break;
+}

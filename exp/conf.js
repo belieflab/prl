@@ -9,6 +9,10 @@ const experimentAlias = "prl"; // Used in the data file name, affects data savin
 // Experiment Language
 const language = "english"; // Language used for the experiment
 
+// Debug Mode
+// Options: true, false
+const debug = true;
+
 // UI Theme
 // Options: "light", "dark"
 const theme = "light"; // UI theme setting
