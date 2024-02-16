@@ -30,6 +30,6 @@ timeline.push(dataSave);
 // but it's a nice debug mode!
 switch (debug) {
     case true:
-        jsPsych.run(timeline);
+        jsPsych.run(timeline); // no fullscreen, don't hide cursor
         break;
 }

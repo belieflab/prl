@@ -7,7 +7,7 @@ const jsPsych = initJsPsych({
     preload_images: [],
 });
 
-let timeline = [];
+const timeline = [];
 
 /*define welcome message*/
 const welcome = {
@@ -442,7 +442,7 @@ const conditionalProgressMessage = {
 //     // "Please wait for the experimenter to continue.\n"+ '<br>' +
 // "You may now close the expriment window at anytime.\n";
 
-let procedureTrial = {
+const procedureTrial = {
     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
     repetitions: totalTrials,
 };
@@ -539,7 +539,6 @@ const dataSave = {
             jsPsych.data.get().csv()
         )
             .then((response) => {
-                const score = score;
                 console.log("Data saved successfully.", response);
                 // Update the stimulus content directly via DOM manipulation
                 const thankYou = `
