@@ -26,3 +26,6 @@ const bonus = 2; // Bonus amount in dollars
 const percentile = 25; // Cut-off performance percentile for receiving a bonus
 
 // Note: Uncomment the desired option for each setting, and ensure only one option per setting is active.
+
+const adminEmail = "joshua.kenney@yale.edu";
+const feedbackLink = undefined;
