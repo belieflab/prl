@@ -1,7 +1,7 @@
 // main order in which things are pushed to timeline
 
 // The spread operator ... expands the elements of instructions inside the
-// push method call, effectively adding each element to timeline.
+// push method call, effectively adding each element to timeline like a loop.
 // is the same as:
 // for (let i = 0; i < instructions.length; i++) {
 //     timeline.push(instructions[i]);
@@ -30,6 +30,6 @@ timeline.push(dataSave);
 // but it's a nice debug mode!
 switch (debug) {
     case true:
-        jsPsych.run(timeline); // no fullscreen, don't hide cursor
+        jsPsych.run(timeline); // no fullscreen; don't hide cursor
         break;
 }

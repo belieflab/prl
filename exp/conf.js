@@ -2,16 +2,16 @@
 //   EXPERIMENT CONFIGURATION FILE   //
 //***********************************//
 
+// Debug Mode
+// Options: true, false
+const debug = true;
+
 // Experiment Name
 const experimentName = "Probabilistic Reversal Learning Task"; // Displayed in the title bar of the browser
 const experimentAlias = "prl"; // Used in the data file name, affects data saving
 
 // Experiment Language
 const language = "english"; // Language used for the experiment
-
-// Debug Mode
-// Options: true, false
-const debug = true;
 
 // UI Theme
 // Options: "light", "dark"

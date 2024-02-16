@@ -78,6 +78,9 @@ switch (version) {
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
+        var english8 = `Did you consider the patient-doctor relationship when making choices?`;
+        var english9 = `Did it feel as though the foods were trying to trick you?`;
+
         // TASK 2: Please add remaining french and german language for the deck version
         var french1 = `
         <p>Bienvenue! Avant de commencer, veuillez agrandir votre fenêtre au maximum.</p>
@@ -148,10 +151,8 @@ switch (version) {
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
-        var english8 =
-            "Did you consider the patient-doctor relationship when making choices?";
-        var english9 =
-            "Did it feel as though the foods were trying to trick you?";
+        var english8 = `Did you consider the patient-doctor relationship when making choices?`;
+        var english9 = `Did it feel as though the foods were trying to trick you?`;
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
