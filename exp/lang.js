@@ -5,6 +5,17 @@
 let instructions = [];
 
 // Define the instructions for each language
+// Function to shuffle the keys of an object randomly while preserving corresponding values
+// order of keys in object must be randomized, but we need to keep values associated with each key are still linked/mapped
+/**
+ * Translates the text of consent-related buttons based on the selected language.
+ * Defaults to English if the selected language is unsupported.
+ *
+ * @param {string} language - The selected language for translation. Supported languages
+ *                            include English, French, and German. Defaults to English
+ *                            for any other inputs or unsupported languages.
+ * @param {array} instructions - An array of instructions specified to be translated.
+ */
 switch (version) {
     case "deck":
         var english1 = `
@@ -137,6 +148,11 @@ switch (version) {
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
+        var english8 =
+            "Did you consider the patient-doctor relationship when making choices?";
+        var english9 =
+            "Did it feel as though the foods were trying to trick you?";
+
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
         <p>Bienvenue! Avant de commencer, veuillez agrandir votre fenêtre au maximum.</p>
@@ -157,6 +173,8 @@ switch (language) {
             english5,
             english6,
             english7,
+            english8,
+            english9,
         ];
         break;
     // Task 4: Please add the case for both french and german

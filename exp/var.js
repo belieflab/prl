@@ -34,7 +34,7 @@ switch (version) {
 }
 
 // // MAYBE REMOVE, outcome vector order not generalize to many CPs
-const outcome = outcomeArray; //regardless of version, outcome win/lose is the same
+//const outcome = outcomeArray; //regardless of version, outcome win/lose is the same
 
 // // MAYBE REMOVE // //
 //let stimRandomize = shuffleArray(stim); //shuffling stimuli array

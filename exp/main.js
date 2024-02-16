@@ -18,6 +18,10 @@ timeline.push(endPracticeInstructions);
 // Main experiment
 timeline.push(procedureTrial);
 
+// Rating questions
+timeline.push(screenRating1);
+timeline.push(screenRating2);
+
 // Data saving and salutations
 timeline.push(dataSave);
 

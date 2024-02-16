@@ -447,6 +447,87 @@ let procedureTrial = {
     repetitions: totalTrials,
 };
 
+const screenRating1 = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+        {
+            prompt: instructions[7],
+            name: "rating_random",
+            options: [
+                "Definitely Not",
+                "Probably Not",
+                "Unsure",
+                "Probably Yes",
+                "Definitely Yes",
+            ],
+            required: true,
+            horizontal: true,
+        },
+    ],
+    choices: "NO_KEYS",
+    on_start: () => {
+        document.getElementById("unload").onbeforeunload = "";
+        $(document).ready(function () {
+            $("body").addClass("showCursor"); // returns cursor functionality
+        });
+    },
+    on_finish: (data) => {
+        data.subjectkey = GUID;
+        data.src_subject_id = workerId;
+        data.site = siteNumber;
+        data.interview_date = today;
+        data.interview_age = ageAtAssessment;
+        data.sex = sexAtBirth;
+        data.phenotype = groupStatus;
+        data.visit = visit;
+        data.handedness = handedness;
+        data.version = version;
+
+        var ratingRandom = jsPsych.data.get().select("responses").values[0];
+
+        // var currentData = jsPsych.currentTrial().data;
+        console.log(ratingRandom);
+        data.rating_random = ratingRandom;
+    },
+};
+const screenRating2 = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+        {
+            prompt: instructions[8],
+            name: "rating_sabotage",
+            options: [
+                "Definitely Not",
+                "Probably Not",
+                "Unsure",
+                "Probably Yes",
+                "Definitely Yes",
+            ],
+            required: true,
+            horizontal: true,
+        },
+    ],
+    choices: "NO_KEYS",
+    on_finish: (data) => {
+        data.subjectkey = GUID;
+        data.src_subject_id = workerId;
+        data.site = siteNumber;
+        data.interview_date = today;
+        data.interview_age = ageAtAssessment;
+        data.sex = sexAtBirth;
+        data.phenotype = groupStatus;
+        data.visit = visit;
+        data.handedness = handedness;
+        data.version = version;
+        var ratingSabotage = jsPsych.data.get().select("responses").values[0];
+        data.rating_sabotage = ratingSabotage;
+        // var currentData = jsPsych.currentTrial().data;
+        console.log(ratingSabotage);
+    },
+
+    // trial_duration: 60000,
+};
+
 const dataSave = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: dataSaveAnimation,
@@ -482,7 +563,7 @@ const dataSave = {
                         errorMessage =
                             "The ./data directory does not exit on this server.";
                         break;
-                    case "timeout":
+                    case "Not Found":
                         errorMessage =
                             "There was an error saving the file to disk.";
                         break;

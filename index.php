@@ -52,6 +52,7 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <script src="https://unpkg.com/jspsych@7.3.3"></script>
   <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css"/>
   <!-- jsPsych Plugins (add more here) -->
+  <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
   <!-- <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script> -->
   <!-- custom jsPsych Plugins -->
   <script src="./wrap/plugins/plugin-html-keyboard-response.js"></script>
@@ -63,7 +64,7 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <script>
     const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
     const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
-    const outcomeArray = <?php echo $fileArrayOutcomeJSON; ?>;
+    const outcomeArray1111 = <?php echo $fileArrayOutcomeJSON; ?>;
   </script>
 </head>
 
@@ -82,7 +83,7 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <!-- load config first! -->
   <script type="text/javascript" src="./exp/conf.js"></script>
  <!-- load wrapper dependencies -->
- <script type="text/javascript" src="./wrap/exp/fn.js"></script>
+ <script type="text/javascript" src="./wrap/fn.js"></script>
   <!-- load experiment dependencies -->
   <script type="text/javascript" src="./exp/fn.js"></script>
   <script type="text/javascript" src="./exp/var.js"></script>
