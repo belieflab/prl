@@ -85,7 +85,7 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <!-- load config first! -->
   <script type="text/javascript" src="./exp/conf.js"></script>
  <!-- load wrapper dependencies -->
- <script type="text/javascript" src="./wrap/fn.js"></script>
+ <script type="text/javascript" src="./wrap/lib/fn.js"></script>
   <!-- load experiment dependencies -->
   <script type="text/javascript" src="./exp/fn.js"></script>
   <script type="text/javascript" src="./exp/var.js"></script>
