@@ -1,13 +1,13 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 1; //index value of current trial starts at 1
-const totalTrials = 40; // total number of trials
-const totalBlocks = 4; //total number of blocks
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 let firstHalf; //probabilities for first half of trials
 let secondHalf; //probabilites for second half
-let winPoints = 100;
-let losePoints = -50;
+
 let score = 0;
+
+const winPoints = 100;
+const losePoints = -50;
 
 const phaseProbabilities = [
     [0.9, 0.5, 0.1], // Phase 1 probabilities
@@ -34,7 +34,7 @@ switch (version) {
 }
 
 // // MAYBE REMOVE, outcome vector order not generalize to many CPs
-//const outcome = outcomeArray; //regardless of version, outcome win/lose is the same
+const outcome = outcomeArray; //regardless of version, outcome win/lose is the same
 
 // // MAYBE REMOVE // //
 //let stimRandomize = shuffleArray(stim); //shuffling stimuli array

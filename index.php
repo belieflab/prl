@@ -66,7 +66,7 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <script>
     const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
     const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
-    const outcomeArray1111 = <?php echo $fileArrayOutcomeJSON; ?>;
+    const outcomeArray = <?php echo $fileArrayOutcomeJSON; ?>;
   </script>
 </head>
 
