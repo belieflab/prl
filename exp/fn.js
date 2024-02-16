@@ -40,7 +40,7 @@ const shuffleKeys = (obj) => {
 // Define a function to calculate the percentage done
 function calculatePercentComplete() {
     // Get the current trial index and divide by total number of trials
-    let percentComplete = (trialIterator / totalTrials) * 100;
+    let percentComplete = (trialIterator / trials) * 100;
     return Math.round(percentComplete); // Round to the nearest integer
 }
 

@@ -257,10 +257,10 @@ const trialFeedback = {
         let html;
 
         // Initiate contingency shift based on current trial (i.e., shift starts at trial 81)
-        //totalTrials = 10;
+        //trials = 10;
 
         // for easy-hard version
-        // if (trialIterator <= (totalTrials/2)){
+        // if (trialIterator <= (trials/2)){
         //     currentProb = firstHalf; // phase 1 (trials 1-80) reward probability set
         //   } else {
         //     currentProb = secondHalf; // phase 2 (trials 81-160) reward probability set
@@ -268,8 +268,8 @@ const trialFeedback = {
 
         // performance-independent reversal every 40 trials
         if (
-            trialIterator === 1 * (totalTrials / totalBlocks) ||
-            trialIterator === 3 * (totalTrials / totalBlocks)
+            trialIterator === 1 * (trials / blocks) ||
+            trialIterator === 3 * (trials / blocks)
         ) {
             let highestProbabilityIndex;
 
@@ -288,7 +288,7 @@ const trialFeedback = {
         }
 
         // contingency shift
-        if (trialIterator === 2 * (totalTrials / totalBlocks)) {
+        if (trialIterator === 2 * (trials / blocks)) {
             let highestProbabilityIndex;
             do {
                 highestProbabilityIndex = currentProbability.indexOf(
@@ -444,7 +444,7 @@ const conditionalProgressMessage = {
 
 const procedureTrial = {
     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
-    repetitions: totalTrials,
+    repetitions: debug ? blocks : blocks * trials, // ternary statement (like an R ifelse)
 };
 
 const screenRating1 = {
