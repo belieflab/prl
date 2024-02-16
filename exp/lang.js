@@ -20,7 +20,9 @@ switch (version) {
     case "deck":
         var english1 = `
         <p>In this study, you will play a card game, and your goal is to win as many points as you can.</p>
-        <p>If your score lands you in the top ${percentile}% of participants, you will get an extra $${bonus} bonus, so please do your best!</p>
+        <p>If your score lands you in the top ${percentile}% of participants, you will get an extra ${
+            reward === "$" ? "$" + bonus : bonus + " points"
+        } bonus, so please do your best!</p>
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english2 = `
