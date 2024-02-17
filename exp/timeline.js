@@ -405,6 +405,7 @@ const trialFeedback = {
     trial_duration: 1000,
     on_finish: (data) => {
         writeCandidateKeys(data);
+        data.index = trialIterator;
     },
 };
 
