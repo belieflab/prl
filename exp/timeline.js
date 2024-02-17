@@ -403,6 +403,9 @@ const trialFeedback = {
     },
     response_ends_trial: false,
     trial_duration: 1000,
+    on_finish: (data) => {
+        writeCandidateKeys(data);
+    },
 };
 
 const practiceTrial = {
@@ -472,22 +475,10 @@ const screenRating1 = {
         });
     },
     on_finish: (data) => {
-        data.subjectkey = GUID;
-        data.src_subject_id = workerId;
-        data.site = siteNumber;
-        data.interview_date = today;
-        data.interview_age = ageAtAssessment;
-        data.sex = sexAtBirth;
-        data.phenotype = groupStatus;
-        data.visit = visit;
-        data.handedness = handedness;
-        data.version = version;
-
+        writeCandidateKeys(data);
         var ratingRandom = jsPsych.data.get().select("responses").values[0];
-
-        // var currentData = jsPsych.currentTrial().data;
-        console.log(ratingRandom);
         data.rating_random = ratingRandom;
+        console.log(ratingRandom);
     },
 };
 const screenRating2 = {
@@ -509,23 +500,11 @@ const screenRating2 = {
     ],
     choices: "NO_KEYS",
     on_finish: (data) => {
-        data.subjectkey = GUID;
-        data.src_subject_id = workerId;
-        data.site = siteNumber;
-        data.interview_date = today;
-        data.interview_age = ageAtAssessment;
-        data.sex = sexAtBirth;
-        data.phenotype = groupStatus;
-        data.visit = visit;
-        data.handedness = handedness;
-        data.version = version;
+        writeCandidateKeys(data);
         var ratingSabotage = jsPsych.data.get().select("responses").values[0];
         data.rating_sabotage = ratingSabotage;
-        // var currentData = jsPsych.currentTrial().data;
         console.log(ratingSabotage);
     },
-
-    // trial_duration: 60000,
 };
 
 const dataSave = {
