@@ -1,5 +1,5 @@
 # Probabalistic Reversal Learning Task
-The PRL Task is a computer-based task/game designed to understand decision-making behavior based on a series of trials with probabilistic rewards. In each trial, subjects are presented with three options from which to select, and their choice will either gain them points towards an overall score or lose them points. In addition to scoring as many points as possible throughout the task, subjects are asked to try to locate/select on each trial - the option that has the highest likelihood of reward - which, in turn, will allow them to get a high score.
+The PRL Task is a computer-based task/game designed to understand decision-making behavior based on a series of trials with probabilistic rewards. In each trial, subjects are presented with three options from which to select, and their choice will either gain them points towards an overall score or lose them points. In addition to scoring as many points as possible throughout the task, subjects are asked with locating/selecting - on each trial - the option that has the highest likelihood of reward - which, in turn, will allow them to get a high score.
 This task has 160 trials.
 * Primary outcome variables (e.g., win-switching)
 * Description of PRL rule strategy, etc
