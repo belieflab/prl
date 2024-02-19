@@ -18,6 +18,10 @@ let instructions = [];
  */
 switch (version) {
     case "deck":
+        var english0 = `
+        <p> Welcome to the experiment!</p>
+        <p> Press any key to begin. </p>`;
+
         var english1 = `
         <p>In this study, you will play a card game, and your goal is to win as many points as you can.</p>
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra ${
@@ -81,7 +85,21 @@ switch (version) {
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
         var english8 = `Did you consider the patient-doctor relationship when making choices?`;
+
         var english9 = `Did it feel as though the foods were trying to trick you?`;
+
+        var english10 = (score) => {
+            return `
+        <div class="body-white-theme">
+            <p>Thank you!</p>
+            <p>You have successfully completed the experiment and your data has been saved.</p>
+            <p>Your final score is ${score}.</p>
+            <!-- <p>To leave feedback on this task, please click the following link:</p> -->
+            <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
+            <!-- <p>Please wait for the experimenter to continue.</p> -->
+            <p><i>You may now close the experiment window at any time.</i></p>
+        </div>`;
+        };
 
         // TASK 2: Please add remaining french and german language for the deck version
         var french1 = `
@@ -93,6 +111,10 @@ switch (version) {
         break;
 
     case "avatar": // TASK 1: Please translate each var to the avatar language
+        var english0 = `
+        <p> Welcome to the experiment!</p>
+        <p> Press any key to begin. </p>`;
+
         var english1 = `
         <p>In this study, you will play a player game, and your goal is to win as many points as you can.</p>
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra $${bonus} bonus, so please do your best!</p>
@@ -154,7 +176,21 @@ switch (version) {
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
         var english8 = `Did you consider the patient-doctor relationship when making choices?`;
+
         var english9 = `Did it feel as though the foods were trying to trick you?`;
+
+        var english10 = (score) => {
+            return `
+        <div class="body-white-theme">
+            <p>Thank you!</p>
+            <p>You have successfully completed the experiment and your data has been saved.</p>
+            <p>Your final score is ${score}.</p>
+            <!-- <p>To leave feedback on this task, please click the following link:</p> -->
+            <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
+            <!-- <p>Please wait for the experimenter to continue.</p> -->
+            <p><i>You may now close the experiment window at any time.</i></p>
+        </div>`;
+        };
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
@@ -169,6 +205,7 @@ switch (version) {
 switch (language) {
     default:
         instructions = [
+            english0,
             english1,
             english2,
             english3,
@@ -178,6 +215,7 @@ switch (language) {
             english7,
             english8,
             english9,
+            (score) => english10(score), // Store it as a function that accepts score
         ];
         break;
     // Task 4: Please add the case for both french and german

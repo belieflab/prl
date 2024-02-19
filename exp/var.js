@@ -1,11 +1,11 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 0; //index value of current trial starts at 1
 
+let score = 0;
+
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 let firstHalf; //probabilities for first half of trials
 let secondHalf; //probabilites for second half
-
-let score = 0;
 
 const winPoints = 100;
 const losePoints = -50;

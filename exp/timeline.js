@@ -12,9 +12,7 @@ const timeline = [];
 /*define welcome message*/
 const welcome = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `
-        <p> Welcome to the experiment!</p>
-        <p> Press any key to begin. </p>`,
+    stimulus: instructions[0],
     choice: "NO_KEYS",
     on_load: () => {
         $(document).ready(() => {
@@ -30,42 +28,42 @@ const welcome = {
 /*define task instructions*/
 const instruction1 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instructions[0],
+    stimulus: instructions[1],
     choices: ["0"],
 };
 
 /*define task instructions*/
 const instruction2 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instructions[1],
+    stimulus: instructions[2],
     choices: ["1"],
 };
 
 /*define task instructions*/
 const instruction3 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instructions[2],
+    stimulus: instructions[3],
     choices: ["2"],
 };
 
 /*define task instructions*/
 const instruction4 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instructions[3],
+    stimulus: instructions[4],
     choices: ["3"],
 };
 
 /*define task instructions*/
 const instruction5 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instructions[4],
+    stimulus: instructions[5],
     choices: ["0"],
 };
 
 /*define task instructions*/
 const instruction6 = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instructions[5],
+    stimulus: instructions[6],
     choices: ["0"],
 };
 
@@ -80,7 +78,7 @@ const instructionSet = [
 
 const endPracticeInstructions = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instructions[6],
+    stimulus: instructions[7],
     choices: ["0"],
     on_load: function () {
         // Make visible progress bar to screen
@@ -419,7 +417,7 @@ const conditionalProgressMessage = {
     timeline: [
         {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: function () {
+            stimulus: () => {
                 let percentComplete = calculatePercentComplete();
                 // Create a progress message trial
                 return (
@@ -428,7 +426,7 @@ const conditionalProgressMessage = {
                     "% done with the experiment. Please press the (0) key to proceed."
                 );
             },
-            on_finish: function () {
+            on_finish: () => {
                 let percentComplete = calculatePercentComplete();
                 jsPsych.setProgressBar(percentComplete / 100); // set progress bar to percentComplete full.
             },
@@ -455,7 +453,7 @@ const screenRating1 = {
     type: jsPsychSurveyMultiChoice,
     questions: [
         {
-            prompt: instructions[7],
+            prompt: instructions[8],
             name: "rating_random",
             options: [
                 "Definitely Not",
@@ -486,7 +484,7 @@ const screenRating2 = {
     type: jsPsychSurveyMultiChoice,
     questions: [
         {
-            prompt: instructions[8],
+            prompt: instructions[9],
             name: "rating_sabotage",
             options: [
                 "Definitely Not",
@@ -510,27 +508,25 @@ const screenRating2 = {
 
 const dataSave = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: dataSaveAnimation,
+    stimulus: dataSaveAnimation(),
     choices: "NO_KEYS",
     trial_duration: 5000,
-    on_finish: function () {
+    on_finish: () => {
+        const updatedScore =
+            typeof score !== "undefined"
+                ? score
+                : jsPsych.data.get().select("score").values.slice(-1)[0]; // Replace 'score' with actual data key if necessary
+
+        // Now, generate the thank you message with the updated score
+        const thankYou = instructions[10](updatedScore);
+
         saveDataPromise(
-            experimentAlias + "_" + subjectId,
+            `${experimentAlias}_${subjectId}`,
             jsPsych.data.get().csv()
         )
             .then((response) => {
                 console.log("Data saved successfully.", response);
                 // Update the stimulus content directly via DOM manipulation
-                const thankYou = `
-                <div class="body-white-theme">
-                    <p>Thank you!</p>
-                    <p>You have successfully completed the experiment and your data has been saved.</p>
-                    <p>Your final score is ${score}.</p>
-                    <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-                    <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
-                    <!-- <p>Please wait for the experimenter to continue.</p> -->
-                    <p><i>You may now close the experiment window at any time.</i></p>
-                </div>`;
                 document.querySelector("#jspsych-content").innerHTML = thankYou;
             })
             .catch((error) => {
@@ -568,4 +564,5 @@ const dataSave = {
     },
 };
 
+// Load and execute "exp/main.js" using jQuery's $.getScript method.
 $.getScript("exp/main.js");
