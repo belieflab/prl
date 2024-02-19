@@ -16,12 +16,13 @@ let instructions = [];
  *                            for any other inputs or unsupported languages.
  * @param {array} instructions - An array of instructions specified to be translated.
  */
+
+const english0 = `
+        <p>Welcome to the experiment!</p>
+        <p>Press any key to begin.</p>`;
+
 switch (version) {
     case "deck":
-        var english0 = `
-        <p> Welcome to the experiment!</p>
-        <p> Press any key to begin. </p>`;
-
         var english1 = `
         <p>In this study, you will play a card game, and your goal is to win as many points as you can.</p>
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra ${
@@ -111,10 +112,6 @@ switch (version) {
         break;
 
     case "avatar": // TASK 1: Please translate each var to the avatar language
-        var english0 = `
-        <p> Welcome to the experiment!</p>
-        <p> Press any key to begin. </p>`;
-
         var english1 = `
         <p>In this study, you will play a game about working with people, and your goal is to win as many points as you can.</p>
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra $${bonus} bonus, so please do your best!</p>
@@ -160,7 +157,6 @@ switch (version) {
         <p><strong>Note that each partner is different. Your job is to find the best partner, and to get as many points as possible.</p>
         <p>However, no partner is perfect. Anyone can have a bad day.</strong></p>
         <p>Please press the zero (0) key to continue.`;
-    
 
         var english6 = `
         <p>However, there is one final catch:</p>
@@ -201,11 +197,8 @@ switch (version) {
         <p>pourriez être empêché de terminer la tâche.</p>
         <p>Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
         break;
-    case "sabotage":
-        var english0 = `
-        <p> Welcome to the experiment!</p>
-        <p> Press any key to begin. </p>`;
 
+    case "sabotage":
         var english1 = `
         <p>In this study, you will play a game about working with people, and your goal is to win as many points as you can.</p>
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra $${bonus} bonus, so please do your best!</p>
@@ -253,7 +246,6 @@ switch (version) {
         <p><strong>Note that each co-worker is different. Your job is to find the best co-worker, and to get as many points as possible.</p>
         <p>However, no co-worker is perfect. Anyone can have a bad day.</strong></p>
         <p>Please press the zero (0) key to continue.`;
-    
 
         var english6 = `
         <p>However, there is one final catch:</p>
