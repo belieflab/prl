@@ -15,9 +15,18 @@ const welcome = {
     stimulus: instructions[0],
     choice: "NO_KEYS",
     on_load: () => {
-        $(document).ready(() => {
-            $("body").addClass("hideCursor");
-        });
+        switch (debug) {
+            case true:
+                $(document).ready(() => {
+                    $("body").addClass("showCursor");
+                });
+                break;
+            case false:
+                $(document).ready(() => {
+                    $("body").addClass("hideCursor");
+                });
+                break;
+        }
         // Hide progress bar from screen
         document.getElementById(
             "jspsych-progressbar-container"
@@ -101,49 +110,13 @@ const fixedReversal = {
     stimulus: "reversal",
     trial_duration: 5000,
     response_ends_trial: false,
-    on_start: () => {},
 };
-
-// // MAYBE WILL BE REMOVED // //
-// const randomizeDecks = {
-//     type: jsPsychHtmlKeyboardResponse,
-//     stimulus: "reversal",
-//     trial_duration: 5000,
-//     response_ends_trial: false, //trial won't end automatically after response
-//     on_start: () => {
-//         let probabilityOrder = [];
-//         // creates a deep copy of the 'probabilityNames' array; a deep copy means that new array is created with new instances of objects found in original array
-//         //shuffle the deep copy of 'probabilityNames' array
-//         probabilityOrder.push(shuffle(deepCopy(probabilityNames))); //changed .append to .push (.append is from Python syntax? so not js syntax?)
-//         // randomize deck contingencies
-//         if (randomizeDecksOn) {
-//             var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-//             while (
-//                 //shuffle until "high" is not in the same position as it was
-//                 tempProbabilityOrder.indexOf("high") ==
-//                 probabilityOrder.indexOf("high")
-//             ) {
-//                 tempProbabilityOrder = shuffle(tempProbabilityOrder);
-//             }
-//         }
-//     },
-// };
 
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
 const cues = {
     type: jsPsychHtmlKeyboardResponse,
+    response_ends_trial: true,
     choices: ["1", "2", "3"], // Initially, there may be no keys allowed if you want to start in a "disabled" state
-
-    // on_start: function (trial) {
-    //     if (ignoreKeyPresses) {
-    //         // Temporarily clear choices to prevent responses
-    //         trial.choices = [];
-    //     }
-    //     if (!ignoreKeyPresses) {
-    //         trial.choices = ["1", "2", "3"];
-    //     }
-    // },
-
     stimulus: () => {
         return `
             <div class='image-container'>
@@ -152,22 +125,13 @@ const cues = {
                 <img class='stimuli-right' src='${stim[2]}'>
             </div>`;
     },
-
-    response_ends_trial: true,
-
-    // trial_duration: 1,
-    // data: {
-    //     colour: jsPsych.timelineVariable("colour"),
-    //     text: jsPsych.timelineVariable("text"),
-    //     condition: jsPsych.timelineVariable("condition"),
-    //     workerId: workerId,
-    //     interview_date: today,
-    // },
 };
 
 // practice trials
 const practiceFeedback = {
     type: jsPsychHtmlKeyboardResponse,
+    response_ends_trial: false,
+    trial_duration: 1000,
     choices: ["1", "2", "3"],
     stimulus: () => {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
@@ -203,8 +167,6 @@ const practiceFeedback = {
         }
         return html;
     },
-    response_ends_trial: false,
-    trial_duration: 1000,
 };
 
 // main trials, with embedded probabilistic reversal learning logic
@@ -217,23 +179,6 @@ const trialFeedback = {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
         let response = data[0].response;
         console.log(response);
-
-        // let targetProbabilityIndex = rewardProbabilityFirstHalf.findIndex(obj => obj.contingency === "high");
-
-        // console.log(
-        //     "Index of object with probability high is:" +
-        //     targetProbabilityIndex
-        // );
-
-        // Initiate contingency shift based on current trial (i.e., shift starts at trial 81)
-        //trials = 10;
-
-        // for easy-hard version
-        // if (trialIterator <= (trials/2)){
-        //     currentProb = firstHalf; // phase 1 (trials 1-80) reward probability set
-        //   } else {
-        //     currentProb = secondHalf; // phase 2 (trials 81-160) reward probability set
-        // }
 
         // performance-independent reversal every 40 trials
         if (
