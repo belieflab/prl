@@ -25,8 +25,8 @@ const version = "deck"; // Current version of the experiment
 // Options: "easy-easy", "easy-hard" (default), "hard-easy", "hard-hard"
 const difficulty = "easy-hard"; // Default difficulty setting
 
-const trials = 40; // total number of trials
-const blocks = 4; //total number of blocks
+const trials = 40; // trials per block
+const blocks = 4; // blocks of trials per experiment
 
 // Reward Settings
 const bonus = 2; // Bonus amount in dollars
