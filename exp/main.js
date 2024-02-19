@@ -8,28 +8,25 @@
 // }
 
 // Instructions
-// timeline.push(welcome);
-// timeline.push(...instructionSet);
+timeline.push(welcome, ...instructionSet);
 
-// // Practice
-// timeline.push(practiceTrial);
-// timeline.push(endPracticeInstructions);
+// Practice
+timeline.push(practiceTrial, endPracticeInstructions);
 
-// // Main experiment
-// timeline.push(procedureTrial);
+// Main experiment
+timeline.push(procedureTrial);
 
 // Rating questions
-timeline.push(screenRating1);
-// timeline.push(screenRating2);
+timeline.push(screenRating1, screenRating2);
 
 // Data saving and salutations
 timeline.push(dataSave);
 
-// this is not needed as it is called in .wrap/fn/startExperiment()
-// commenting in will bypass validation
-// but it's a nice debug mode!
-switch (debug) {
-    case true:
-        jsPsych.run(timeline); // no fullscreen; don't hide cursor
-        break;
+// bypass validation phase if workerId, participantId, or PROLIFIC_PID is present in URL
+if (
+    getParamFromUrl("workerId") ||
+    getParamFromUrl("participantId") ||
+    getParamFromUrl("PROLIFIC_PID")
+) {
+    jsPsych.run(timeline); // no fullscreen; don't hide cursor
 }

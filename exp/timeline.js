@@ -80,7 +80,7 @@ const endPracticeInstructions = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[7],
     choices: ["0"],
-    on_load: function () {
+    on_load: () => {
         // Make visible progress bar to screen
         document.getElementById(
             "jspsych-progressbar-container"
@@ -145,20 +145,14 @@ const cues = {
     // },
 
     stimulus: () => {
-        let html =
-            "<div class='image-container'>" +
-            "<img class='stimuli-left' src='" +
-            stim[0] +
-            "'>" +
-            "<img class='stimuli-middle' src='" +
-            stim[1] +
-            "'>" +
-            "<img class='stimuli-right' src='" +
-            stim[2] +
-            "'>" +
-            "</div>";
-        return html;
+        return `
+            <div class='image-container'>
+                <img class='stimuli-left' src='${stim[0]}'>
+                <img class='stimuli-middle' src='${stim[1]}'>
+                <img class='stimuli-right' src='${stim[2]}'>
+            </div>`;
     },
+
     response_ends_trial: true,
 
     // trial_duration: 1,
@@ -181,45 +175,31 @@ const practiceFeedback = {
         console.log(response);
 
         let html;
-        if (response == "1") {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                shuffleArray(outcome)[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                stim[1] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                stim[2] +
-                "'>" +
-                "</div>";
-        } else if (response == "2") {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                stim[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                shuffleArray(outcome)[0] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                stim[2] +
-                "'>" +
-                "</div>";
-        } else if (response == "3") {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                stim[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                stim[1] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                shuffleArray(outcome)[1] +
-                "'>" +
-                "</div>";
+        if (response === "1") {
+            html = `
+                <div class='image-container'>
+                    <img class='stimuli-left' src='${shuffleArray(outcome)[0]}'>
+                    <img class='stimuli-middle' src='${stim[1]}'>
+                    <img class='stimuli-right' src='${stim[2]}'>
+                </div>`;
+        } else if (response === "2") {
+            html = `
+                <div class='image-container'>
+                    <img class='stimuli-left' src='${stim[0]}'>
+                    <img class='stimuli-middle' src='${
+                        shuffleArray(outcome)[0]
+                    }'>
+                    <img class='stimuli-right' src='${stim[2]}'>
+                </div>`;
+        } else if (response === "3") {
+            html = `
+                <div class='image-container'>
+                    <img class='stimuli-left' src='${stim[0]}'>
+                    <img class='stimuli-middle' src='${stim[1]}'>
+                    <img class='stimuli-right' src='${
+                        shuffleArray(outcome)[1]
+                    }'>
+                </div>`;
         }
         return html;
     },
@@ -244,8 +224,6 @@ const trialFeedback = {
         //     "Index of object with probability high is:" +
         //     targetProbabilityIndex
         // );
-
-        let html;
 
         // Initiate contingency shift based on current trial (i.e., shift starts at trial 81)
         //trials = 10;
@@ -347,46 +325,29 @@ const trialFeedback = {
         score += points;
 
         // Maps reward probability for each response
+        let html;
 
         if (response == "1") {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                observedOutcome + // output win (+100) card based on first half reward probability set
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                stim[1] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                stim[2] +
-                "'>" +
-                "</div>";
+            html = `
+                <div class='image-container'>
+                    <img class='stimuli-left' src='${observedOutcome}'>
+                    <img class='stimuli-middle' src='${stim[1]}'>
+                    <img class='stimuli-right' src='${stim[2]}'>
+                </div>`;
         } else if (response == "2") {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                stim[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                observedOutcome +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                stim[2] +
-                "'>" +
-                "</div>";
+            html = `
+                <div class='image-container'>
+                    <img class='stimuli-left' src='${stim[0]}'>
+                    <img class='stimuli-middle' src='${observedOutcome}'>
+                    <img class='stimuli-right' src='${stim[2]}'>
+                </div>`;
         } else if (response == "3") {
-            html =
-                "<div class='image-container'>" +
-                "<img class='stimuli-left' src='" +
-                stim[0] +
-                "'>" +
-                "<img class='stimuli-middle' src='" +
-                stim[1] +
-                "'>" +
-                "<img class='stimuli-right' src='" +
-                observedOutcome +
-                "'>" +
-                "</div>";
+            html = `
+                <div class='image-container'>
+                    <img class='stimuli-left' src='${stim[0]}'>
+                    <img class='stimuli-middle' src='${stim[1]}'>
+                    <img class='stimuli-right' src='${observedOutcome}'>
+                </div>`;
         }
 
         trialIterator++; // accumulating trials
@@ -414,11 +375,7 @@ const conditionalProgressMessage = {
             stimulus: () => {
                 let percentComplete = calculatePercentComplete();
                 // Create a progress message trial
-                return (
-                    "You are " +
-                    percentComplete +
-                    "% done with the experiment. Please press the (0) key to proceed."
-                );
+                return `You are ${percentComplete}% done with the experiment. Please press the (0) key to proceed.`;
             },
             on_finish: () => {
                 let percentComplete = calculatePercentComplete();
@@ -432,7 +389,7 @@ const conditionalProgressMessage = {
 
 const procedureTrial = {
     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
-    repetitions: debug ? blocks : blocks * trials, // ternary statement (like an R ifelse)
+    repetitions: getRepetitions(), // toggle between debug and production mode
 };
 
 const screenRating1 = {
@@ -530,12 +487,10 @@ const dataSave = {
                 let errorMessage = error.error || JSON.stringify(error);
                 switch (errorMessage) {
                     case '{"success":false}':
-                        errorMessage =
-                            "The ./data directory does not exit on this server.";
+                        errorMessage = `The ./data directory does not exit on this server.`;
                         break;
                     case "Not Found":
-                        errorMessage =
-                            "There was an error saving the file to disk.";
+                        errorMessage = `There was an error saving the file to disk.`;
                         break;
                     default:
                         errorMessage = "Unknown error.";
