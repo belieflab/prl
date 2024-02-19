@@ -1,11 +1,9 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 0; //index value of current trial starts at 1
 
-let score = 0;
+let score = 0; // score accumulated throughout the experiment
 
 let stim; //defined as decks or avatars (refer to specific as stim[0])
-let firstHalf; //probabilities for first half of trials
-let secondHalf; //probabilites for second half
 
 const winPoints = 100;
 const losePoints = -50;
@@ -22,14 +20,14 @@ const maxStrikes = 2;
 
 const totalTrials = trials * blocks; // total number of trials in the experiment
 
-//selecting the stimuli based on version (deck or avatar)
-
+// selecting the stimuli based on version (deck or avatar)
+// and shuffle the stimuli
 switch (version) {
     case "deck":
-        stim = stimArrayDeck;
+        stim = shuffleArray(stimArrayDeck);
         break;
     case "avatar":
-        stim = stimArrayAvatar;
+        stim = shuffleArray(stimArrayAvatar);
         break;
 }
 
