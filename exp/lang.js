@@ -116,14 +116,16 @@ switch (version) {
         <p> Press any key to begin. </p>`;
 
         var english1 = `
-        <p>In this study, you will play a player game, and your goal is to win as many points as you can.</p>
+        <p>In this study, you will play a game about working with people, and your goal is to win as many points as you can.</p>
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra $${bonus} bonus, so please do your best!</p>
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english2 = `
-        <p>The card game is very simple: on each turn you will choose one of the three decks below, so you can draw a card from it.</p>
-        <p>You can choose a deck using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> deck respectively.</p>
-        <p>Let's practice choosing decks.</p>
+        <p>Imagine you are a student at a university. Working with classmates can help you learn and complete group prpojects. However, sometimes classmates can be unreliable.</p>
+        <p>They can show up late, fail to complete their work, or be distracted for personal reasons. Some classmates may even deliberately sabotage your work.
+        <p>Three classmates are shown below. On each turn, you will select one partner to work with on a school project.
+        <p>You can choose a partner using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> deck respectively.</p>
+        <p>Let's practice choosing partners.</p>
         <p>Please choose the <strong>left</strong> deck by pressing the <strong>1</strong> key.
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -148,22 +150,22 @@ switch (version) {
         </div>`;
 
         var english5 = `
-        <p>Good job! You have successfully practiced selecting decks.</p>
-        <p>After you select a deck, the top card will turn over.</p>
-        <p>This card can either win you an additional 100 points ('winning' cards) or take away 50 points ('losing' cards).</p>
-        <p>Below you can see what those cards look like:</p>
+        <p>Good job! You have successfully practiced selecting partners.</p>
+        <p>After you select a partner, you will see if your project succeeds (+100 points) or fails (-50 points).</p>
+        <p>Below you can see what those outcomes look like:</p>
         <div class='outcome-container'>
             <img class='outcome-left' src='stim/outcome/scaled_win.jpg'>
             <img class='outcome-right' src='stim/outcome/scaled_lose.jpg'>
         </div>
-        <p><strong>Note that each deck contains both winning and losing cards, but in different amounts.</strong></p>
-        <p>Your job is to figure out which deck is the best deck, so that you can get as many points as possible.</p>
-        Please press the zero (0) key to continue.`;
+        <p><strong>Note that each partner is different. Your job is to find the best partner, and to get as many points as possible.</p>
+        <p>However, no partner is perfect. Anyone can have a bad day.</strong></p>
+        <p>Please press the zero (0) key to continue.`;
+    
 
         var english6 = `
         <p>However, there is one final catch:</p>
-        <p><b>There may be times when the best deck will change!</b></p>
-        <p>If you think the best deck has changed from what it was before, then try to find out the new best deck.</p>
+        <p><b>Sometimes, the partners may change! The partner that previously performed the best may start to struggle or sabotage you while the other partners may improve.</b></p>
+        <p>If you think the best partner has changed from what it was before, then try to find out the new best partner.</p>
         <br />
         <p>The following is a practice round of just 3 turns.<p>
         <p>The points you get here won’t change your final score, and the best deck will change between the practice round and when the real game starts.</p>
@@ -199,6 +201,7 @@ switch (version) {
         <p>pourriez être empêché de terminer la tâche.</p>
         <p>Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
         break;
+    case "sabotage"
 }
 
 // Aggregate the instructions of your language choice
