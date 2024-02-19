@@ -124,7 +124,7 @@ const cues = {
                 <img class='stimuli-middle' src='${stim[1]}'>
                 <img class='stimuli-right' src='${stim[2]}'>
             </div>`;
-    },
+    },   
 };
 
 // practice trials
@@ -297,13 +297,29 @@ const trialFeedback = {
 
         trialIterator++; // accumulating trials
 
+        // store relevant variables in the object to print a nice output
+        // jsPsych.getCurrentTrial().data.win = win;
+        // response = jsPsych.data.get().last(1).values()[0].response;
+
         return html;
     },
     response_ends_trial: false,
     trial_duration: 1000,
     on_finish: (data) => {
+        let response = jsPsych.data.get().last(1).values()[0].response;
         writeCandidateKeys(data);
+        data.difficulty = difficulty; 
+        data.maxStrikes = maxStrikes;
+        data.maxStreaks = maxStreaks;
         data.index = trialIterator;
+        data.deck_contingencies = currentProbability;
+        data.deck_probabilities = trialIterator >= totalTrials/2 ? phaseProbabilities[0] : phaseProbabilities[1];
+        data.streak = streak;
+        data.strike = strike;
+        data.response = response;
+        data.key_press = response === 1 ? 49 : response === 2 ? 50 : response === 3 ? 51 : null;
+        data.reward_type = win;
+        data.reward_tally = score;
     },
 };
 
