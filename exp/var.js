@@ -1,6 +1,8 @@
 // Purpose of var.js: To include all global variables (e.g., trialIterator)
 let trialIterator = 0; //index value of current trial starts at 1
 
+let win;
+
 let score = 0; // score accumulated throughout the experiment
 
 let stim; //defined as decks or avatars (refer to specific as stim[0])
