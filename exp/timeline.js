@@ -88,13 +88,6 @@ const endPracticeInstructions = {
     },
 };
 
-// breakText = "You have completed the task. Your final score is " + score + ".\n" + '<br>' +
-// "You have successfully completed the experiment and your data has been saved.\n" + '<br>' +
-// "Please move on to the second part of the task at this link:\n" + '<br>' +
-// "<a href="+qualtrics+">Qualtrics</a>\n" + '<br>' +
-//     // "Please wait for the experimenter to continue.\n"+ '<br>' +
-// "You may now close the expriment window at anytime.\n";
-
 /*add fixation*/
 const fixation = {
     type: jsPsychHtmlKeyboardResponse,
@@ -333,8 +326,8 @@ const trialFeedback = {
         }
 
         // logic to sample deck with respective reward probability
-        // win = Math.random() <= currentProbability[response - 1];
-        // observedOutcome   = win ? outcome[1] : outcome[0];
+
+        let win; // boolean to track win/lose outcome
 
         // logic to sample deck with respective reward probability
         // 'response - 1' will give position of probability value within currentProbability vector (index)
@@ -342,14 +335,15 @@ const trialFeedback = {
         if (Math.random() <= currentProbability[response - 1]) {
             // observedOutcome = outcome[0]; // output win (100) card
             observedOutcome = "stim/outcome/scaled_win.jpg";
+            win = true;
         } else {
             // observedOutcome = outcome[1]; // output lose (-50) card
             observedOutcome = "stim/outcome/scaled_lose.jpg";
+            win = false;
         }
 
         // calculates total points earned
-        win = Math.random() <= currentProbability[response - 1];
-        points = win ? winPoints : losePoints;
+        let points = win ? winPoints : losePoints;
         score += points;
 
         // Maps reward probability for each response
@@ -436,14 +430,6 @@ const conditionalProgressMessage = {
     conditional_function: shouldShowProgressMessage,
 };
 
-// ADD FINAL COMPLETION MESSAGE AT THE END OF EXPERIMENT
-// breakText = "You have completed the task. Your final score is " + score + ".\n" + '<br>' +
-// "You have successfully completed the experiment and your data has been saved.\n" + '<br>' +
-// "Please move on to the second part of the task at this link:\n" + '<br>' +
-// "<a href="+qualtrics+">Qualtrics</a>\n" + '<br>' +
-//     // "Please wait for the experimenter to continue.\n"+ '<br>' +
-// "You may now close the expriment window at anytime.\n";
-
 const procedureTrial = {
     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
     repetitions: debug ? blocks : blocks * trials, // ternary statement (like an R ifelse)
@@ -475,11 +461,12 @@ const screenRating1 = {
     },
     on_finish: (data) => {
         writeCandidateKeys(data);
-        var ratingRandom = jsPsych.data.get().select("responses").values[0];
+        var ratingRandom = jsPsych.data.get().select("responses");
         data.rating_random = ratingRandom;
         console.log(ratingRandom);
     },
 };
+
 const screenRating2 = {
     type: jsPsychSurveyMultiChoice,
     questions: [
@@ -500,7 +487,7 @@ const screenRating2 = {
     choices: "NO_KEYS",
     on_finish: (data) => {
         writeCandidateKeys(data);
-        var ratingSabotage = jsPsych.data.get().select("responses").values[0];
+        var ratingSabotage = jsPsych.data.get().select("responses");
         data.rating_sabotage = ratingSabotage;
         console.log(ratingSabotage);
     },
