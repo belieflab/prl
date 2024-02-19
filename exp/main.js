@@ -8,19 +8,19 @@
 // }
 
 // Instructions
-timeline.push(welcome);
-timeline.push(...instructionSet);
+// timeline.push(welcome);
+// timeline.push(...instructionSet);
 
-// Practice
-timeline.push(practiceTrial);
-timeline.push(endPracticeInstructions);
+// // Practice
+// timeline.push(practiceTrial);
+// timeline.push(endPracticeInstructions);
 
-// Main experiment
-timeline.push(procedureTrial);
+// // Main experiment
+// timeline.push(procedureTrial);
 
 // Rating questions
 timeline.push(screenRating1);
-timeline.push(screenRating2);
+// timeline.push(screenRating2);
 
 // Data saving and salutations
 timeline.push(dataSave);

@@ -455,15 +455,19 @@ const screenRating1 = {
     choices: "NO_KEYS",
     on_start: () => {
         document.getElementById("unload").onbeforeunload = "";
-        $(document).ready(function () {
+        $(document).ready(() => {
             $("body").addClass("showCursor"); // returns cursor functionality
         });
     },
     on_finish: (data) => {
-        writeCandidateKeys(data);
-        var ratingRandom = jsPsych.data.get().select("responses");
-        data.rating_random = ratingRandom;
-        console.log(ratingRandom);
+        writeCandidateKeys(data); // Your custom function
+        // Get the last trial's data and parse the 'responses' field
+        data.rating_random = jsPsych.data
+            .get()
+            .last(1)
+            .values()[0]
+            .response.rating_random.toLowerCase();
+        removeOutputVariables(data, "response", "question_order");
     },
 };
 
@@ -486,10 +490,14 @@ const screenRating2 = {
     ],
     choices: "NO_KEYS",
     on_finish: (data) => {
-        writeCandidateKeys(data);
-        var ratingSabotage = jsPsych.data.get().select("responses");
-        data.rating_sabotage = ratingSabotage;
-        console.log(ratingSabotage);
+        writeCandidateKeys(data); // Your custom function
+        // Get the last trial's data and parse the 'responses' field
+        data.rating_sabotage = jsPsych.data
+            .get()
+            .last(1)
+            .values()[0]
+            .response.rating_sabotage.toLowerCase();
+        removeOutputVariables(data, "response", "question_order");
     },
 };
 
