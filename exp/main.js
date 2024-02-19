@@ -22,11 +22,5 @@ timeline.push(screenRating1, screenRating2);
 // Data saving and salutations
 timeline.push(dataSave);
 
-// bypass validation phase if workerId, participantId, or PROLIFIC_PID is present in URL
-if (
-    getParamFromUrl("workerId") ||
-    getParamFromUrl("participantId") ||
-    getParamFromUrl("PROLIFIC_PID")
-) {
-    jsPsych.run(timeline); // no fullscreen; don't hide cursor
-}
+// New jsPsych 7.x syntax
+jsPsych.run(timeline);
