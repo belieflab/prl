@@ -121,7 +121,7 @@ switch (version) {
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english2 = `
-        <p>Imagine you are a student at a university. Working with classmates can help you learn and complete group prpojects. However, sometimes classmates can be unreliable.</p>
+        <p>Imagine you are a student at a university. Working with classmates can help you learn and complete group projects. However, sometimes classmates can be unreliable.</p>
         <p>They can show up late, fail to complete their work, or be distracted for personal reasons. Some classmates may even deliberately sabotage your work.</p>
         <p>Three classmates are shown below. On each turn, you will select one partner to work with on a school project.</p>
         <p>You can choose a partner using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> deck respectively.</p>
