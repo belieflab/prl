@@ -1,5 +1,6 @@
 # Probabalistic Reversal Learning Task
-[Placeholder for description of PRL task]
+The PRL Task is a computer-based task/game designed to understand decision-making behavior based on a series of trials with probabilistic rewards. In each trial, subjects are presented with three options from which to select, and their choice will either gain them points towards an overall score or lose them points. In addition to scoring as many points as possible throughout the task, subjects are asked to try to locate/select on each trial - the option that has the highest likelihood of reward - which, in turn, will allow them to get a high score.
+This task has 160 trials.
 * Primary outcome variables (e.g., win-switching)
 * Description of PRL rule strategy, etc
 * Adopt task information from belieflab wiki
@@ -7,9 +8,13 @@
 ## Dependencies
 PHP Version 7.x or PHP Version 8.x
 
+## Repository General Information and Cloning
+* To clone this repository: `git clone git@github.com:belieflab/prl.git --recurse-submodules` (this will initialize the `wrap` submodule)
+* When pulling changes, run `./sync.sh` to be sure to update the `wrap` submodule
+
 ## PRL General Requirements: 
 * Transpile code from socialPRL (github.com/belieflab/socialPRL) to prl (github.com/belieflab/prl)
-* Add in Trevor's 'sabotage' version of PRL for a total of three PRL versions ('decks', 'avatars', 'sabotage')
+* Add in Trevor's 'sabotage' version of PRL for a total of three PRL versions ('decks', 'avatars', 'sabotage') (done 02/19/2024, need to shuffle stim at the beginning still)
 * Add in additional end-of-task questions
 * Have different language versions of the PRL
 
