@@ -59,9 +59,9 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <script src="./wrap/plugins/plugin-html-keyboard-response.js"></script>
 
   <!-- general styling -->
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="./wrap/lib/style.css">
   <!-- additional styling -->
-  <link rel="stylesheet" type="text/css" href="css/exp.css">
+  <link rel="stylesheet" type="text/css" href="./css/exp.css">
   <script>
     const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
     const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
