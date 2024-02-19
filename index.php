@@ -1,6 +1,5 @@
 <?php
-// require_once 'wrap/lib/data.php';
-require_once 'wrap/lib/nda.php';
+require_once 'wrap/lib/ids.php';
 
 $directoryDeck = 'stim/deck/0/';
 $directoryAvatar = 'stim/avatar/0/';
