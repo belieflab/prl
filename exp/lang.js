@@ -300,8 +300,8 @@ switch (language) {
             english5,
             english6,
             english7,
-            //english8,
-            //english9,
+            english8,
+            english9,
             (score) => english10(score), // Store it as a function that accepts score
         ];
         break;
