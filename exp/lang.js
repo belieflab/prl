@@ -21,6 +21,19 @@ const english0 = `
         <p>Welcome to the experiment!</p>
         <p>Press any key to begin.</p>`;
 
+var english10 = (score) => {
+    return `
+<div class="body-white-theme">
+    <p>Thank you!</p>
+    <p>You have successfully completed the experiment and your data has been saved.</p>
+    <p>Your final score is ${score}.</p>
+    <!-- <p>To leave feedback on this task, please click the following link:</p> -->
+    <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
+    <!-- <p>Please wait for the experimenter to continue.</p> -->
+    <p><i>You may now close the experiment window at any time.</i></p>
+</div>`;
+};
+
 switch (version) {
     case "deck":
         var english1 = `
@@ -89,19 +102,6 @@ switch (version) {
 
         var english9 = `Did it feel as though the foods were trying to trick you?`;
 
-        var english10 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            <p>Your final score is ${score}.</p>
-            <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-            <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
-            <!-- <p>Please wait for the experimenter to continue.</p> -->
-            <p><i>You may now close the experiment window at any time.</i></p>
-        </div>`;
-        };
-
         // TASK 2: Please add remaining french and german language for the deck version
         var french1 = `
         <p>Bienvenue! Avant de commencer, veuillez agrandir votre fenêtre au maximum.</p>
@@ -111,7 +111,7 @@ switch (version) {
         Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
         break;
 
-    case "avatar": // TASK 1: Please translate each var to the avatar language
+    case "avatar": 
         var english1 = `
         <p>In this study, you will play a game about working with people, and your goal is to win as many points as you can.</p>
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra $${bonus} bonus, so please do your best!</p>
@@ -176,19 +176,6 @@ switch (version) {
         var english8 = `Did you consider the patient-doctor relationship when making choices?`;
 
         var english9 = `Did it feel as though the foods were trying to trick you?`;
-
-        var english10 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            <p>Your final score is ${score}.</p>
-            <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-            <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
-            <!-- <p>Please wait for the experimenter to continue.</p> -->
-            <p><i>You may now close the experiment window at any time.</i></p>
-        </div>`;
-        };
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
@@ -265,19 +252,6 @@ switch (version) {
         var english8 = `Did you consider the patient-doctor relationship when making choices?`;
 
         var english9 = `Did it feel as though the foods were trying to trick you?`;
-
-        var english10 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            <p>Your final score is ${score}.</p>
-            <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-            <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
-            <!-- <p>Please wait for the experimenter to continue.</p> -->
-            <p><i>You may now close the experiment window at any time.</i></p>
-        </div>`;
-        };
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `

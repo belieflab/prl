@@ -58,7 +58,7 @@ PHP version 7.x or PHP 8.x
 jsPsych version 6.3 or 7.x
 
 ## Repository General Information and Cloning
-* To clone this repository: `git clone git@github.com:belieflab/prl.git --recurse-submodules` (this will initialize the `wrap` submodule)
+* To clone this repository: `git clone -c core.symlinks=true git@github.com:belieflab/prl.git --recurse-submodules` (this will initialize the `wrap` submodule)
 * When pulling changes, run `./sync.sh` to be sure to update the `wrap` submodule
 
 ## Development Guide
@@ -97,3 +97,5 @@ jsPsych version 6.3 or 7.x
 ### BRAVO! You're a XAMPP master.
         
 
+### To-do
+* preloading images in version 7, instead of index.php code
