@@ -1,9 +1,39 @@
 # Probabalistic Reversal Learning Task
-The PRL Task is a computer-based task/game designed to understand decision-making behavior based on a series of trials with probabilistic rewards. In each trial, subjects are presented with three options from which to select, and their choice will either gain them points towards an overall score or lose them points. In addition to scoring as many points as possible throughout the task, subjects are asked with locating/selecting - on each trial - the option that has the highest likelihood of reward - which, in turn, will allow them to get a high score.
-This task has 160 trials.
-* Primary outcome variables (e.g., win-switching)
-* Description of PRL rule strategy, etc
-* Adopt task information from belieflab wiki
+
+## Task description
+This task is designed to track decision-making performance under uncertainty. Here, participants engage in a task with the goal of maximizing points by selecting the most rewarding option from a set. There are two main versions of the task: a **nonsocial** version - one involving decks of cards with varying reward probabilities - and a **social** version - one involving the selection of avatars (partners) for a class project, each with different levels of reliability.
+
+### Deck scenario
+Participants choose from three decks with varying reward probabilities. These probabilities change, making it necessary to adapt strategies. Initially, probabilities may be easily distinguishable (e.g., 90%-50%-10%; so the right deck will give your 90% winning cards, middle deck 50%, and left deck 10%), but as the task progresses, the reward probabilities get closer and harder to distinguish (e.g., 80%-40%-20%). This shift in probabilities (or *contingency shift*) happens half-way through the experiment which requires participants to continuously reassess and choose the deck that maximizes rewards. These reward probabilities also change at every fixed trials (e.g., at every 40 trials). For example, if an individual experiences a reward probability set of 50%-10%-90%, then they may experience a fixed reversal of 10%-90%-50%. These fixed reversals are defined as *performance-independent* reversals. In addition to these reversals, participants may also experience a change in the reward probabilities when they consecutively select the most rewarding deck nine out of 10 times (with at most two mistakes of not choosing the most rewarding deck before the consecutive streak resets to zero). These variable reversals (varying based on performance) are defined as *performance-dependent* reversals. 
+
+
+### Avatar scenario
+
+### Sabotage scenario (slight variation)
+
+## Configuration
+The task is configurable for different experimental setttings, including difficulty levels and reward structures. The configuration file (`conf.js`) includes settings such as:
+
+* Experiment version (= {'deck', 'avatar', 'sabotage'})
+* Difficulty setting (= {'easy-easy', 'easy-hard', 'hard-easy', 'hard-hard'})
+* Number of trials per block
+* Number of blocks
+* Reward setting (e.g., bonus, percentile)
+
+### Modifying the Configuration
+To customize the task, adjust the parameters in `conf.js`. Key parameters include:
+
+* `version`: Choose between 'deck', 'avatar', or 'sabotage' for different tas scenarios.
+* `difficulty`: Set the challenge level (e.g., "easy-easy"/"hard-hard" for uniform difficulty, or "easy-hard"/"hard-hard" for a shift in difficulty).
+* `trials`, `blocks`: Define the length and structure of the experiment.
+* `reward`: Specify the reward type (points or currency)
+
+## Getting Started
+To run the task:
+
+1. Clone this repository to your local machine
+2. Modify `conf.js` as needed to configure the experiment settings.
+3. Launch the task as defined below 
 
 ## Dependencies
 PHP Version 7.x or PHP Version 8.x
@@ -11,155 +41,6 @@ PHP Version 7.x or PHP Version 8.x
 ## Repository General Information and Cloning
 * To clone this repository: `git clone git@github.com:belieflab/prl.git --recurse-submodules` (this will initialize the `wrap` submodule)
 * When pulling changes, run `./sync.sh` to be sure to update the `wrap` submodule
-
-## PRL General Requirements: 
-* Transpile code from socialPRL (github.com/belieflab/socialPRL) to prl (github.com/belieflab/prl)
-* Add in Trevor's 'sabotage' version of PRL for a total of three PRL versions ('decks', 'avatars', 'sabotage') (done 02/19/2024, need to shuffle stim at the beginning still)
-* Add in additional end-of-task questions
-* Have different language versions of the PRL
-
-## PRL Logic Requirements:
-* Number of trials: 160
-* Number of choices: 3
-* Rewards: +100 or -50 
-* Accumulation of rewards (reward tally): display trial-by-trial reward as accumulated ones
-* Phase probability set: first 80 trials - [0.9 0.5 0.1]; last 80 trials - [0.8 0.4 0.2]
-* Performance-independent reversal: fixed reversal at every 40 trials
-* Performance-dependent reversal: variable reversals once nine consecutive choices of highest reward selection
-* Streak & strike: streak-strike logic with two allowed mistakes before resetting of streak/strike count 
-* Contingency shift: fixed shift at trial 80
-* Reset streak at fixed reversal/shift: fixed reversal and shift resets streak
-* Continue to shuffle if index of highest reward is same as previous trial: ensuring that after every shuffle, the index of the highest reward probability changes
-
-## Responsibilities:
-* (Praveen and Josh) Compile PRL instructions in jsPsych framework
-* Add objects for displaying cards/avatars 
-* Add image_preload
-## 02/08/2024 deadlines/important stuff
-* hard deadline for BLAM is 02/20/2024
-## To-Dos 02/13/2024
-* total points
-* progress screen (25%, 50%, press 0 to continue)
-* switch for difficulty and for version (include Trevor's "sabotage" instructions; https://github.com/belieflab/socialPRL/tree/trevor_experimenting)
-* extra two questions at the end from Trevor? same as Praveen's paper?
-* sticky-keys (JGK)
-* output (dataSave)
-* pilot / then give to Trevor for his own piloting
-
-
-
-## Structure
-# Trial structure
-* fixation
-* cues
-* - stimulus
-* - duration
-* - 
-* feedback
-* confidence
-# Task structure
-
-4 blocks
-40 trials per block
-1-40, 41-80, 81-120, 121-160
-note that: index starts at 0, so when index = 40, trail = 41, so switch on trial 41 (which is index = 40)
-
-3 practice trials
-
-## task conditions
-easy/hard hard/easy easy/easy hard/hard
-
-expected uncertainty (probability reversal)
-that each deck contains both winning and losing cards, but in different amounts
-"the encounter expected uncertainty as probability win or loss feedback (in different amojunts)
-"your job is to select the best deck" with the highest reward probability
-best check will change, find the best deck
-
-porbability of reward: [0.9, 0.5, 0.1] (easy)
-
-unexpected uncertainty (contigency shift)
-"re-assignment of reward probability between options"
-half way through the experiment, the best deck will change
-
-porbability of reward: [0.8, 0.4, 0.2] (hard)
-
-## randomization
-
-  
-    // randomize deck contingencies
-    if (randomizeDecksOn) {
-        var tempProbabilityOrder = shuffle(deepCopy(probabilityNames));
-      while (tempProbabilityOrder.indexOf("high") == probabilityOrder.indexOf("high")) {
-          tempProbabilityOrder = shuffle(tempProbabilityOrder);
-      }
-
-two types of reversals:
-
-1. fixed-based reversals:
-        task characteristic
-        every 40 trials there is a reversal
-        probabilities changes every 40 trails
-        e.g. [0.9, 0.5, 0.1] -> [0.1, 0.9, 0.5] (reversal)
-      
-2. performance-based reversals:
-        how the user performs
-        based off users performance
-        if user select the best deck 90% of the time, then the best deck will change (e.g.)
-        if (streak >= maxStreak) {
-                        randomizeDecksOn = true;
-                    }
-        you can get one strike and still maintain a streak
-        the second strike will reset both strike and streak
-
-          if (thisProbability == "high") {
-                        streak += 1;
-                    } else {
-                        if (streak > 0) {
-                            strikes += 1;
-                        }
-
-                        if (strikes >= maxStrikes) {
-                            streak = 0;
-                            strikes = 0;
-                        }
-                    }
-
-                    streak increses up to 9; once it gets to 9, reset
-                    you can keep streak if you get two strikes
-                    if you get three strikes, then streak and strikes reset; once it gets to 3, reset
-
-
-at 81st trial there is a shift to the hard condition (and also a randomization of the deck probabilities)
-
-var probabilityNames = ["high", "medium", "low"];
-var probabilityOrder = shuffle(deepCopy(probabilityNames));
-var deckPositions = ["left", "middle", "right"];
-var deckColorOrder = shuffle(stimuliColor[[stimuliSet]]);
-
-
-// Randomize deck position
-for (var position in positionToColor) {
-    var thisID = "#" + position + "DeckImage";
-    var color = positionToColor[position];
-    $(thisID).attr("src", stimuliPrefix + color + deckImageExtension);
-}
-
-
-var trialInfo = {
-  deckColors: [],
-  deckPositions: [],
-  deckProbabilities:[],
-  deckProbabilityOrder: [],
-  colors: [],
-  keys: [],
-  positions: [],
-  probabilities: [],
-  results: [],
-  reversals: [],
-  trialNums: [],
-  RT: [],
-  score: []
-};
 
 ## Development Guide
 
