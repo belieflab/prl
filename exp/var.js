@@ -31,6 +31,9 @@ switch (version) {
     case "avatar":
         stim = shuffleArray(stimArrayAvatar);
         break;
+    case "sabotage":
+        stim = shuffleArray(stimArrayAvatar);
+        break;
 }
 
 // outcome vector order not generalize to many CPs
