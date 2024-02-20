@@ -17,8 +17,13 @@ timeline.push(practiceTrial, endPracticeInstructions);
 timeline.push(procedureTrial);
 
 // Rating questions
-timeline.push(screenRating1, screenRating2);
-
+switch (version) {
+    case "sabotage":
+        timeline.push(screenRating1, screenRating2);
+        break;
+    default:
+        break;
+}
 // Data saving and salutations
 timeline.push(dataSave);
 
