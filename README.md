@@ -10,6 +10,23 @@ Participants choose from three decks with varying reward probabilities. These pr
 
 ### Sabotage scenario (slight variation)
 
+## Types of uncertainty
+### Expected uncertainty
+Expected uncertainty arises from known variability within the task. Participants are informed that each deck or avatar has different reward payoffs or reliabiliy, meaning they expect some level of variability in outcomes. This knowledge allows them to aniticipate changes in reward probabiilities to some extent.
+
+### Unexpected uncertainty
+Unexpected uncertainty refers to changes in the task that participants are not forewarned about. This includes *shifts* and *reversals* in reward probabilities that occur without prior notice.
+
+* Shifts: A complete change in the set of reward probabilities, occuring mid-way through the experiment. For example, changing from a 10%, 50%, 90% configuration to 20%, 40%, 80%, representing increased difficulty in identifying the higher rewarding deck since the probabilities are more closer.
+* Reversals: Changes within the current set of probabilities
+* - Performance-independent reversals: Fixed changes after a set number of trials (e.g., after every 40 trials), altering the reward structure regardless of participant performance.
+* - Performance-dependent reversals: Variable changes, triggered by consecutively selecting the highest rewarding option (e.g.,nine out of ten consecutive times)
+
+NOTE: Additionally, the task incorporates control units to manage the occurrence of reversals.
+
+* Streaks: Counters that track how many consecutive times a participant selects the best deck. This mechanism is crucial for triggering performance-dependent reversals.
+* Strikes: Counters that allow participants a certain number of selections of non-highest rewarding options before the streak counter resets to zero. 
+
 ## Configuration
 The task is configurable for different experimental setttings, including difficulty levels and reward structures. The configuration file (`conf.js`) includes settings such as:
 
