@@ -10,6 +10,7 @@ Participants choose from three decks with varying reward probabilities. These pr
 Mirroring the decks version but contextualized with avatars representing partners in a class project. Participants select partners based on reliability and contribution to project success. Similar to the decks, avatar reliability changes over time, reflecting real-life dynamics where team members' contributions can vary. Through this, this version emphasizes a social component.
 
 ### Sabotage scenario (slight variation)
+This version is akin to the avatars version but in a workplace scenario, focusing on selecting among co-workers to earn brownie points with the boss. Instead of partnering for a class project, participants navigate office dynamics, choosing colleagues who will positively influence their standing with the boss.
 
 ## Types of uncertainty
 ### Expected uncertainty
