@@ -34,6 +34,5 @@ const percentile = 25; // Cut-off performance percentile for receiving a bonus
 const reward = "$"; // Options: "points", "$""
 
 // Note: Uncomment the desired option for each setting, and ensure only one option per setting is active.
-
 const adminEmail = "joshua.kenney@yale.edu";
 const feedbackLink = undefined;

@@ -124,7 +124,7 @@ const cues = {
                 <img class='stimuli-middle' src='${stim[1]}'>
                 <img class='stimuli-right' src='${stim[2]}'>
             </div>`;
-    },   
+    },
 };
 
 // practice trials
@@ -136,7 +136,7 @@ const practiceFeedback = {
     stimulus: () => {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
         let response = data[0].response;
-        console.log(response);
+        // console.log(response);
 
         let html;
         if (response === "1") {
@@ -308,16 +308,26 @@ const trialFeedback = {
     on_finish: (data) => {
         let response = jsPsych.data.get().last(1).values()[0].response;
         writeCandidateKeys(data);
-        data.difficulty = difficulty; 
+        data.difficulty = difficulty;
         data.maxStrikes = maxStrikes;
         data.maxStreaks = maxStreaks;
         data.index = trialIterator;
         data.deck_contingencies = currentProbability;
-        data.deck_probabilities = trialIterator >= totalTrials/2 ? phaseProbabilities[0] : phaseProbabilities[1];
+        data.deck_probabilities =
+            trialIterator >= totalTrials / 2
+                ? phaseProbabilities[0]
+                : phaseProbabilities[1];
         data.streak = streak;
         data.strike = strike;
         data.response = response;
-        data.key_press = response === 1 ? 49 : response === 2 ? 50 : response === 3 ? 51 : null;
+        data.key_press =
+            response === 1
+                ? 49
+                : response === 2
+                ? 50
+                : response === 3
+                ? 51
+                : null;
         data.reward_type = win;
         data.reward_tally = score;
     },
@@ -438,12 +448,12 @@ const dataSave = {
             jsPsych.data.get().csv()
         )
             .then((response) => {
-                console.log("Data saved successfully.", response);
+                console.success("Data saved successfully.", response);
                 // Update the stimulus content directly via DOM manipulation
                 document.querySelector("#jspsych-content").innerHTML = thankYou;
             })
             .catch((error) => {
-                console.log("Failed to save data.", error);
+                console.error("Failed to save data.", error);
                 // Check if the error object has 'error' property and use it, otherwise convert object to string
                 let errorMessage = error.error || JSON.stringify(error);
                 switch (errorMessage) {

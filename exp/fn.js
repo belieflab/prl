@@ -17,7 +17,7 @@ const calculatePercentComplete = () => {
 
     // Get the current trial index and divide by total number of trials
     let percentComplete = (trialIterator / totalTrials) * 100;
-    console.log("Percent Complete: ", percentComplete);
+    // console.log("Percent Complete: ", percentComplete);
     return Math.round(percentComplete); // Round to the nearest integer
 };
 
@@ -25,6 +25,6 @@ const calculatePercentComplete = () => {
 const shouldShowProgressMessage = () => {
     // Show the message after every 25% completion
     let percentComplete = calculatePercentComplete();
-    console.log("Percent Complete: ", percentComplete);
+    // console.log("Percent Complete: ", percentComplete);
     return [25, 50, 75].includes(percentComplete); // Show the message at 25%, 50%, and 75%
 };
