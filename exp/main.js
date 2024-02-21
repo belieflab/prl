@@ -18,10 +18,12 @@ timeline.push(procedureTrial);
 
 // Rating questions
 switch (version) {
-    case "avatar" || "sabotage":
-        timeline.push(screenRating1, screenRating2);
+    case "deck":
+    case "avatar":
+        timeline.push(screenRating1);
         break;
-    default:
+    case "sabotage":
+        timeline.push(screenRating1, screenRating2);
         break;
 }
 // Data saving and salutations
