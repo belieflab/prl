@@ -4,7 +4,7 @@
 
 // Debug Mode
 // Options: true, false
-let debug = true;
+let debug = false;
 
 // Experiment Name
 const experimentName = "Probabilistic Reversal Learning Task"; // Displayed in the title bar of the browser
@@ -12,7 +12,6 @@ const experimentAlias = "prl"; // Used in the data file name, affects data savin
 
 // Experiment Language - only works for English now
 const language = "english"; // Language used for the experiment
-
 
 // UI Theme
 // Options: "light", "dark"

@@ -18,7 +18,7 @@ timeline.push(procedureTrial);
 
 // Rating questions
 switch (version) {
-    case "sabotage":
+    case "avatar" || "sabotage":
         timeline.push(screenRating1, screenRating2);
         break;
     default:

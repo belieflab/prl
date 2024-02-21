@@ -111,7 +111,7 @@ switch (version) {
         Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
         break;
 
-    case "avatar": 
+    case "avatar":
         var english1 = `
         <p>In this study, you will play a game about working with people, and your goal is to win as many points as you can.</p>
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra $${bonus} bonus, so please do your best!</p>
@@ -173,9 +173,9 @@ switch (version) {
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
-        var english8 = `Did you consider the patient-doctor relationship when making choices?`;
+        var english8 = `???`;
 
-        var english9 = `Did it feel as though the foods were trying to trick you?`;
+        var english9 = `???`;
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
@@ -249,9 +249,9 @@ switch (version) {
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
-        var english8 = `Did you consider the patient-doctor relationship when making choices?`;
+        var english8 = `Did it feel like changes in co-workers and their helpfulness were as random as they should have been?`;
 
-        var english9 = `Did it feel as though the foods were trying to trick you?`;
+        var english9 = `Did any of your co-workers deliberately sabotage you?`;
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
