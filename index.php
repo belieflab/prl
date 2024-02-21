@@ -1,37 +1,5 @@
 <?php
-require_once 'wrap/lib/ids.php';
-
-$directoryDeck = 'stim/deck/0/';
-$directoryAvatar = 'stim/avatar/0/';
-$directoryOutcome = 'stim/outcome/';
-$decks = scandir($directoryDeck);
-$avatars = scandir($directoryAvatar);
-$outcomes = scandir($directoryOutcome);
-$fileArrayDeck = [];
-$fileArrayAvatar = [];
-$fileArrayOutcome = [];
-
-// deck is black, blue, red
-foreach ($decks as $deck) {
-  // removes . and .. from element vector
-  if ($deck !== '.' && $deck !== '..') {
-        $fileArrayDeck[] = $directoryDeck.$deck;
-  }
-}
-foreach ($avatars as $avatar) {
-  if ($avatar !== '.' && $avatar !== '..') {
-    $fileArrayAvatar[] = $directoryAvatar.$avatar;
-  }
-}
-foreach ($outcomes as $outcome) {
-  if ($outcome !== '.' && $outcome !== '..') {
-    $fileArrayOutcome[] = $directoryOutcome.$outcome;
-  }
-}
-
-$fileArrayDeckJSON = json_encode($fileArrayDeck);
-$fileArrayAvatarJSON = json_encode($fileArrayAvatar);
-$fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
+require_once './wrap/lib/ids.php';
 ?>
 
 <!DOCTYPE html>
@@ -64,11 +32,7 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
   <link rel="stylesheet" type="text/css" href="./wrap/lib/style.css">
   <!-- additional styling -->
   <link rel="stylesheet" type="text/css" href="./css/exp.css">
-  <script>
-    const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
-    const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
-    const outcomeArray = <?php echo $fileArrayOutcomeJSON; ?>;
-  </script>
+
 </head>
 
 <body id='unload' onbeforeunload="return areYouSure()">
@@ -89,7 +53,7 @@ $fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
  <script type="text/javascript" src="./wrap/lib/fn.js"></script>
   <!-- load experiment dependencies -->
   <script type="text/javascript" src="./exp/fn.js"></script>
-  <script type="text/javascript" src="./exp/var.js"></script>
+  <?php require_once './exp/var.php'; ?>
   <script type="text/javascript" src="./exp/lang.js"></script>
 </footer>
 

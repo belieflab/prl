@@ -1,5 +1,49 @@
-// Purpose of var.js: To include all global variables (e.g., trialIterator)
+<!-- Purpose of var.js: To include all global variables (e.g., trialIterator) -->
+<!-- And any php server side logic -->
+
+<?php
+$directoryDeck = 'stim/deck/0/';
+$directoryAvatar = 'stim/avatar/0/';
+$directoryOutcome = 'stim/outcome/';
+$decks = scandir($directoryDeck);
+$avatars = scandir($directoryAvatar);
+$outcomes = scandir($directoryOutcome);
+$fileArrayDeck = [];
+$fileArrayAvatar = [];
+$fileArrayOutcome = [];
+
+// deck is black, blue, red
+foreach ($decks as $deck) {
+  // removes . and .. from element vector
+  if ($deck !== '.' && $deck !== '..') {
+        $fileArrayDeck[] = $directoryDeck.$deck;
+  }
+}
+foreach ($avatars as $avatar) {
+  if ($avatar !== '.' && $avatar !== '..') {
+    $fileArrayAvatar[] = $directoryAvatar.$avatar;
+  }
+}
+foreach ($outcomes as $outcome) {
+  if ($outcome !== '.' && $outcome !== '..') {
+    $fileArrayOutcome[] = $directoryOutcome.$outcome;
+  }
+}
+
+$fileArrayDeckJSON = json_encode($fileArrayDeck);
+$fileArrayAvatarJSON = json_encode($fileArrayAvatar);
+$fileArrayOutcomeJSON = json_encode($fileArrayOutcome);
+?>
+
+<!-- now include all javascript global variables -->
+
+<script>
+
 let trialIterator = 0; //index value of current trial starts at 1
+
+const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
+const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
+const outcomeArray = <?php echo $fileArrayOutcomeJSON; ?>;
 
 let win;
 
@@ -58,3 +102,5 @@ switch (difficulty) {
         currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
         break;
 }
+
+</script>
