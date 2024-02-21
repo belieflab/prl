@@ -250,7 +250,7 @@ const trialFeedback = {
 
         // logic to sample deck with respective reward probability
 
-        let win; // boolean to track win/lose outcome; initialize 
+        let win; // boolean to track win/lose outcome; initialize
 
         // logic to sample deck with respective reward probability
         // 'response - 1' will give position of probability value within currentProbability vector (index)
@@ -259,13 +259,10 @@ const trialFeedback = {
             // observedOutcome = outcome[0]; // output win (100) card
             observedOutcome = "stim/outcome/scaled_win.jpg";
             win = true;
-            
-
         } else {
             // observedOutcome = outcome[1]; // output lose (-50) card
             observedOutcome = "stim/outcome/scaled_lose.jpg";
             win = false;
-            
         }
 
         // calculates total points earned
@@ -300,7 +297,6 @@ const trialFeedback = {
 
         trialIterator++; // accumulating trials
 
-
         // store relevant variables in the object to print a nice output
         // jsPsych.getCurrentTrial().data.win = win;
         // response = jsPsych.data.get().last(1).values()[0].response;
@@ -313,7 +309,11 @@ const trialFeedback = {
         let rt = jsPsych.data.get().last(2).values()[0].rt;
         let response = jsPsych.data.get().last(2).values()[0].response;
         writeCandidateKeys(data);
-        removeOutputVariables(data, ['stimulus','trial_type','internal_node_id']);
+        removeOutputVariables(data, [
+            "stimulus",
+            "trial_type",
+            "internal_node_id",
+        ]);
         data.difficulty = difficulty;
         data.max_strikes = maxStrikes;
         data.max_streaks = maxStreaks;
@@ -324,19 +324,17 @@ const trialFeedback = {
         data.response = response;
         data.rt = rt;
         data.key_press =
-            response == 1
-                ? 49
-                : response == 2
-                ? 50
-                : response == 3
-                ? 51
-                : null;                
+            response == 1 ? 49 : response == 2 ? 50 : response == 3 ? 51 : null;
         data.reward_type = win;
         if (jsPsych.data.get().last(2).values()[0].index == 1) {
             data.reversal_type = false; // Not enough data to compare
         } else {
             // Compare the current trial (.last(2)) and the previous trial (.last(5)) deck contingencies, and if different, then reversal occurred
-            data.reversal_type = jsPsych.data.get().last(2).values()[0].deck_contingencies != jsPsych.data.get().last(5).values()[0].deck_contingencies ? true:false; 
+            data.reversal_type =
+                jsPsych.data.get().last(2).values()[0].deck_contingencies !=
+                jsPsych.data.get().last(5).values()[0].deck_contingencies
+                    ? true
+                    : false;
         }
         data.reward_tally = score;
     },
@@ -457,7 +455,7 @@ const dataSave = {
             jsPsych.data.get().csv()
         )
             .then((response) => {
-                console.success("Data saved successfully.", response);
+                console.log("Data saved successfully.", response);
                 // Update the stimulus content directly via DOM manipulation
                 document.querySelector("#jspsych-content").innerHTML = thankYou;
             })
