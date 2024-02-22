@@ -76,8 +76,8 @@ switch (version) {
         <p>This card can either win you an additional 100 points ('winning' cards) or take away 50 points ('losing' cards).</p>
         <p>Below you can see what those cards look like:</p>
         <div class='outcome-container'>
-            <img class='outcome-left' src='stim/outcome/scaled_win.jpg'>
-            <img class='outcome-right' src='stim/outcome/scaled_lose.jpg'>
+        <img class='outcome-left' src='stim/${version}/outcome/scaled_win.png'>
+        <img class='outcome-right' src='stim/${version}/outcome/scaled_lose.png'>
         </div>
         <p><strong>Note that each deck contains both winning and losing cards, but in different amounts.</strong></p>
         <p>Your job is to figure out which deck is the best deck, so that you can get as many points as possible.</p>
@@ -151,8 +151,8 @@ switch (version) {
         <p>After you select a partner, you will see if your project succeeds (+100 points) or fails (-50 points).</p>
         <p>Below you can see what those outcomes look like:</p>
         <div class='outcome-container'>
-            <img class='outcome-left' src='stim/outcome/scaled_win.jpg'>
-            <img class='outcome-right' src='stim/outcome/scaled_lose.jpg'>
+        <img class='outcome-left' src='stim/${version}/outcome/scaled_win.png'>
+        <img class='outcome-right' src='stim/${version}/outcome/scaled_lose.png'>
         </div>
         <p><strong>Note that each partner is different. Your job is to find the best partner, and to get as many points as possible.</p>
         <p>However, no partner is perfect. Anyone can have a bad day.</strong></p>
@@ -227,8 +227,8 @@ switch (version) {
         <p>After you select a co-worker, you will see if they helped you earn points with the boss (+100 points) or lose points with the boss (-50 points).</p>
         <p>Below you can see what those outcomes look like:</p>
         <div class='outcome-container'>
-            <img class='outcome-left' src='stim/outcome/scaled_win.jpg'>
-            <img class='outcome-right' src='stim/outcome/scaled_lose.jpg'>
+            <img class='outcome-left' src='stim/${version}/outcome/scaled_win.png'>
+            <img class='outcome-right' src='stim/${version}/outcome/scaled_lose.png'>
         </div>
         <p><strong>Note that each co-worker is different. Your job is to find the best co-worker, and to get as many points as possible.</p>
         <p>However, no co-worker is perfect. Anyone can have a bad day.</strong></p>
