@@ -19,7 +19,7 @@ const theme = "light"; // UI theme setting
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage"
-const version = "sabotage"; // Current version of the experiment
+const version = "deck"; // Current version of the experiment
 
 // Contingency Switch Setting
 // Options: "easy-easy", "easy-hard" (default), "hard-easy", "hard-hard"

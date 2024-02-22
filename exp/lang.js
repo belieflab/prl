@@ -100,7 +100,7 @@ switch (version) {
 
         var english8 = `Did you feel as though the decks were tricking you?`;
 
-        //var english9 = `Did it feel as though the foods were trying to trick you?`;
+        var english9 = ``;
 
         // TASK 2: Please add remaining french and german language for the deck version
         var french1 = `
@@ -175,7 +175,7 @@ switch (version) {
 
         var english8 = `Did any of the partners deliberately sabotage you?`;
 
-        //var english9 = `???`;
+        var english9 = ``;
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
