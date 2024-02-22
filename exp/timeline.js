@@ -249,7 +249,7 @@ const trialFeedback = {
         }
 
         // logic to sample deck with respective reward probability
-
+        let observedOutcome;
         let win; // boolean to track win/lose outcome; initialize
 
         // logic to sample deck with respective reward probability
@@ -257,11 +257,11 @@ const trialFeedback = {
         // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
         if (Math.random() <= currentProbability[response - 1]) {
             // observedOutcome = outcome[0]; // output win (100) card
-            observedOutcome = "stim/outcome/scaled_win.jpg";
+            observedOutcome = `stim/${version}/outcome/scaled_win.png`;
             win = true;
         } else {
             // observedOutcome = outcome[1]; // output lose (-50) card
-            observedOutcome = "stim/outcome/scaled_lose.jpg";
+            observedOutcome = `stim/${version}/outcome/scaled_lose.png`;
             win = false;
         }
 
