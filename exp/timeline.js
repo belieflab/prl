@@ -105,13 +105,6 @@ const fixation = {
     response_ends_trial: false,
 };
 
-const fixedReversal = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: "reversal",
-    trial_duration: 5000,
-    response_ends_trial: false,
-};
-
 /*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
 const cues = {
     type: jsPsychHtmlKeyboardResponse,

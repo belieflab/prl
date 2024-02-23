@@ -31,7 +31,7 @@ $fileArrayAvatarJSON = json_encode($fileArrayAvatar);
 
 <script>
 
-let trialIterator = 0; //index value of current trial starts at 1
+let trialIterator = 0; // first trial will increment from 0 to 1
 
 const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
 const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;

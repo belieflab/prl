@@ -21,19 +21,6 @@ const english0 = `
         <p>Welcome to the experiment!</p>
         <p>Press any key to begin.</p>`;
 
-var english10 = (score) => {
-    return `
-<div class="body-white-theme">
-    <p>Thank you!</p>
-    <p>You have successfully completed the experiment and your data has been saved.</p>
-    <p>Your final score is ${score}.</p>
-    <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-    <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
-    <!-- <p>Please wait for the experimenter to continue.</p> -->
-    <p><i>You may now close the experiment window at any time.</i></p>
-</div>`;
-};
-
 switch (version) {
     case "deck":
         var english1 = `
@@ -261,6 +248,19 @@ switch (version) {
         <p>Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
         break;
 }
+
+var english10 = (score) => {
+    return `
+<div class="body-white-theme">
+    <p>Thank you!</p>
+    <p>You have successfully completed the experiment and your data has been saved.</p>
+    <p>Your final score is ${score}.</p>
+    <!-- <p>To leave feedback on this task, please click the following link:</p> -->
+    <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
+    <!-- <p>Please wait for the experimenter to continue.</p> -->
+    <p><i>You may now close the experiment window at any time.</i></p>
+</div>`;
+};
 
 // Aggregate the instructions of your language choice
 switch (language) {
