@@ -117,7 +117,7 @@ const cues = {
                 <img class='stimuli-middle' src='${stim[1]}'>
                 <img class='stimuli-right' src='${stim[2]}'>
             </div>`;
-    },
+    },    
 };
 
 // practice trials
@@ -243,7 +243,7 @@ const trialFeedback = {
 
         // logic to sample deck with respective reward probability
         let observedOutcome;
-        let win; // boolean to track win/lose outcome; initialize
+        //let win; // boolean to track win/lose outcome; initialize
 
         // logic to sample deck with respective reward probability
         // 'response - 1' will give position of probability value within currentProbability vector (index)
@@ -302,22 +302,25 @@ const trialFeedback = {
         let rt = jsPsych.data.get().last(2).values()[0].rt;
         let response = jsPsych.data.get().last(2).values()[0].response;
         writeCandidateKeys(data);
-        removeOutputVariables(data, [
-            "stimulus",
-            "trial_type",
-            "internal_node_id",
-        ]);
+        // removeOutputVariables(data, [ // not working
+        //     "stimulus",
+        //     "trial_type",
+        //     "internal_node_id",
+        // ]);
         data.difficulty = difficulty;
         data.max_strikes = maxStrikes;
         data.max_streaks = maxStreaks;
         data.index = trialIterator;
-        data.deck_contingencies = currentProbability;
+        data.first_half_probabilities = phaseProbabilities[0];
+        data.second_half_probabilities = phaseProbabilities[1];
+        data.deck_probabilities = currentProbability;
         data.streak = streak;
         data.strike = strike;
         data.response = response;
         data.rt = rt;
         data.key_press =
             response == 1 ? 49 : response == 2 ? 50 : response == 3 ? 51 : null;
+        console.log(win);
         data.reward_type = win;
         if (jsPsych.data.get().last(2).values()[0].index == 1) {
             data.reversal_type = false; // Not enough data to compare
@@ -328,7 +331,7 @@ const trialFeedback = {
                 jsPsych.data.get().last(5).values()[0].deck_contingencies
                     ? true
                     : false;
-        }
+        } // How to compute performance-dependent reversals from `reversal_type` (previously known as `trial_type`)?: Substract trials indexed of 40,80, and 120.
         data.reward_tally = score;
     },
 };
