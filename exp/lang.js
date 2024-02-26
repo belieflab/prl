@@ -184,7 +184,7 @@ switch (version) {
         <p>To complete tasks successfully, you must rely on co-workers for advice and help. Some of your co-workers are helpful, whereas others are not.</p>
         <p>Furthermore, sometimes they will want to see you fail and switch from helping you to actively hurting your performance.</p>
         <p>Your goal is to earn as many points as possible.</p>
-        <p>Three co-workers are shown below. On each turn, you will select one to ask for help. You can choose a co-worker using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> deck respectively.</p>
+        <p>Three co-workers are shown below. On each turn, you will select one to ask for help. You can choose a co-worker using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> co-worker respectively.</p>
         <p>Let's practice choosing co-workers.</p>
         <p>Please choose the <strong>left</strong> co-worker by pressing the <strong>1</strong> key.
         <div class='image-container'>
