@@ -99,3 +99,12 @@ jsPsych version 6.3 or 7.x
 
 ### To-do
 * preloading images in version 7, instead of index.php code
+
+## Output Variables that we don't have yet 02-27-24
+* start_time
+* end_time
+* browser
+* deck_color, deck_position, deck_probabilities, deck_contingencies
+* response_color, response_position, response_probability - is now called response
+* reward_type
+* trial_type - is now called reversal_type, but includes reversals from performance independent as well (note: trial_type is autocaptured as a separate column that gives HTMLkeyboardPress)
