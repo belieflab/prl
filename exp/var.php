@@ -78,20 +78,22 @@ const outcome = [`stim/${version}/outcome/scaled_win.png`, `stim/${version}/outc
 switch (difficulty) {
     case "easy-easy":
         phaseProbabilities.push([0.9, 0.5, 0.1], [0.9, 0.5, 0.1]);
-        currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
         break;
     case "easy-hard":
         phaseProbabilities.push([0.9, 0.5, 0.1], [0.8, 0.4, 0.2]);
-        currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
+        //currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
         break;
     case "hard-easy":
         phaseProbabilities.push([0.8, 0.4, 0.2], [0.9, 0.5, 0.1]);
-        currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
+        //currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
         break;
     case "hard-hard":
         phaseProbabilities.push([0.8, 0.4, 0.2], [0.8, 0.4, 0.2]);
-        currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
-        break;
+        //currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
+        break;    
 }
+
+currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
+
 
 </script>

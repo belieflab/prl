@@ -172,19 +172,21 @@ const trialFeedback = {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
         let response = data[0].response;
         console.log(response);
+        let highestProbabilityIndex;
 
         // performance-independent reversal every 40 trials
         if (
             trialIterator === 1 * (totalTrials / blocks) ||
             trialIterator === 3 * (totalTrials / blocks)
         ) {
-            let highestProbabilityIndex;
+            //let highestProbabilityIndex;
 
             do {
                 highestProbabilityIndex = currentProbability.indexOf(
                     Math.max(...currentProbability)
                 );
                 currentProbability = shuffleArray(currentProbability);
+                //console.log(currentProbability);
             } while (
                 currentProbability.indexOf(Math.max(...currentProbability)) ===
                 highestProbabilityIndex
@@ -196,7 +198,7 @@ const trialFeedback = {
 
         // contingency shift
         if (trialIterator === 2 * (totalTrials / blocks)) {
-            let highestProbabilityIndex;
+            //let highestProbabilityIndex;
             do {
                 highestProbabilityIndex = currentProbability.indexOf(
                     Math.max(...currentProbability)
@@ -217,12 +219,13 @@ const trialFeedback = {
         ) {
             streak++;
             if (streak >= maxStreaks) {
-                let highestProbabilityIndex;
+                //let highestProbabilityIndex;
                 do {
                     highestProbabilityIndex = currentProbability.indexOf(
                         Math.max(...currentProbability)
                     );
                     currentProbability = shuffleArray(currentProbability);
+                    //console.log(currentProbability);
                 } while (
                     currentProbability.indexOf(
                         Math.max(...currentProbability)
@@ -244,7 +247,7 @@ const trialFeedback = {
         // logic to sample deck with respective reward probability
         let observedOutcome;
         //let win; // boolean to track win/lose outcome; initialize
-
+        console.log(currentProbability);
         // logic to sample deck with respective reward probability
         // 'response - 1' will give position of probability value within currentProbability vector (index)
         // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
@@ -295,6 +298,7 @@ const trialFeedback = {
         // response = jsPsych.data.get().last(1).values()[0].response;
 
         return html;
+        
     },
     response_ends_trial: false,
     trial_duration: 1000,
@@ -313,7 +317,7 @@ const trialFeedback = {
         data.index = trialIterator;
         data.first_half_probabilities = phaseProbabilities[0];
         data.second_half_probabilities = phaseProbabilities[1];
-        data.deck_probabilities = currentProbability;
+        data.deck_probabilities = String(currentProbability);
         data.streak = streak;
         data.strike = strike;
         data.response = response;
@@ -327,8 +331,8 @@ const trialFeedback = {
         } else {
             // Compare the current trial (.last(2)) and the previous trial (.last(5)) deck contingencies, and if different, then reversal occurred
             data.reversal_type =
-                jsPsych.data.get().last(2).values()[0].deck_contingencies !=
-                jsPsych.data.get().last(5).values()[0].deck_contingencies
+                jsPsych.data.get().last(2).values()[0].deck_probabilities !=
+                jsPsych.data.get().last(5).values()[0].deck_probabilities
                     ? true
                     : false;
         } // How to compute performance-dependent reversals from `reversal_type` (previously known as `trial_type`)?: Substract trials indexed of 40,80, and 120.
