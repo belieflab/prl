@@ -171,7 +171,7 @@ const trialFeedback = {
     stimulus: () => {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
         let response = data[0].response;
-        console.log(response);
+        //console.log(response);
         let highestProbabilityIndex;
 
         // performance-independent reversal every 40 trials
@@ -186,7 +186,6 @@ const trialFeedback = {
                     Math.max(...currentProbability)
                 );
                 currentProbability = shuffleArray(currentProbability);
-                //console.log(currentProbability);
             } while (
                 currentProbability.indexOf(Math.max(...currentProbability)) ===
                 highestProbabilityIndex
@@ -225,7 +224,6 @@ const trialFeedback = {
                         Math.max(...currentProbability)
                     );
                     currentProbability = shuffleArray(currentProbability);
-                    //console.log(currentProbability);
                 } while (
                     currentProbability.indexOf(
                         Math.max(...currentProbability)
@@ -246,8 +244,9 @@ const trialFeedback = {
 
         // logic to sample deck with respective reward probability
         let observedOutcome;
-        //let win; // boolean to track win/lose outcome; initialize
-        console.log(currentProbability);
+
+        //console.log(currentProbability);
+        
         // logic to sample deck with respective reward probability
         // 'response - 1' will give position of probability value within currentProbability vector (index)
         // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
@@ -312,6 +311,7 @@ const trialFeedback = {
         //     "internal_node_id",
         // ]);
         data.difficulty = difficulty;
+        data.stimuliSet = stimuliSet;
         data.max_strikes = maxStrikes;
         data.max_streaks = maxStreaks;
         data.index = trialIterator;
@@ -324,7 +324,7 @@ const trialFeedback = {
         data.rt = rt;
         data.key_press =
             response == 1 ? 49 : response == 2 ? 50 : response == 3 ? 51 : null;
-        console.log(win);
+        //console.log(win);
         data.reward_type = win;
         if (jsPsych.data.get().last(2).values()[0].index == 1) {
             data.reversal_type = false; // Not enough data to compare

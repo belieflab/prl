@@ -2,8 +2,12 @@
 <!-- And any php server side logic -->
 
 <?php
-$directoryDeck = 'stim/deck/0/';
-$directoryAvatar = 'stim/avatar/0/';
+
+// which set do you want to use? (from 0 to 7)
+$stimuliSet = 0;
+
+$directoryDeck = 'stim/deck/' . $stimuliSet . '/'; //'stim/deck/0/';
+$directoryAvatar = 'stim/avatar/' . $stimuliSet . '/'; // 'stim/avatar/0/';
 $decks = scandir($directoryDeck);
 $avatars = scandir($directoryAvatar);
 $fileArrayDeck = [];
@@ -36,18 +40,24 @@ let trialIterator = 0; // first trial will increment from 0 to 1
 const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;
 const stimArrayAvatar = <?php echo $fileArrayAvatarJSON; ?>;
 
+// create win as global variable so we use it in feedback and printing csv
 let win;
+
+// add php set to js set so we add it into the timeline feedback csv output
+let stimuliSet  = <?php echo $stimuliSet; ?>;
 
 let score = 0; // score accumulated throughout the experiment
 
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 
+// values for win and lose
 const winPoints = 100;
 const losePoints = -50;
 
 let phaseProbabilities = [];
 let currentProbability;
 
+// create variables with  initial values for streak and strike
 let streak = 0;
 let strike = 0;
 
@@ -81,18 +91,14 @@ switch (difficulty) {
         break;
     case "easy-hard":
         phaseProbabilities.push([0.9, 0.5, 0.1], [0.8, 0.4, 0.2]);
-        //currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
         break;
     case "hard-easy":
         phaseProbabilities.push([0.8, 0.4, 0.2], [0.9, 0.5, 0.1]);
-        //currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
         break;
     case "hard-hard":
         phaseProbabilities.push([0.8, 0.4, 0.2], [0.8, 0.4, 0.2]);
-        //currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
         break;    
 }
-
 currentProbability = shuffleArray([...phaseProbabilities[0]]); // randomize initial reward probability set at start of experiment
 
 
