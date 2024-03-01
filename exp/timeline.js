@@ -16,33 +16,16 @@ const timeline = [];
 
 const preload = {
     type: jsPsychPreload,
-    images: ['stim/sabotage/scaled_lose.png','stim/sabotage/scaled_win.png'],
-    show_detailed_errors: true
-}
+    images: ["stim/sabotage/scaled_lose.png", "stim/sabotage/scaled_win.png"],
+    show_detailed_errors: true,
+};
 
 /*define welcome message*/
 const welcome = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[0],
     choice: "NO_KEYS",
-    on_load: () => {
-        switch (debug) {
-            case true:
-                $(document).ready(() => {
-                    $("body").addClass("showCursor");
-                });
-                break;
-            case false:
-                $(document).ready(() => {
-                    $("body").addClass("hideCursor");
-                });
-                break;
-        }
-        // Hide progress bar from screen
-        document.getElementById(
-            "jspsych-progressbar-container"
-        ).style.visibility = "hidden";
-    },
+    on_load: () => toggleDebugMode(),
 };
 
 /*define task instructions*/
@@ -136,7 +119,7 @@ const cues = {
                 <img class='stimuli-middle' src='${stim[1]}'>
                 <img class='stimuli-right' src='${stim[2]}'>
             </div>`;
-    },    
+    },
 };
 
 // practice trials
@@ -265,7 +248,7 @@ const trialFeedback = {
         let observedOutcome;
 
         //console.log(currentProbability);
-        
+
         // logic to sample deck with respective reward probability
         // 'response - 1' will give position of probability value within currentProbability vector (index)
         // note: users can input 1,2,3 but we index by 0,1,2 so 1->0, 2->1, 3->2
@@ -316,7 +299,6 @@ const trialFeedback = {
         // response = jsPsych.data.get().last(1).values()[0].response;
 
         return html;
-        
     },
     response_ends_trial: false,
     trial_duration: 1000,
