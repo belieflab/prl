@@ -25,12 +25,16 @@ switch (version) {
     case "deck":
         var english1 = `
         <p>In this study, you will play a card game, and your goal is to win as many points as you can.</p>
+        <p>Please press the zero (0) key to continue.</p>`;
+
+
+        var english2 = `
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra ${
             reward === "$" ? "$" + bonus : bonus + " points"
         } bonus, so please do your best!</p>
         <p>Please press the zero (0) key to continue.</p>`;
 
-        var english2 = `
+        var english3 = `
         <p>The card game is very simple: on each turn you will choose one of the three decks below, so you can draw a card from it.</p>
         <p>You can choose a deck using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> deck respectively.</p>
         <p>Let's practice choosing decks.</p>
@@ -41,7 +45,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english3 = `
+        var english4 = `
         <p>Great! Now choose the <strong>middle</strong> deck by pressing the <strong>2</strong> key.</p>
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -49,7 +53,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english4 = `
+        var english5 = `
         <p>Excellent! Now choose the <strong>right</strong> deck by pressing the <strong>3</strong> key.</p>
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -57,7 +61,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english5 = `
+        var english6 = `
         <p>Good job! You have successfully practiced selecting decks.</p>
         <p>After you select a deck, the top card will turn over.</p>
         <p>This card can either win you an additional 100 points ('winning' cards) or take away 50 points ('losing' cards).</p>
@@ -70,7 +74,7 @@ switch (version) {
         <p>Your job is to figure out which deck is the best deck, so that you can get as many points as possible.</p>
         Please press the zero (0) key to continue.`;
 
-        var english6 = `
+        var english7 = `
         <p>However, there is one final catch:</p>
         <p><b>There may be times when the best deck will change!</b></p>
         <p>If you think the best deck has changed from what it was before, then try to find out the new best deck.</p>
@@ -80,14 +84,14 @@ switch (version) {
         <br /><br />
         Please press the zero (0) key to start the practice round.`;
 
-        var english7 = `
+        var english8 = `
         <p>You have now completed the practice round.</p>
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
-        var english8 = `Did you feel as though the decks were tricking you?`;
+        var english9 = `Did you feel as though the decks were tricking you?`;
 
-        var english9 = null;
+        var english10 = null;
 
         // TASK 2: Please add remaining french and german language for the deck version
         var french1 = `
@@ -107,6 +111,9 @@ switch (version) {
         var english2 = `
         <p>Imagine you are a student at a university. Working with classmates can help you learn and complete group projects. However, sometimes classmates can be unreliable.</p>
         <p>They can show up late, fail to complete their work, or be distracted for personal reasons. Some classmates may even deliberately sabotage your work.</p>
+        <p>Please press the zero (0) key to continue.</p>`;
+
+        var english3 = `
         <p>Three classmates are shown below. On each turn, you will select one partner to work with on a school project.</p>
         <p>You can choose a partner using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> deck respectively.</p>
         <p>Let's practice choosing partners.</p>
@@ -117,7 +124,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english3 = `
+        var english4 = `
         <p>Great! Now choose the <strong>middle</strong> partner by pressing the <strong>2</strong> key.</p>
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -125,7 +132,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english4 = `
+        var english5 = `
         <p>Excellent! Now choose the <strong>right</strong> partner by pressing the <strong>3</strong> key.</p>
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -133,7 +140,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english5 = `
+        var english6 = `
         <p>Good job! You have successfully practiced selecting partners.</p>
         <p>After you select a partner, you will see if your project succeeds (+100 points) or fails (-50 points).</p>
         <p>Below you can see what those outcomes look like:</p>
@@ -145,7 +152,7 @@ switch (version) {
         <p>However, no partner is perfect. Anyone can have a bad day.</strong></p>
         <p>Please press the zero (0) key to continue.`;
 
-        var english6 = `
+        var english7 = `
         <p>However, there is one final catch:</p>
         <p><b>Sometimes, the partners may change! The partner that previously performed the best may start to struggle or sabotage you while the other partners may improve.</b></p>
         <p>If you think the best partner has changed from what it was before, then try to find out the new best partner.</p>
@@ -155,14 +162,14 @@ switch (version) {
         <br /><br />
         Please press the zero (0) key to start the practice round.`;
 
-        var english7 = `
+        var english8 = `
         <p>You have now completed the practice round.</p>
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
-        var english8 = `Did any of the partners deliberately sabotage you?`;
+        var english9 = `Did any of the partners deliberately sabotage you?`;
 
-        var english9 = null;
+        var english10 = null;
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
@@ -175,7 +182,6 @@ switch (version) {
     case "sabotage":
         var english1 = `
         <p>In this study, you will play a game about working with people, and your goal is to win as many points as you can.</p>
-        <p>If your score lands you in the top ${percentile}% of participants, you will get an extra $${bonus} bonus, so please do your best!</p>
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english2 = `
@@ -184,6 +190,9 @@ switch (version) {
         <p>To complete tasks successfully, you must rely on co-workers for advice and help. Some of your co-workers are helpful, whereas others are not.</p>
         <p>Furthermore, sometimes they will want to see you fail and switch from helping you to actively hurting your performance.</p>
         <p>Your goal is to earn as many points as possible.</p>
+        <p>Please press the zero (0) key to continue.</p>`
+
+        var english3 = `
         <p>Three co-workers are shown below. On each turn, you will select one to ask for help. You can choose a co-worker using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> co-worker respectively.</p>
         <p>Let's practice choosing co-workers.</p>
         <p>Please choose the <strong>left</strong> co-worker by pressing the <strong>1</strong> key.
@@ -193,7 +202,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english3 = `
+        var english4 = `
         <p>Great! Now choose the <strong>middle</strong> co-worker by pressing the <strong>2</strong> key.</p>
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -201,7 +210,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english4 = `
+        var english5 = `
         <p>Excellent! Now choose the <strong>right</strong> co-worker by pressing the <strong>3</strong> key.</p>
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -209,7 +218,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var english5 = `
+        var english6 = `
         <p>Good job! You have successfully practiced selecting co-workers for help.</p>
         <p>After you select a co-worker, you will see if they helped you earn points with the boss (+100 points) or lose points with the boss (-50 points).</p>
         <p>Below you can see what those outcomes look like:</p>
@@ -221,7 +230,7 @@ switch (version) {
         <p>However, no co-worker is perfect. Anyone can have a bad day.</strong></p>
         <p>Please press the zero (0) key to continue.`;
 
-        var english6 = `
+        var english7 = `
         <p>However, there is one final catch:</p>
         <p><b>Sometimes, the co-workers may change! The co-worker that previously helped may start to sabotage you while the other co-workers become helpful.</b></p>
         <p>If you think the best co-worker has changed, then try to find out the new best co-worker.</p>
@@ -231,14 +240,14 @@ switch (version) {
         <br /><br />
         Please press the zero (0) key to start the practice round.`;
 
-        var english7 = `
+        var english8 = `
         <p>You have now completed the practice round.</p>
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
-        var english8 = `Did it feel like changes in co-workers and their helpfulness were as random as they should have been?`;
+        var english9 = `Did it feel like changes in co-workers and their helpfulness were as random as they should have been?`;
 
-        var english9 = `Did any of your co-workers deliberately sabotage you?`;
+        var english10 = `Did any of your co-workers deliberately sabotage you?`;
 
         // Task 3: Please add french and german language for the avatar version
         var french1 = `
@@ -249,7 +258,7 @@ switch (version) {
         break;
 }
 
-var english10 = (score) => {
+var english11 = (score) => {
     return `
 <div class="body-white-theme">
     <p>Thank you!</p>
@@ -276,7 +285,8 @@ switch (language) {
             english7,
             english8,
             english9,
-            (score) => english10(score), // Store it as a function that accepts score
+            english10,
+            (score) => english11(score), // Store it as a function that accepts score
         ];
         break;
     // Task 4: Please add the case for both french and german

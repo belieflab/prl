@@ -9,6 +9,17 @@ const jsPsych = initJsPsych({
 
 const timeline = [];
 
+// const preload = {
+//     type: jsPsychPreload,
+//     auto_preload: true
+// }
+
+const preload = {
+    type: jsPsychPreload,
+    images: ['stim/sabotage/scaled_lose.png','stim/sabotage/scaled_win.png'],
+    show_detailed_errors: true
+}
+
 /*define welcome message*/
 const welcome = {
     type: jsPsychHtmlKeyboardResponse,
@@ -45,34 +56,41 @@ const instruction1 = {
 const instruction2 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[2],
-    choices: ["1"],
+    choices: ["0"],
 };
 
 /*define task instructions*/
 const instruction3 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[3],
-    choices: ["2"],
+    choices: ["1"],
 };
 
 /*define task instructions*/
 const instruction4 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[4],
-    choices: ["3"],
+    choices: ["2"],
 };
 
 /*define task instructions*/
 const instruction5 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[5],
-    choices: ["0"],
+    choices: ["3"],
 };
 
 /*define task instructions*/
 const instruction6 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[6],
+    choices: ["0"],
+};
+
+/*define task instructions*/
+const instruction7 = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: instructions[7],
     choices: ["0"],
 };
 
@@ -83,11 +101,12 @@ const instructionSet = [
     instruction4,
     instruction5,
     instruction6,
+    instruction7,
 ];
 
 const endPracticeInstructions = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: instructions[7],
+    stimulus: instructions[8],
     choices: ["0"],
     on_load: () => {
         // Make visible progress bar to screen
@@ -374,7 +393,7 @@ const screenRating1 = {
     type: jsPsychSurveyMultiChoice,
     questions: [
         {
-            prompt: instructions[8],
+            prompt: instructions[9],
             name: "rating_random",
             options: [
                 "Definitely Not",
@@ -410,7 +429,7 @@ const screenRating2 = {
     type: jsPsychSurveyMultiChoice,
     questions: [
         {
-            prompt: instructions[9],
+            prompt: instructions[10],
             name: "rating_sabotage",
             options: [
                 "Definitely Not",
@@ -448,7 +467,7 @@ const dataSave = {
                 : jsPsych.data.get().select("score").values.slice(-1)[0]; // Replace 'score' with actual data key if necessary
 
         // Now, generate the thank you message with the updated score
-        const thankYou = instructions[10](updatedScore);
+        const thankYou = instructions[11](updatedScore);
 
         saveDataPromise(
             `${experimentAlias}_${subjectId}`,
