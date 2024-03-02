@@ -1,22 +1,16 @@
+"use strict";
+
 const jsPsych = initJsPsych({
     show_progress_bar: true,
     message_progress_bar: "Completion Progress",
     auto_update_progress_bar: false,
-    preload_video: [],
-    preload_audio: [],
-    preload_images: [],
 });
 
 const timeline = [];
 
-// const preload = {
-//     type: jsPsychPreload,
-//     auto_preload: true
-// }
-
 const preload = {
     type: jsPsychPreload,
-    images: ["stim/sabotage/scaled_lose.png", "stim/sabotage/scaled_win.png"],
+    images: [outcome, stim],
     show_detailed_errors: true,
 };
 

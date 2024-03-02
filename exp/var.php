@@ -35,6 +35,8 @@ $fileArrayAvatarJSON = json_encode($fileArrayAvatar);
 
 <script>
 
+"use strict";
+
 let trialIterator = 0; // first trial will increment from 0 to 1
 
 const stimArrayDeck = <?php echo $fileArrayDeckJSON; ?>;

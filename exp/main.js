@@ -1,3 +1,4 @@
+"use strict";
 // main order in which things are pushed to timeline
 
 // The spread operator ... expands the elements of instructions inside the
@@ -6,6 +7,9 @@
 // for (let i = 0; i < instructions.length; i++) {
 //     timeline.push(instructions[i]);
 // }
+
+// Preload images
+timeline.push(preload);
 
 // Instructions
 timeline.push(welcome, ...instructionSet);

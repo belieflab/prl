@@ -1,3 +1,5 @@
+"use strict";
+
 // Translation
 // This file contains the instructions for the experiment,
 // which will be translated to the language specified in exp/conf.js
@@ -26,7 +28,6 @@ switch (version) {
         var english1 = `
         <p>In this study, you will play a card game, and your goal is to win as many points as you can.</p>
         <p>Please press the zero (0) key to continue.</p>`;
-
 
         var english2 = `
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra ${
@@ -190,7 +191,7 @@ switch (version) {
         <p>To complete tasks successfully, you must rely on co-workers for advice and help. Some of your co-workers are helpful, whereas others are not.</p>
         <p>Furthermore, sometimes they will want to see you fail and switch from helping you to actively hurting your performance.</p>
         <p>Your goal is to earn as many points as possible.</p>
-        <p>Please press the zero (0) key to continue.</p>`
+        <p>Please press the zero (0) key to continue.</p>`;
 
         var english3 = `
         <p>Three co-workers are shown below. On each turn, you will select one to ask for help. You can choose a co-worker using the <i>1</i>, <i>2</i>, or <i>3</i> keys on your keyboard to choose the <i>left</i>, <i>middle</i>, or <i>right</i> co-worker respectively.</p>
