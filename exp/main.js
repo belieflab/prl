@@ -33,5 +33,8 @@ switch (version) {
 // Data saving and salutations
 timeline.push(dataSave);
 
-// New jsPsych 7.x syntax
-jsPsych.run(timeline);
+// don't allow experiment to start unless subjectId is set
+if (subjectId) {
+    // New jsPsych 7.x syntax
+    jsPsych.run(timeline);
+}
