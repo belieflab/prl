@@ -321,16 +321,19 @@ const trialFeedback = {
             response == 1 ? 49 : response == 2 ? 50 : response == 3 ? 51 : null;
         //console.log(win);
         data.reward_type = win;
-        if (jsPsych.data.get().last(2).values()[0].index == 1) {
-            data.reversal_type = false; // Not enough data to compare
+        // initialize constants to represent trials that we are comparing
+        const previousTrial = jsPsych.data.get().last(4).values()[0]; // current trial (.last(1))
+        const currentTrial = jsPsych.data.get().last(1).values()[0]; // previous trial (.last(4))
+
+        // check if the deck probabilities on current and previous trials are the same
+        if (previousTrial.index !== undefined){ // compare previous and current trials after the first trial         
+            data.reversal_type = previousTrial.deck_probabilities === currentTrial.deck_probabilities ? false : true; // if probabilities are different, reversal occurred (= true)
+            console.log(data.reversal_type);
         } else {
-            // Compare the current trial (.last(2)) and the previous trial (.last(5)) deck contingencies, and if different, then reversal occurred
-            data.reversal_type =
-                jsPsych.data.get().last(2).values()[0].deck_probabilities !=
-                jsPsych.data.get().last(5).values()[0].deck_probabilities
-                    ? true
-                    : false;
-        } // How to compute performance-dependent reversals from `reversal_type` (previously known as `trial_type`)?: Substract trials indexed of 40,80, and 120.
+            data.reversal_type = false; // first trial reversal always undefined
+            console.log(data.reversal_type);
+        }
+        // How to compute performance-dependent reversals from `reversal_type` (previously known as `trial_type`)?: Substract trials indexed of 40,80, and 120.
         data.reward_tally = score;
     },
 };
