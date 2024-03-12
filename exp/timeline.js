@@ -452,10 +452,13 @@ const dataSave = {
             `${experimentAlias}_${subjectId}`,
             jsPsych.data.get().csv()
         )
-            .then((response) => {
+            .then((response) => { // response will tell us if data has been saved on server
                 console.log("Data saved successfully.", response);
                 // Update the stimulus content directly via DOM manipulation
                 document.querySelector("#jspsych-content").innerHTML = thankYou;
+                setTimeout(()=>{
+                    window.location.replace(feedbackLink); // redirect to qualtrics survey link after a delay of 5s
+                },5000);
             })
             .catch((error) => {
                 console.error("Failed to save data.", error);

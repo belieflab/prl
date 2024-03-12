@@ -21,7 +21,7 @@ const theme = "light"; // UI theme setting
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage"
-const version = "sabotage"; // Current version of the experiment
+const version = "deck"; // Current version of the experiment
 
 // Contingency Switch Setting
 // Options: "easy-easy", "easy-hard" (default), "hard-easy", "hard-hard"
@@ -37,4 +37,16 @@ const reward = "$"; // Options: "points", "$""
 
 // Note: Uncomment the desired option for each setting, and ensure only one option per setting is active.
 const adminEmail = "joshua.kenney@yale.edu";
-const feedbackLink = undefined;
+let feedbackLink;
+
+// SET SUBJECT IDENTIFICATION
+if (workerId != undefined) {
+  feedbackLink = "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_5z1aY15F6rS3jSe?workerId=" + workerId;
+}
+if (PROLIFIC_PID != undefined) {
+  feedbackLink = "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_5z1aY15F6rS3jSe?PROLIFIC_PID=" + PROLIFIC_PID;
+}
+if (participantId != undefined) {
+  feedbackLink = "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_5z1aY15F6rS3jSe?participantId=" + participantId;
+}
+

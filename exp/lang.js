@@ -264,11 +264,8 @@ var english11 = (score) => {
 <div class="body-white-theme">
     <p>Thank you!</p>
     <p>You have successfully completed the experiment and your data has been saved.</p>
+    <p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>
     <p>Your final score is ${score}.</p>
-    <!-- <p>To leave feedback on this task, please click the following link:</p> -->
-    <!-- <p><a href="${feedbackLink}">Leave Task Feedback!</a></p> -->
-    <!-- <p>Please wait for the experimenter to continue.</p> -->
-    <p><i>You may now close the experiment window at any time.</i></p>
 </div>`;
 };
 
