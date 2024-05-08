@@ -365,7 +365,7 @@ const conditionalProgressMessage = {
 
 const procedureTrial = {
     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
-    repetitions: getRepetitions(), // toggle between debug and production mode
+    repetitions: getRepetitions([totalTrials])[0], // toggle between debug and production mode
 };
 
 const screenRating1 = {
