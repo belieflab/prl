@@ -30,6 +30,17 @@ const difficulty = "easy-hard"; // Default difficulty setting
 const trials = 40; // trials per block
 const blocks = 4; // blocks of trials per experiment
 
+const totalTrials = trials * blocks; // total number of trials in the experiment
+
+// Number of repetitions for each phase, user-defined object
+// reference in main procedures object repetitions property:
+// e.g.
+// repetitions: getRepetitions().learning
+const repetitions = {
+    production: totalTrials,
+    debug: 1,
+};
+
 // Reward Settings
 const bonus = 2; // Bonus amount in dollars
 const percentile = 25; // Cut-off performance percentile for receiving a bonus
@@ -41,12 +52,17 @@ let feedbackLink;
 
 // SET SUBJECT IDENTIFICATION
 if (workerId != undefined) {
-  feedbackLink = "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?workerId=" + workerId;
+    feedbackLink =
+        "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?workerId=" +
+        workerId;
 }
 if (PROLIFIC_PID != undefined) {
-  feedbackLink = "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?PROLIFIC_PID=" + PROLIFIC_PID;
+    feedbackLink =
+        "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?PROLIFIC_PID=" +
+        PROLIFIC_PID;
 }
 if (participantId != undefined) {
-  feedbackLink = "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?participantId=" + participantId;
+    feedbackLink =
+        "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?participantId=" +
+        participantId;
 }
-

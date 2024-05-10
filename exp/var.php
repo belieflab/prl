@@ -67,7 +67,7 @@ let strike = 0;
 const maxStreaks = 9;
 const maxStrikes = 2;
 
-const totalTrials = trials * blocks; // total number of trials in the experiment
+
 
 // selecting the stimuli based on version (deck or avatar)
 // and shuffle the stimuli

@@ -326,8 +326,13 @@ const trialFeedback = {
         const currentTrial = jsPsych.data.get().last(1).values()[0]; // previous trial (.last(4))
 
         // check if the deck probabilities on current and previous trials are the same
-        if (previousTrial.index !== undefined){ // compare previous and current trials after the first trial         
-            data.reversal_type = previousTrial.deck_probabilities === currentTrial.deck_probabilities ? false : true; // if probabilities are different, reversal occurred (= true)
+        if (previousTrial.index !== undefined) {
+            // compare previous and current trials after the first trial
+            data.reversal_type =
+                previousTrial.deck_probabilities ===
+                currentTrial.deck_probabilities
+                    ? false
+                    : true; // if probabilities are different, reversal occurred (= true)
             console.log(data.reversal_type);
         } else {
             data.reversal_type = false; // first trial reversal always undefined
@@ -452,13 +457,14 @@ const dataSave = {
             `${experimentAlias}_${subjectId}`,
             jsPsych.data.get().csv()
         )
-            .then((response) => { // response will tell us if data has been saved on server
+            .then((response) => {
+                // response will tell us if data has been saved on server
                 console.log("Data saved successfully.", response);
                 // Update the stimulus content directly via DOM manipulation
                 document.querySelector("#jspsych-content").innerHTML = thankYou;
-                setTimeout(()=>{
+                setTimeout(() => {
                     window.location.replace(feedbackLink); // redirect to qualtrics survey link after a delay of 5s
-                },5000);
+                }, 5000);
             })
             .catch((error) => {
                 console.error("Failed to save data.", error);
