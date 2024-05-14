@@ -101,8 +101,23 @@ const fixation = {
     response_ends_trial: false,
 };
 
-/*initialize the trails array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
+/*initialize the trials array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
 const cues = {
+    type: jsPsychHtmlKeyboardResponse,
+    response_ends_trial: true,
+    choices: ["1", "2", "3"], // Initially, there may be no keys allowed if you want to start in a "disabled" state
+    stimulus: () => {
+        return `
+            <div class='image-container'>
+                <img class='stimuli-left' src='${stim[0]}'>
+                <img class='stimuli-middle' src='${stim[1]}'>
+                <img class='stimuli-right' src='${stim[2]}'>
+            </div>`;
+    },
+};
+
+/*initialize the trials array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the confidence rating to the trials array for each stroop variable*/
+const cues_confidence = {
     type: jsPsychHtmlKeyboardResponse,
     response_ends_trial: true,
     choices: ["1", "2", "3"], // Initially, there may be no keys allowed if you want to start in a "disabled" state
@@ -170,8 +185,13 @@ const trialFeedback = {
     on_finish: feedbackLogic, // Turn the picked card face up
 };
 
+// const practiceTrial = {
+//     timeline: [fixation, cues, practiceFeedback],
+//     repetitions: 3,
+// };
+
 const practiceTrial = {
-    timeline: [fixation, cues, practiceFeedback],
+    timeline: [fixation, cues_confidence, practiceFeedback],
     repetitions: 3,
 };
 
@@ -195,9 +215,19 @@ const conditionalProgressMessage = {
     conditional_function: shouldShowProgressMessage,
 };
 
+// const procedureTrial = {
+//     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
+//     repetitions: getRepetitions(), // toggle between debug and production mode
+// };
+
 const procedureTrial = {
+<<<<<<< HEAD
     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
     repetitions: getRepetitions([totalTrials])[0], // toggle between debug and production mode
+=======
+    timeline: [fixation, cues_confidence, trialFeedback, conditionalProgressMessage],
+    repetitions: getRepetitions(), // toggle between debug and production mode
+>>>>>>> d3b5f2e5cb4df9110d3bb6137d11dc71b6620df7
 };
 
 const screenRating1 = {
