@@ -173,7 +173,7 @@ function feedbackLogic(data) {
     data.reward_tally = score;
 }
 
-function serverStatus() {
+function writeCsvRedirect() {
     const updatedScore =
         typeof score !== "undefined"
             ? score
