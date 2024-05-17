@@ -68,7 +68,7 @@ const maxStreaks = 9;
 const maxStrikes = 2;
 
 // tracks total taps per trial
-let totalConfidence = [0]; // must be 0 to compensate for participant should they miss first trial
+let totalConfidence = []; // does not have to be [0] because no possibility of missed first trial (no fixed duration, like in foodAllergy)
 
 
 // selecting the stimuli based on version (deck or avatar)
