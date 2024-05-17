@@ -67,6 +67,8 @@ let strike = 0;
 const maxStreaks = 9;
 const maxStrikes = 2;
 
+// tracks total taps per trial
+let totalConfidence = [0]; // must be 0 to compensate for participant should they miss first trial
 
 
 // selecting the stimuli based on version (deck or avatar)

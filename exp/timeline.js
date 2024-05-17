@@ -221,13 +221,8 @@ const conditionalProgressMessage = {
 // };
 
 const procedureTrial = {
-<<<<<<< HEAD
-    timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
-    repetitions: getRepetitions([totalTrials])[0], // toggle between debug and production mode
-=======
     timeline: [fixation, cues_confidence, trialFeedback, conditionalProgressMessage],
     repetitions: getRepetitions(), // toggle between debug and production mode
->>>>>>> d3b5f2e5cb4df9110d3bb6137d11dc71b6620df7
 };
 
 const screenRating1 = {
