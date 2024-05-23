@@ -112,6 +112,7 @@ function updateConfidenceBar(pressDuration) {
     var confidence = Math.min(pressDuration / maxDuration, 1);
     confidenceBar.style.width = (confidence * 100) + '%';
     confidenceBar.style.backgroundColor = `rgba(0, 128, 0, ${confidence})`; // Green color with varying opacity
+    console.log("Confidence bar updated:", confidenceBar.style.width);
 }
 
 /*define cues with confidence rating*/
@@ -130,11 +131,24 @@ const cues_confidence = {
     },
     on_start: function(trial) {
         trial.start_time = Date.now();
+        setTimeout(() => {
+            const confidenceBar = document.getElementById('confidence-bar');
+            if (confidenceBar) {
+                console.log("Confidence bar element found on start.");
+            } else {
+                console.error("Confidence bar element not found on start.");
+            }
+        }, 0);
     },
     on_finish: function(data) {
         var end_time = Date.now();
         data.press_duration = end_time - data.start_time;
-        updateConfidenceBar(data.press_duration);
+        console.log("Press duration:", data.press_duration);
+        // Ensure the confidence bar is updated correctly
+        setTimeout(() => {
+            console.log("Attempting to update confidence bar");
+            updateConfidenceBar(data.press_duration);
+        }, 0);
     }
 };
 
