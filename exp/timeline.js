@@ -101,34 +101,41 @@ const fixation = {
     response_ends_trial: false,
 };
 
-/*initialize the trials array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the fixation trial to the trials array for each stroop variable*/
-const cues = {
-    type: jsPsychHtmlKeyboardResponse,
-    response_ends_trial: true,
-    choices: ["1", "2", "3"], // Initially, there may be no keys allowed if you want to start in a "disabled" state
-    stimulus: () => {
-        return `
-            <div class='image-container'>
-                <img class='stimuli-left' src='${stim[0]}'>
-                <img class='stimuli-middle' src='${stim[1]}'>
-                <img class='stimuli-right' src='${stim[2]}'>
-            </div>`;
-    },
-};
+// Function to update the confidence bar based on press duration
+function updateConfidenceBar(pressDuration) {
+    var confidenceBar = document.getElementById('confidence-bar');
+    if (!confidenceBar) {
+        console.error("Confidence bar element not found!");
+        return;
+    }
+    var maxDuration = 2000; // Max duration in milliseconds for full confidence
+    var confidence = Math.min(pressDuration / maxDuration, 1);
+    confidenceBar.style.width = (confidence * 100) + '%';
+    confidenceBar.style.backgroundColor = `rgba(0, 128, 0, ${confidence})`; // Green color with varying opacity
+}
 
-/*initialize the trials array with the instructions trial and loop through each stroop variable defined in stroop variable, also add the confidence rating to the trials array for each stroop variable*/
+/*define cues with confidence rating*/
 const cues_confidence = {
     type: jsPsychHtmlKeyboardResponse,
     response_ends_trial: true,
-    choices: ["1", "2", "3"], // Initially, there may be no keys allowed if you want to start in a "disabled" state
+    choices: ["1", "2", "3"],
     stimulus: () => {
         return `
             <div class='image-container'>
                 <img class='stimuli-left' src='${stim[0]}'>
                 <img class='stimuli-middle' src='${stim[1]}'>
                 <img class='stimuli-right' src='${stim[2]}'>
+                <div id="confidence-bar" style="width: 0; height: 20px; background-color: green; margin-top: 20px; transition: width 0.5s;"></div>
             </div>`;
     },
+    on_start: function(trial) {
+        trial.start_time = Date.now();
+    },
+    on_finish: function(data) {
+        var end_time = Date.now();
+        data.press_duration = end_time - data.start_time;
+        updateConfidenceBar(data.press_duration);
+    }
 };
 
 // practice trials
@@ -185,11 +192,7 @@ const trialFeedback = {
     on_finish: feedbackLogic, // Turn the picked card face up
 };
 
-// const practiceTrial = {
-//     timeline: [fixation, cues, practiceFeedback],
-//     repetitions: 3,
-// };
-
+// practice and main trials with confidence bar
 const practiceTrial = {
     timeline: [fixation, cues_confidence, practiceFeedback],
     repetitions: 3,
@@ -202,23 +205,17 @@ const conditionalProgressMessage = {
             type: jsPsychHtmlKeyboardResponse,
             stimulus: () => {
                 let percentComplete = calculatePercentComplete();
-                // Create a progress message trial
                 return `You are ${percentComplete}% done with the experiment. Please press the (0) key to proceed.`;
             },
             on_finish: () => {
                 let percentComplete = calculatePercentComplete();
-                jsPsych.setProgressBar(percentComplete / 100); // set progress bar to percentComplete full.
+                jsPsych.setProgressBar(percentComplete / 100);
             },
             choices: ["0"],
         },
     ],
     conditional_function: shouldShowProgressMessage,
 };
-
-// const procedureTrial = {
-//     timeline: [fixation, cues, trialFeedback, conditionalProgressMessage],
-//     repetitions: getRepetitions(), // toggle between debug and production mode
-// };
 
 const procedureTrial = {
     timeline: [fixation, cues_confidence, trialFeedback, conditionalProgressMessage],
@@ -246,17 +243,12 @@ const screenRating1 = {
     on_start: () => {
         document.getElementById("unload").onbeforeunload = "";
         $(document).ready(() => {
-            $("body").addClass("showCursor"); // returns cursor functionality
+            $("body").addClass("showCursor");
         });
     },
     on_finish: (data) => {
         writeCandidateKeys(data); // Your custom function
-        // Get the last trial's data and parse the 'responses' field
-        data.rating_random = jsPsych.data
-            .get()
-            .last(1)
-            .values()[0]
-            .response.rating_random.toLowerCase();
+        data.rating_random = jsPsych.data.get().last(1).values()[0].response.rating_random.toLowerCase();
         removeOutputVariables(data, "response", "question_order");
     },
 };
@@ -280,13 +272,8 @@ const screenRating2 = {
     ],
     choices: "NO_KEYS",
     on_finish: (data) => {
-        writeCandidateKeys(data); // Your custom function
-        // Get the last trial's data and parse the 'responses' field
-        data.rating_sabotage = jsPsych.data
-            .get()
-            .last(1)
-            .values()[0]
-            .response.rating_sabotage.toLowerCase();
+        writeCandidateKeys(data);
+        data.rating_sabotage = jsPsych.data.get().last(1).values()[0].response.rating_sabotage.toLowerCase();
         removeOutputVariables(data, "response", "question_order");
     },
 };

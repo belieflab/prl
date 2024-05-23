@@ -6,7 +6,7 @@
 
 // Debug Mode
 // Options: true, false
-let debug = true;
+let debug = false;
 
 // Experiment Name
 const experimentName = "Probabilistic Reversal Learning Task"; // Displayed in the title bar of the browser

@@ -83,3 +83,31 @@
     max-height: 100%;
     object-fit: cover;
 }
+
+/* Confidence bar styling */
+#trial-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#confidence-bar {
+    width: 0;
+    height: 20px;
+    background-color: green;
+    margin-top: 20px;
+    transition: width 0.5s;
+}
+
+/* Confidence bar styling */
+#trial-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#confidence-bar {
+    width: 0;
+    height: 20px;
+    background-color: green;
+    margin-top: 20px;
+    transition: width 0.5s;
+}

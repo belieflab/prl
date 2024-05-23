@@ -1,5 +1,26 @@
 "use strict";
 
+
+// Function to start the key press timer
+function startKeyPressTimer() {
+    return Date.now();
+}
+
+// Function to end the key press timer and calculate duration
+function endKeyPressTimer(startTime) {
+    return Date.now() - startTime;
+}
+
+// Function to update the confidence bar based on press duration
+function updateConfidenceBar(pressDuration) {
+    var confidenceBar = document.getElementById('confidence-bar');
+    var maxDuration = 2000; // Max duration in milliseconds for full confidence
+    var confidence = Math.min(pressDuration / maxDuration, 1);
+    confidenceBar.style.width = (confidence * 100) + '%';
+    confidenceBar.style.backgroundColor = `rgba(0, 128, 0, ${confidence})`; // Green color with varying opacity
+}
+
+
 function businessLogic() {
     let data = jsPsych.data.get().last(1).values(); // Assuming this is async
     let response = data[0].response;
