@@ -29,42 +29,36 @@ const instruction1 = {
     choices: ["0"],
 };
 
-/*define task instructions*/
 const instruction2 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[2],
     choices: ["0"],
 };
 
-/*define task instructions*/
 const instruction3 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[3],
     choices: ["1"],
 };
 
-/*define task instructions*/
 const instruction4 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[4],
     choices: ["2"],
 };
 
-/*define task instructions*/
 const instruction5 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[5],
     choices: ["3"],
 };
 
-/*define task instructions*/
 const instruction6 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[6],
     choices: ["0"],
 };
 
-/*define task instructions*/
 const instruction7 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[7],
@@ -87,9 +81,7 @@ const endPracticeInstructions = {
     choices: ["0"],
     on_load: () => {
         // Make visible progress bar to screen
-        document.getElementById(
-            "jspsych-progressbar-container"
-        ).style.visibility = "visible";
+        document.getElementById("jspsych-progressbar-container").style.visibility = "visible";
     },
 };
 
@@ -101,7 +93,7 @@ const fixation = {
     response_ends_trial: false,
 };
 
-// Function to update the confidence bar based on press duration
+/* Function to update the confidence bar based on press duration */
 function updateConfidenceBar(pressDuration) {
     var confidenceBar = document.getElementById('confidence-bar');
     if (!confidenceBar) {
@@ -115,7 +107,7 @@ function updateConfidenceBar(pressDuration) {
     console.log("Confidence bar updated:", confidenceBar.style.width);
 }
 
-/*define cues with confidence rating*/
+/* Define cues with confidence rating */
 const cues_confidence = {
     type: jsPsychHtmlKeyboardResponse,
     response_ends_trial: true,
@@ -147,12 +139,18 @@ const cues_confidence = {
         // Ensure the confidence bar is updated correctly
         setTimeout(() => {
             console.log("Attempting to update confidence bar");
-            updateConfidenceBar(data.press_duration);
-        }, 0);
+            const confidenceBar = document.getElementById('confidence-bar');
+            if (confidenceBar) {
+                updateConfidenceBar(data.press_duration);
+            } else {
+                console.error("Confidence bar element not found during on_finish.");
+            }
+        }, 100); // Delay to ensure DOM is updated
     }
 };
 
-// practice trials
+
+/* Define practice trials */
 const practiceFeedback = {
     type: jsPsychHtmlKeyboardResponse,
     response_ends_trial: false,
@@ -161,7 +159,6 @@ const practiceFeedback = {
     stimulus: () => {
         let data = jsPsych.data.get().last(1).values(); // Assuming this is async
         let response = data[0].response;
-        // console.log(response);
 
         let html;
         if (response === "1") {
@@ -175,9 +172,7 @@ const practiceFeedback = {
             html = `
                 <div class='image-container'>
                     <img class='stimuli-left' src='${stim[0]}'>
-                    <img class='stimuli-middle' src='${
-                        shuffleArray(outcome)[0]
-                    }'>
+                    <img class='stimuli-middle' src='${shuffleArray(outcome)[0]}'>
                     <img class='stimuli-right' src='${stim[2]}'>
                 </div>`;
         } else if (response === "3") {
@@ -185,34 +180,30 @@ const practiceFeedback = {
                 <div class='image-container'>
                     <img class='stimuli-left' src='${stim[0]}'>
                     <img class='stimuli-middle' src='${stim[1]}'>
-                    <img class='stimuli-right' src='${
-                        shuffleArray(outcome)[1]
-                    }'>
+                    <img class='stimuli-right' src='${shuffleArray(outcome)[1]}'>
                 </div>`;
         }
         return html;
     },
 };
 
-// main trials, with embedded probabilistic reversal learning logic
+/* Define main trials with embedded probabilistic reversal learning logic */
 const trialFeedback = {
     type: jsPsychHtmlKeyboardResponse,
     choices: ["1", "2", "3"],
-
-    // track choices on each trial
     stimulus: businessLogic, // Display the cards face down
     response_ends_trial: false,
     trial_duration: 1000,
     on_finish: feedbackLogic, // Turn the picked card face up
 };
 
-// practice and main trials with confidence bar
+/* Define practice and main trials with confidence bar */
 const practiceTrial = {
     timeline: [fixation, cues_confidence, practiceFeedback],
     repetitions: 3,
 };
 
-// Present progress report messages at every quarter (%) trial
+/* Present progress report messages at every quarter (%) trial */
 const conditionalProgressMessage = {
     timeline: [
         {
@@ -231,11 +222,13 @@ const conditionalProgressMessage = {
     conditional_function: shouldShowProgressMessage,
 };
 
+/* Define the procedure trial with confidence bar */
 const procedureTrial = {
     timeline: [fixation, cues_confidence, trialFeedback, conditionalProgressMessage],
     repetitions: getRepetitions(), // toggle between debug and production mode
 };
 
+/* Define screen rating questions */
 const screenRating1 = {
     type: jsPsychSurveyMultiChoice,
     questions: [
@@ -266,7 +259,6 @@ const screenRating1 = {
         removeOutputVariables(data, "response", "question_order");
     },
 };
-
 const screenRating2 = {
     type: jsPsychSurveyMultiChoice,
     questions: [
