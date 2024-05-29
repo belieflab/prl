@@ -6,49 +6,41 @@
 // which set do you want to use? (from 0 to 7)
 $stimuliSet = 0;
 
-$directoryDeck = 'stim/deck/' . $stimuliSet . '/'; //'stim/deck/0/';
-$directoryAvatar = 'stim/avatar/' . $stimuliSet . '/'; // 'stim/avatar/0/';
-$directoryLoss = 'stim/loss/' . $stimuliSet . '/'; // 'stim/loss/0/';
-$directoryGain = 'stim/gain/' . $stimuliSet . '/'; // 'stim/gain/0/';
-$decks = scandir($directoryDeck);
-$avatars = scandir($directoryAvatar);
-$losses = scandir($directoryLoss);
-$gains = scandir($directoryGain);
-$fileArrayDeck = [];
-$fileArrayAvatar = [];
-$fileArrayLoss = [];
-$fileArrayGain = [];
+// Function to build a directory path and list files
+function getStimPaths($baseDir, $stimuliSet) {
+    $directory = $baseDir . $stimuliSet . '/';
+    $files = scandir($directory);
+    $fileArray = [];
 
-// deck is black, blue, red
-foreach ($decks as $deck) {
-  // removes . and .. from element vector
-  if ($deck !== '.' && $deck !== '..') {
-        $fileArrayDeck[] = $directoryDeck.$deck;
-  }
+    foreach ($files as $file) {
+        if ($file !== '.' && $file !== '..') {
+            $fileArray[] = $directory . $file;
+        }
+    }
+    
+    return $fileArray;
 }
 
-foreach ($avatars as $avatar) {
-  if ($avatar !== '.' && $avatar !== '..') {
-    $fileArrayAvatar[] = $directoryAvatar.$avatar;
-  }
+// Define base directories
+$versions = [
+    'deck' => 'stim/deck/',
+    'avatar' => 'stim/avatar/',
+    'loss' => 'stim/loss/',
+    'gain' => 'stim/gain/'
+];
+
+// Array to hold all file paths
+$stimPaths = [];
+
+foreach ($versions as $key => $version) {
+    $stimPaths[$key] = getStimPaths($version, $stimuliSet);
 }
 
-foreach ($losses as $loss) {
-    if ($loss !== '.' && $loss !== '..') {
-      $fileArrayLoss[] = $directoryLoss.$loss;
-    }
-  }
-
-  foreach ($gains as $gain) {
-    if ($gain !== '.' && $gain !== '..') {
-      $fileArrayGain[] = $directoryGain.$gain;
-    }
-  } 
-
-$fileArrayDeckJSON = json_encode($fileArrayDeck);
-$fileArrayAvatarJSON = json_encode($fileArrayAvatar);
-$fileArrayLossJSON = json_encode($fileArrayLoss);
-$fileArrayGainJSON = json_encode($fileArrayGain);
+// Convert file arrays to JSON for use in JavaScript
+$fileArrayDeckJSON = json_encode($stimPaths['deck']);
+$fileArrayAvatarJSON = json_encode($stimPaths['avatar']);
+$fileArrayLossJSON = json_encode($stimPaths['loss']);
+$fileArrayGainJSON = json_encode($stimPaths['gain']);
 ?>
 
 <!-- now include all javascript global variables -->

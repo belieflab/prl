@@ -31,27 +31,26 @@ const version = "loss"; // Current version of the experiment
 let winPoints; //default 100
 let losePoints; //default -50
 
-switch(version){
-  case "deck":
-  case "avatar":
-  case "sabotage":
-    winPoints = 100;
-    losePoints = -50;
-    break;
-  case "loss":
-    winPoints = 0;
-    losePoints = -100;
-    break;
-  case "gain":
-    winPoints = 100;
-    losePoints = 0;
-    break;
+switch (version) {
+    case "deck":
+    case "avatar":
+    case "sabotage":
+        winPoints = 100;
+        losePoints = -50;
+        break;
+    case "loss":
+        winPoints = 0;
+        losePoints = -100;
+        break;
+    case "gain":
+        winPoints = 100;
+        losePoints = 0;
+        break;
 }
 
 // Contingency Switch Setting
 // Options: "easy-easy", "easy-hard" (default), "hard-easy", "hard-hard"
 const difficulty = "easy-hard"; // Default difficulty setting
-
 
 let trials;
 let blocks;
@@ -60,10 +59,9 @@ trials = 40; // trials per block
 blocks = 4; // blocks of trials per experiment
 
 if (debug) {
-  trials = 1;
-  blocks = 4;
+    trials = 1;
+    blocks = 4;
 }
-
 
 const totalTrials = trials * blocks; // total number of trials in the experiment
 
