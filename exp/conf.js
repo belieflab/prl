@@ -6,7 +6,7 @@
 
 // Debug Mode
 // Options: true, false
-let debug = true;
+let debug = false;
 
 // Experiment Name
 const experimentName = "Probabilistic Reversal Learning Task"; // Displayed in the title bar of the browser
@@ -21,7 +21,32 @@ const theme = "light"; // UI theme setting
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage"
-const version = "deck"; // Current version of the experiment
+const version = "loss"; // Current version of the experiment
+
+// Version: Loss
+// Loss amounts should be set to -100 or 0 pts
+// Version: Gain
+// Win amounts should be set to 100 or 0 pts
+// values for win and lose
+let winPoints; //default 100
+let losePoints; //default -50
+
+switch(version){
+  case "deck":
+  case "avatar":
+  case "sabotage":
+    winPoints = 100;
+    losePoints = -50;
+    break;
+  case "loss":
+    winPoints = 0;
+    losePoints = -100;
+    break;
+  case "gain":
+    winPoints = 100;
+    losePoints = 0;
+    break;
+}
 
 // Contingency Switch Setting
 // Options: "easy-easy", "easy-hard" (default), "hard-easy", "hard-hard"
