@@ -52,16 +52,8 @@ switch (version) {
 // Options: "easy-easy", "easy-hard" (default), "hard-easy", "hard-hard"
 const difficulty = "easy-hard"; // Default difficulty setting
 
-let trials;
-let blocks;
-
-trials = 40; // trials per block
-blocks = 4; // blocks of trials per experiment
-
-if (debug) {
-    trials = 1;
-    blocks = 4;
-}
+const trials = debug ? 1 : 40; // 1 trial per block if debugging, otherwise 40
+const blocks = 4; // The number of blocks remains constant
 
 const totalTrials = trials * blocks; // total number of trials in the experiment
 
@@ -81,10 +73,9 @@ const reward = "$"; // Options: "points", "$"
 
 // Note: Uncomment the desired option for each setting, and ensure only one option per setting is active.
 const adminEmail = "joshua.kenney@yale.edu";
-let feedbackLink;
 
 // Set feedback link based on workerId, PROLIFIC_PID, or participantId
 const identifier = workerId || PROLIFIC_PID || participantId;
-if (identifier !== undefined) {
-    feedbackLink = `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?${identifier}`;
-}
+const feedbackLink = identifier
+    ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?${identifier}`
+    : undefined;
