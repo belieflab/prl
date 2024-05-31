@@ -28,16 +28,10 @@ const version = "loss"; // Current version of the experiment
 // Version: Gain
 // Win amounts should be set to 100 or 0 pts
 // values for win and lose
-let winPoints; //default 100
-let losePoints; //default -50
+let winPoints = 100; // Default winning points
+let losePoints = -50; // Default losing points
 
 switch (version) {
-    case "deck":
-    case "avatar":
-    case "sabotage":
-        winPoints = 100;
-        losePoints = -50;
-        break;
     case "loss":
         winPoints = 0;
         losePoints = -100;
@@ -46,6 +40,7 @@ switch (version) {
         winPoints = 100;
         losePoints = 0;
         break;
+    // 'deck', 'avatar', 'sabotage' cases use the default values
 }
 
 // Contingency Switch Setting
