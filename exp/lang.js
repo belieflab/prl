@@ -269,6 +269,19 @@ var english11 = (score) => {
 </div>`;
 };
 
+var english11 = (score) => {
+    return `
+<div class="body-white-theme">
+    <p>Thank you!</p>
+    <p>You have successfully completed the experiment and your data has been saved.</p>
+    ${
+        src_subject_id
+            ? `<p>Your final score is ${score}.</p>`
+            : `<p>Your final score is ${score}.</p><p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
+    }
+</div>`;
+};
+
 // Aggregate the instructions of your language choice
 switch (language) {
     default:
