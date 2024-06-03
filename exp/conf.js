@@ -21,7 +21,7 @@ const theme = "light"; // UI theme setting
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage"
-const version = "loss"; // Current version of the experiment
+const version = "deck"; // Current version of the experiment
 
 // Version: Loss
 // Loss amounts should be set to -100 or 0 pts
@@ -74,3 +74,13 @@ const identifier = workerId || PROLIFIC_PID || participantId;
 const feedbackLink = identifier
     ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?${identifier}`
     : undefined;
+
+// intake variables for sites and phenotypes
+const intake = {
+    subject: {
+        minLength: 5,
+        maxLength: 5,
+    },
+    sites: ["Vanderbilt"], // sites array included in config
+    phenotypes: ["hc"], // phenotypes array included in config
+};
