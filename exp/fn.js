@@ -144,7 +144,7 @@ function feedbackLogic(data) {
     data.index = trialIterator;
     data.first_half_probabilities = phaseProbabilities[0];
     data.second_half_probabilities = phaseProbabilities[1];
-    data.deck_probabilities = String(currentProbability);
+    data.deck_probabilities = `[${String(currentProbability)}]`;
     data.streak = streak;
     data.strike = strike;
     data.response = response;

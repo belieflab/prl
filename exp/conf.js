@@ -20,8 +20,8 @@ const language = "english"; // Language used for the experiment
 const theme = "light"; // UI theme setting
 
 // Experiment Version
-// Options: "deck", "avatar", "sabotage"
-const version = "deck"; // Current version of the experiment
+// Options: "deck", "avatar", "sabotage", "gain", "loss"
+const version = "loss"; // Current version of the experiment
 
 // Version: Loss
 // Loss amounts should be set to -100 or 0 pts
@@ -34,10 +34,10 @@ let losePoints = -50; // Default losing points
 switch (version) {
     case "loss":
         winPoints = 0;
-        losePoints = -100;
+        losePoints = -50;
         break;
     case "gain":
-        winPoints = 100;
+        winPoints = 50;
         losePoints = 0;
         break;
     // 'deck', 'avatar', 'sabotage' cases use the default values
@@ -64,16 +64,35 @@ const repetitions = {
 // Reward Settings
 const bonus = 2; // Bonus amount in dollars
 const percentile = 25; // Cut-off performance percentile for receiving a bonus
-const reward = "$"; // Options: "points", "$"
+const reward = "points"; // Options: "points", "$"
+const lossStartingPoints = 8000; //Starting point value for loss version of the task. Value must be > losePoints*trials*blocks.
+const gainStartingPoints = 0; //Starting point value for gain version of the task
+const pointsPerDollar = 1000; //Rate of conversion from final point value to bonus amount. Used for Gain and Loss versions.
 
 // Note: Uncomment the desired option for each setting, and ensure only one option per setting is active.
 const adminEmail = "joshua.kenney@yale.edu";
 
 // Set feedback link based on workerId, PROLIFIC_PID, or participantId
-const identifier = workerId || PROLIFIC_PID || participantId;
-const feedbackLink = identifier
+
+let identifier = workerId || PROLIFIC_PID || participantId;
+let feedbackLink = identifier
     ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?${identifier}`
     : undefined;
+
+switch(version){
+    case "loss":
+        identifier = workerId || PROLIFIC_PID || participantId;
+        feedbackLink = identifier
+            ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc?${identifier}`
+            : undefined;
+        break;
+    case "gain":
+        identifier = workerId || PROLIFIC_PID || participantId;
+        feedbackLink = identifier
+             ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc?${identifier}`
+             : undefined;
+        break;
+}
 
 // intake variables for sites and phenotypes
 const intake = {
