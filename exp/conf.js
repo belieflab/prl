@@ -10,7 +10,6 @@ const debug = true;
 
 // Experiment Name
 const experimentName = "Probabilistic Reversal Learning Task"; // Displayed in the title bar of the browser
-const experimentAlias = "prl"; // Used in the data file name, affects data saving
 
 // Experiment Language - only works for English now
 const language = "english"; // Language used for the experiment
@@ -22,6 +21,8 @@ const theme = "light"; // UI theme setting
 // Experiment Version
 // Options: "deck", "avatar", "sabotage", "gain", "loss"
 const version = "loss"; // Current version of the experiment
+
+const experimentAlias = `prl_${version}`; // Used in the data file name, affects data saving
 
 // Version: Loss
 // Loss amounts should be set to -100 or 0 pts
@@ -79,7 +80,7 @@ let feedbackLink = identifier
     ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?${identifier}`
     : undefined;
 
-switch(version){
+switch (version) {
     case "loss":
         identifier = workerId || PROLIFIC_PID || participantId;
         feedbackLink = identifier
@@ -89,8 +90,8 @@ switch(version){
     case "gain":
         identifier = workerId || PROLIFIC_PID || participantId;
         feedbackLink = identifier
-             ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc?${identifier}`
-             : undefined;
+            ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc?${identifier}`
+            : undefined;
         break;
 }
 
