@@ -75,25 +75,28 @@ const adminEmail = "joshua.kenney@yale.edu";
 
 // Set feedback link based on workerId, PROLIFIC_PID, or participantId
 
+// Determine the identifier and its type
 let identifier = workerId || PROLIFIC_PID || participantId;
-let feedbackLink = identifier
-    ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu?${identifier}`
-    : undefined;
+let identifierType = workerId
+    ? "workerId"
+    : PROLIFIC_PID
+    ? "PROLIFIC_PID"
+    : "participantId";
 
-switch (version) {
-    case "loss":
-        identifier = workerId || PROLIFIC_PID || participantId;
-        feedbackLink = identifier
-            ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc?${identifier}`
-            : undefined;
-        break;
-    case "gain":
-        identifier = workerId || PROLIFIC_PID || participantId;
-        feedbackLink = identifier
-            ? `https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc?${identifier}`
-            : undefined;
-        break;
+function getFeedbackLink(version, id, idType) {
+    if (!id || !idType) return undefined;
+    const baseUrl = urlConfig[version] || urlConfig.default;
+    return `${baseUrl}?${idType}=${id}`;
 }
+
+// Configuration for base URLs mapped by version
+const urlConfig = {
+    default: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu",
+    loss: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc",
+    gain: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc",
+};
+
+let feedbackLink = getFeedbackLink(version, identifier, identifierType);
 
 // intake variables for sites and phenotypes
 const intake = {
