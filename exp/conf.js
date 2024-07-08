@@ -20,7 +20,7 @@ const theme = "light"; // UI theme setting
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage", "gain", "loss"
-const version = "loss"; // Current version of the experiment
+const version = "deck"; // Current version of the experiment
 
 const experimentAlias = `prl_${version}`; // Used in the data file name, affects data saving
 
