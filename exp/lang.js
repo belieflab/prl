@@ -102,28 +102,15 @@ switch (version) {
         <br /><br />" +
         Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
 
-        var english11 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            <p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>
-            <p>Your final score is ${score}.</p>
-        </div>`;
-        };
-        
-        var english11 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            ${
-                src_subject_id
-                    ? `<p>Your final score is ${score}.</p>`
-                    : `<p>Your final score is ${score}.</p><p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
-            }
-        </div>`;
-        };
+        var english11 = (score) => `
+        <p>Thank you!</p>
+        <p>You have successfully completed this task and your data has been saved.</p>
+        <p>Your final score is ${score}.</p>
+        ${
+            !src_subject_id
+                ? `<p>You will be redirected to the next part of the experiment; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
+                : ""
+        }`;
         break;
 
     case "avatar":
@@ -202,28 +189,15 @@ switch (version) {
         <p>pourriez être empêché de terminer la tâche.</p>
         <p>Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
 
-        var english11 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            <p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>
-            <p>Your final score is ${score}.</p>
-        </div>`;
-        };
-        
-        var english11 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            ${
-                src_subject_id
-                    ? `<p>Your final score is ${score}.</p>`
-                    : `<p>Your final score is ${score}.</p><p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
-            }
-        </div>`;
-        };
+        var english11 = (score) => `
+        <p>Thank you!</p>
+        <p>You have successfully completed this task and your data has been saved.</p>
+        <p>Your final score is ${score}.</p>
+        ${
+            !src_subject_id
+                ? `<p>You will be redirected to the next part of the experiment; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
+                : ""
+        }`;
         break;
 
     case "sabotage":
@@ -303,28 +277,15 @@ switch (version) {
         <p>pourriez être empêché de terminer la tâche.</p>
         <p>Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
 
-        var english11 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            <p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>
-            <p>Your final score is ${score}.</p>
-        </div>`;
-        };
-        
-        var english11 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            ${
-                src_subject_id
-                    ? `<p>Your final score is ${score}.</p>`
-                    : `<p>Your final score is ${score}.</p><p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
-            }
-        </div>`;
-        };
+        var english11 = (score) => `
+        <p>Thank you!</p>
+        <p>You have successfully completed this task and your data has been saved.</p>
+        <p>Your final score is ${score}.</p>
+        ${
+            !src_subject_id
+                ? `<p>You will be redirected to the next part of the experiment; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
+                : ""
+        }`;
         break;
 
     case "loss":
@@ -336,7 +297,9 @@ switch (version) {
 
         var english2 = `
         <p>Your points will be converted to a final bonus of $1 per every ${pointsPerDollar} points, so please do your best. </p> 
-        <p>You can earn a maximum of $${lossStartingPoints/pointsPerDollar} at the end of the game. </p> 
+        <p>You can earn a maximum of $${
+            lossStartingPoints / pointsPerDollar
+        } at the end of the game. </p> 
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english3 = `
@@ -377,7 +340,7 @@ switch (version) {
         </div>
         <p><strong>Note that each deck contains both losing and non-losing cards, but in different amounts.</strong></p>
         <p>Your job is to figure out which deck is the best deck, so that you can keep as many points as possible.</p>
-        Please press the zero (0) key to continue.`
+        Please press the zero (0) key to continue.`;
 
         var english7 = `
         <p>However, there is one final catch:</p>
@@ -405,29 +368,18 @@ switch (version) {
         pourriez être empêché de terminer la tâche.</p>
         <br /><br />" +
         Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
-        
-        var english11 = (score) => {
-            return `
+
+        var english11 = (score) => `
         <div class="body-white-theme">
             <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            <p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>
-            <p>Your final score is ${lossStartingPoints+score}.</p>
-        </div>`;
-        };
-        
-        var english11 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
+            <p>You have successfully completed this task and your data has been saved.</p>
+            <p>Your final score is ${lossStartingPoints + score}.</p>
             ${
-                src_subject_id
-                    ? `<p>Your final score is ${lossStartingPoints+score}.</p>`
-                    : `<p>Your final score is ${lossStartingPoints+score}.</p><p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
+                !src_subject_id
+                    ? `<p>You will be redirected to the next part of the experiment. If you are not redirected, please click <a href="${feedbackLink}">here</a>.</p>`
+                    : ""
             }
         </div>`;
-        };
         break;
 
     case "gain":
@@ -439,7 +391,9 @@ switch (version) {
 
         var english2 = `
         <p>Your points will be converted to a final bonus of $1 per every ${pointsPerDollar} points, so please do your best. </p> 
-        <p>You can earn a maximum of $${winPoints*blocks*trials/pointsPerDollar} at the end of the game. </p> 
+        <p>You can earn a maximum of $${
+            (winPoints * blocks * trials) / pointsPerDollar
+        } at the end of the game. </p> 
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english3 = `
@@ -509,28 +463,17 @@ switch (version) {
         <br /><br />" +
         Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
 
-        var english11 = (score) => {
-            return `
+        var english11 = (score) => `
         <div class="body-white-theme">
             <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
-            <p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>
-            <p>Your final score is ${gainStartingPoints+score}.</p>
-        </div>`;
-        };
-        
-        var english11 = (score) => {
-            return `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed the experiment and your data has been saved.</p>
+            <p>You have successfully completed this task and your data has been saved.</p>
+            <p>Your final score is ${gainStartingPoints + score}.</p>
             ${
-                src_subject_id
-                    ? `<p>Your final score is ${gainStartingPoints+score}.</p>`
-                    : `<p>Your final score is ${gainStartingPoints+score}.</p><p>You will be redirected to the Qualtrics questionnaires; If you are not redirected please click <a href="${feedbackLink}">here</a>.</p>`
+                !src_subject_id
+                    ? `<p>You will be redirected to the Qualtrics questionnaires. If you are not redirected, please click <a href="${feedbackLink}">here</a>.</p>`
+                    : ""
             }
         </div>`;
-        };
         break;
 }
 
