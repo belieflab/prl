@@ -47,9 +47,9 @@ const intake = {
 
 ### Launch the task as defined below for Online Administration (PROLIFIC, CloudResearch, MTurk, Connect)
 
-https://web-url-of-your-website.com/study-name/prl/redirect.php
+When inputing the link into the platform, please use the redirect link to grab the appropriate query string variable from the cloud platform.
 
-This will grab the appropriate query string variable from the cloud platform.
+https://web-url-of-your-website.com/study-name/prl/redirect.php
 
 ## Task description
 This task is designed to track decision-making performance under uncertainty. Here, participants engage in a task with the goal of maximizing points by selecting the most rewarding option from a set. There are two main versions of the task: a **nonsocial** version - one involving decks of cards with varying reward probabilities - and a **social** version - one involving the selection of avatars (partners) for a class project, each with different levels of reliability.
