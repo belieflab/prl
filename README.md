@@ -15,7 +15,7 @@ git clone git@github.com:belieflab/prl.git --recurse-submodules
 ### Modify `conf.js` as needed to configure the experiment settings.
 
 * Common configuration options to change are:
-````
+```
 // Debug Mode
 // Options: true, false
 const debug = true;
