@@ -55,7 +55,7 @@ To run the task:
 ### Repository General Information and Cloning
 * To clone this repository:
 ```
-git clone -c core.symlinks=true git@github.com:belieflab/prl.git --recurse-submodules
+git clone git@github.com:belieflab/prl.git --recurse-submodules
 ```
 (this will initialize the `wrap` submodule)
 
