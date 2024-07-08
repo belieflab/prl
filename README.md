@@ -1,5 +1,20 @@
 # Probabalistic Reversal Learning Task
 
+## Getting Started
+To run the task:
+1. Clone this repository to your local machine
+2. Modify `conf.js` as needed to configure the experiment settings.
+3. Launch the task as defined below 
+
+### Repository General Information and Cloning
+* To clone this repository:
+```
+git clone git@github.com:belieflab/prl.git --recurse-submodules
+```
+(this will initialize the `wrap` submodule)
+
+* When pulling changes, run `./sync.sh` to be sure to update the `wrap` submodule
+
 ## Task description
 This task is designed to track decision-making performance under uncertainty. Here, participants engage in a task with the goal of maximizing points by selecting the most rewarding option from a set. There are two main versions of the task: a **nonsocial** version - one involving decks of cards with varying reward probabilities - and a **social** version - one involving the selection of avatars (partners) for a class project, each with different levels of reliability.
 
@@ -45,21 +60,6 @@ To customize the task, adjust the parameters in `conf.js`. Key parameters includ
 * `difficulty`: Set the challenge level (e.g., "easy-easy"/"hard-hard" for uniform difficulty, or "easy-hard"/"hard-hard" for a shift in difficulty).
 * `trials`, `blocks`: Define the length and structure of the experiment.
 * `reward`: Specify the reward type (points or currency)
-
-## Getting Started
-To run the task:
-1. Clone this repository to your local machine
-2. Modify `conf.js` as needed to configure the experiment settings.
-3. Launch the task as defined below 
-
-### Repository General Information and Cloning
-* To clone this repository:
-```
-git clone git@github.com:belieflab/prl.git --recurse-submodules
-```
-(this will initialize the `wrap` submodule)
-
-* When pulling changes, run `./sync.sh` to be sure to update the `wrap` submodule
 
 ## Development Guide
 
