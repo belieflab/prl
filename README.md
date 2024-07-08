@@ -2,11 +2,8 @@
 
 ## Getting Started
 To run the task:
-1. Clone this repository to your local machine
-2. Modify `conf.js` as needed to configure the experiment settings.
-3. Launch the task as defined below 
 
-### Repository General Information and Cloning
+### Clone this repository to your web server
 * To clone this repository:
 ```
 git clone git@github.com:belieflab/prl.git --recurse-submodules
@@ -14,6 +11,45 @@ git clone git@github.com:belieflab/prl.git --recurse-submodules
 (this will initialize the `wrap` submodule)
 
 * When pulling changes, run `./sync.sh` to be sure to update the `wrap` submodule
+
+### Modify `conf.js` as needed to configure the experiment settings.
+
+* Common configuration options to change are:
+````
+// Debug Mode
+// Options: true, false
+const debug = true;
+
+// Experiment Version
+// Options: "deck", "avatar", "sabotage", "gain", "loss"
+const version = "deck"; // Current version of the experiment
+
+
+// Configuration for base URLs mapped by version
+// this will redirect the experiment to these links 
+const urlConfig = {
+    default: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu",
+    loss: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc",
+    gain: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc",
+};
+
+// intake variables for sites and phenotypes (only when running in-person experiment)
+const intake = {
+    subject: {
+        minLength: 5,
+        maxLength: 5,
+    },
+    sites: ["Vanderbilt"], // sites array included in config
+    phenotypes: ["hc"], // phenotypes array included in config
+};
+
+```
+
+### Launch the task as defined below for Online Administration (PROLIFIC, CloudResearch, MTurk, Connect)
+
+https://web-url-of-your-website.com/study-name/prl/redirect.php
+
+This will grab the appropriate query string variable from the cloud platform.
 
 ## Task description
 This task is designed to track decision-making performance under uncertainty. Here, participants engage in a task with the goal of maximizing points by selecting the most rewarding option from a set. There are two main versions of the task: a **nonsocial** version - one involving decks of cards with varying reward probabilities - and a **social** version - one involving the selection of avatars (partners) for a class project, each with different levels of reliability.
