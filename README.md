@@ -48,20 +48,24 @@ To customize the task, adjust the parameters in `conf.js`. Key parameters includ
 
 ## Getting Started
 To run the task:
-
 1. Clone this repository to your local machine
 2. Modify `conf.js` as needed to configure the experiment settings.
 3. Launch the task as defined below 
 
-## Dependencies
-PHP version 7.x or PHP 8.x
-jsPsych version 6.3 or 7.x
+### Repository General Information and Cloning
+* To clone this repository:
+```
+git clone -c core.symlinks=true git@github.com:belieflab/prl.git --recurse-submodules
+```
+(this will initialize the `wrap` submodule)
 
-## Repository General Information and Cloning
-* To clone this repository: `git clone -c core.symlinks=true git@github.com:belieflab/prl.git --recurse-submodules` (this will initialize the `wrap` submodule)
 * When pulling changes, run `./sync.sh` to be sure to update the `wrap` submodule
 
 ## Development Guide
+
+### Dependencies
+PHP version 8.x
+jsPsych version 7.x
 
 #### Install and configure XAMPP:
 1. [Download XAMPP](https://www.apachefriends.org/download.html) with PHP version 7.3.19
