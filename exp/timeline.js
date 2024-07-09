@@ -19,7 +19,7 @@ const welcome = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: instructions[0],
     choice: "NO_KEYS",
-    on_load: () => toggleDebugMode(),
+    on_load: toggleDebugMode,
 };
 
 /*define task instructions*/
