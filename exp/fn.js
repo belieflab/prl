@@ -188,9 +188,9 @@ function writeCsvRedirect() {
             console.log("Data saved successfully.", response);
             // Update the stimulus content directly via DOM manipulation
             document.querySelector("#jspsych-content").innerHTML = thankYou;
-            if (feedbackLink) {
+            if (redirectLink) {
                 setTimeout(() => {
-                    window.location.replace(feedbackLink); // redirect to qualtrics survey link after a delay of 5s
+                    window.location.replace(redirectLink); // redirect to qualtrics survey link after a delay of 5s
                 }, 5000);
             }
         })
@@ -225,7 +225,6 @@ function writeCsvRedirect() {
         });
 }
 
-("use strict");
 /**
  * Updates the width of a progress bar to reflect the confidence level in a trial.
  * Increments the bar's width up to a maximum of 100%. Once the progress bar reaches 100%,
