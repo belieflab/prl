@@ -1,6 +1,6 @@
-Certainly! I'll revise the README to make it more engaging and visually appealing. Here's an enhanced version:
+Certainly! I'll modify the README to replace the die emoji with a card emoji. Here's the updated version with a card emoji:
 
-# 🎲 Probabilistic Reversal Learning Task
+# 🃏 Probabilistic Reversal Learning Task
 
 ## 🚀 Getting Started
 
@@ -110,4 +110,4 @@ We're working on including:
 
 ---
 
-🌟 Ready to dive in? Let's explore decision-making under uncertainty! 🧠🔍
+🃏 Ready to dive in? Let's explore decision-making under uncertainty! 🧠🔍
