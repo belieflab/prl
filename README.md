@@ -1,5 +1,3 @@
-Certainly! I'll modify the README to replace the die emoji with a card emoji. Here's the updated version with a card emoji:
-
 # 🃏 Probabilistic Reversal Learning Task
 
 ## 🚀 Getting Started
