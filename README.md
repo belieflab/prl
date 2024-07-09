@@ -1,7 +1,5 @@
 # 🃏 Probabilistic Reversal Learning Task
 
-## 🎯 Task Overview
-
 Welcome to the Probabilistic Reversal Learning Task! This exciting experiment challenges participants to navigate uncertain environments and adapt their decision-making strategies. Whether you're choosing from decks of cards, selecting project partners, or navigating office politics, your goal is to maximize rewards in a constantly changing landscape.
 
 Key Features:
