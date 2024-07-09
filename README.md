@@ -24,7 +24,7 @@ When pulling changes, run:
 
 ### ⚙️ Configuration
 
-Modify `conf.js` to customize your experiment. Key options include:
+Modify `exp/conf.js` to customize your experiment. Key options include:
 
 ```javascript
 // Debug Mode
