@@ -10,7 +10,7 @@ const debug = true;
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage", "gain", "loss"
-const version = "deck";
+const version = "gain";
 
 // General Settings
 const experimentName = "Probabilistic Reversal Learning Task";
@@ -57,13 +57,6 @@ const repetitions = {
 // Contact Information
 const adminEmail = "joshua.kenney@yale.edu";
 
-// Redirect Configuration (Daisy Chaining)
-const urlConfig = {
-    default: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu",
-    loss: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc",
-    gain: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc",
-};
-
 // Intake Settings
 const intake = {
     subject: {
@@ -72,4 +65,26 @@ const intake = {
     },
     sites: ["Vanderbilt"],
     phenotypes: ["hc"],
+};
+
+// Qualtrics Survey Configuration
+
+const consentLink =
+    "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_9H0WmX4yKv4jz4a";
+
+// Redirect Configuration (Daisy Chaining)
+const urlConfig = {
+    default: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_bErtyAFIwnwDhWu",
+    gain: {
+        0: "prl_loss",
+        1: "qualtrics_surveys",
+        2: "qualtrics_debrief",
+        3: "prl_loss",
+    },
+    loss: {
+        0: "qualtrics_surveys",
+        1: "prl_gain",
+        2: "prl_gain",
+        3: "qualtrics_debrief",
+    },
 };
