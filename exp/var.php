@@ -26,7 +26,8 @@ $versions = [
     'deck' => 'stim/deck/',
     'avatar' => 'stim/avatar/',
     'loss' => 'stim/loss/',
-    'gain' => 'stim/gain/'
+    'gain' => 'stim/gain/',
+    'sabotage' => 'stim/sabotage'
 ];
 
 // Array to hold all file paths
