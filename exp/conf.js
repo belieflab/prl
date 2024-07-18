@@ -10,7 +10,11 @@ const debug = true;
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage", "gain", "loss"
-const version = "gain";
+const version = "deck";
+
+const randomization = true;
+
+let phase = 1;
 
 // General Settings
 const experimentName = "Probabilistic Reversal Learning Task";
