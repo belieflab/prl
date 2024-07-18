@@ -14,6 +14,7 @@ const version = "deck";
 
 const randomization = true;
 
+// hard coding a phase will override the randomization
 let phase = 1;
 
 // General Settings
