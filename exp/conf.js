@@ -46,7 +46,7 @@ switch (version) {
 }
 
 // Reward Settings
-const bonus = 2; // Bonus amount in dollars
+const bonus = 2.0; // Bonus amount in dollars
 const percentile = 25; // Cut-off performance percentile for receiving a bonus
 const reward = "points"; // Options: "points", "$"
 const lossStartingPoints = 8000;

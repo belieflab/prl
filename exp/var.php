@@ -9,6 +9,10 @@ $stimuliSet = 0;
 // Function to build a directory path and list files
 function getStimPaths($baseDir, $stimuliSet) {
     $directory = $baseDir . $stimuliSet . '/';
+    // echo($directory);
+    // if (!is_dir($directory)) {
+    //     return []; // Return an empty array if the directory doesn't exist
+    // }
     $files = scandir($directory);
     $fileArray = [];
 
@@ -27,7 +31,7 @@ $versions = [
     'avatar' => 'stim/avatar/',
     'loss' => 'stim/loss/',
     'gain' => 'stim/gain/',
-    'sabotage' => 'stim/sabotage'
+    'sabotage' => 'stim/sabotage/'
 ];
 
 // Array to hold all file paths
