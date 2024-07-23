@@ -1,4 +1,6 @@
 .DS_Store
 data/*
 !data/.gitkeep
+stim/
 !stim/.gitkeep
+exp/conf.js
