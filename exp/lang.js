@@ -470,7 +470,7 @@ switch (version) {
             <p>Your final score is ${gainStartingPoints + score}.</p>
             ${
                 !src_subject_id
-                    ? `<p>You will be redirected to the Qualtrics questionnaires. If you are not redirected, please click <a href="${redirectLink}">here</a>.</p>`
+                    ? `<p>You will be redirected to the next part of the experiment. If you are not redirected, please click <a href="${redirectLink}">here</a>.</p>`
                     : ""
             }
         </div>`;
