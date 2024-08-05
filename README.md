@@ -15,7 +15,7 @@ Dive in and see how well you can adapt to the ever-shifting odds!
 ### Clone the Repository
 
 ```bash
-git clone git@github.com:belieflab/prl.git --recurse-submodules
+git clone --recurse-submodules -j8 git@github.com:belieflab/prl.git && cd prl && git submodule foreach --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo main)'
 ```
 
 > 💡 This will initialize the `wrap` submodule
