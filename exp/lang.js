@@ -290,8 +290,8 @@ switch (version) {
 
     case "loss":
         var english1 = `
-        <p>In this study, you will play a card game.</p> 
-        <p>You will be given a starting pool of ${lossStartingPoints} points and your goal is to avoid losing points during the game.</p>
+        <p>You will now play several rounds of a card game.</p> 
+        <p>You will be given a starting pool of ${lossStartingPoints} points and your goal is to avoid losing points during the rounds.</p>
         <p>Please press the zero (0) key to continue.</p>`;
         console.log(version);
 
@@ -299,7 +299,7 @@ switch (version) {
         <p>Your points will be converted to a final bonus of $1 per every ${pointsPerDollar} points, so please do your best. </p> 
         <p>You can earn a maximum of $${
             lossStartingPoints / pointsPerDollar
-        } at the end of the game. </p> 
+        } at the end of these rounds. </p> 
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english3 = `
@@ -354,8 +354,8 @@ switch (version) {
 
         var english8 = `
         <p>You have now completed the practice round.</p>
-        <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
-        <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
+        <p>The next portion of the task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
+        <p>Please press the zero (0) key whenever you are ready to start the task.</p>`;
 
         var english9 = `Did you feel as though the decks were tricking you?`;
 
@@ -384,8 +384,8 @@ switch (version) {
 
     case "gain":
         var english1 = `
-        <p>In this study, you will play a card game.</p> 
-        <p>You will be given a starting pool of ${gainStartingPoints} points and your goal is to gain as many points as possible during the game.</p>
+        <p>You will now play several rounds of a card game.</p> 
+        <p>You will be given a starting pool of ${gainStartingPoints} points and your goal is to gain as many points as possible during the rounds.</p>
         <p>Please press the zero (0) key to continue.</p>`;
         console.log(version);
 
@@ -393,7 +393,7 @@ switch (version) {
         <p>Your points will be converted to a final bonus of $1 per every ${pointsPerDollar} points, so please do your best. </p> 
         <p>You can earn a maximum of $${
             (winPoints * blocks * trials) / pointsPerDollar
-        } at the end of the game. </p> 
+        } at the end of these rounds. </p> 
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english3 = `
@@ -448,9 +448,9 @@ switch (version) {
 
         var english8 = `
         <p>You have now completed the practice round.</p>
-        <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
-        <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
-
+        <p>The next portion of the task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
+        <p>Please press the zero (0) key whenever you are ready to start the task.</p>`;
+        
         var english9 = `Did you feel as though the decks were tricking you?`;
 
         var english10 = null;
