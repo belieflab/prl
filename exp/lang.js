@@ -299,7 +299,9 @@ switch (version) {
         <p>Your points will be converted to a final bonus of $1 per every ${pointsPerDollar} points, so please do your best. </p> 
         <p>You can earn a maximum of $${
             lossStartingPoints / pointsPerDollar
-        } at the end of these rounds. </p> 
+        } at the end of these rounds and $${
+            (lossStartingPoints * 2) / pointsPerDollar
+        } total across the two blocks.</p> 
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english3 = `
@@ -373,7 +375,8 @@ switch (version) {
         <div class="body-white-theme">
             <p>Thank you!</p>
             <p>You have successfully completed this task and your data has been saved.</p>
-            <p>Your final score is ${lossStartingPoints + score}.</p>
+            <p>Your final score is ${lossStartingPoints + score}. This is equivalent to a bonus of $${(lossStartingPoints + score) / pointsPerDollar}.
+            </p>
             ${
                 !src_subject_id
                     ? `<p>You will be redirected to the next part of the experiment. If you are not redirected, please click <a href="${redirectLink}">here</a>.</p>`
@@ -393,7 +396,9 @@ switch (version) {
         <p>Your points will be converted to a final bonus of $1 per every ${pointsPerDollar} points, so please do your best. </p> 
         <p>You can earn a maximum of $${
             (winPoints * blocks * trials) / pointsPerDollar
-        } at the end of these rounds. </p> 
+        } at the end of these rounds and $${
+            (winPoints * blocks * trials * 2) / pointsPerDollar
+        } across the two blocks. </p> 
         <p>Please press the zero (0) key to continue.</p>`;
 
         var english3 = `
@@ -467,7 +472,7 @@ switch (version) {
         <div class="body-white-theme">
             <p>Thank you!</p>
             <p>You have successfully completed this task and your data has been saved.</p>
-            <p>Your final score is ${gainStartingPoints + score}.</p>
+            <p>Your final score is ${gainStartingPoints + score}. This is equivalent to a bonus of $${(gainStartingPoints + score) / pointsPerDollar}.</p>
             ${
                 !src_subject_id
                     ? `<p>You will be redirected to the next part of the experiment. If you are not redirected, please click <a href="${redirectLink}">here</a>.</p>`
