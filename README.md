@@ -64,7 +64,7 @@ const intake = {
 For platforms like PROLIFIC, CloudResearch, MTurk, or Connect, use:
 
 ```
-https://web-url-of-your-website.com/study-name/prl/redirect.php
+https://web-url-of-your-website.com/study-name/prl
 ```
 
 ## 🧠 Task Description
