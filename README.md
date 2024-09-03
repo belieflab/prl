@@ -67,7 +67,7 @@ For platforms like PROLIFIC, CloudResearch, MTurk, or Connect, use:
 https://web-url-of-your-website.com/study-name/prl
 ```
 
-## 🧠 Task Description
+## 🧠 Task Versions
 
 ### 🃏 Deck Scenario
 Participants choose from three decks with varying reward probabilities. These probabilities change over time, requiring adaptive strategies.
@@ -89,6 +89,9 @@ Unforeseen changes in reward probabilities:
 - 🔀 Reversals: 
   - Performance-independent: Fixed changes
   - Performance-dependent: Variable changes based on participant choices
+
+## Task Info
+- 160 trials
 
 ## 🛠 Development Guide
 
