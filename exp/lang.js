@@ -297,7 +297,7 @@ switch (version) {
 
         var english2 = `
         <p>Your points will be converted to a final bonus of $1 per every ${pointsPerDollar} points, so please do your best. </p> 
-        <p>You can earn a maximum of $${
+        <p>You can earn a maximum bonus of $${
             lossStartingPoints / pointsPerDollar
         } at the end of these rounds and $${
             (lossStartingPoints * 2) / pointsPerDollar
@@ -371,18 +371,19 @@ switch (version) {
         <br /><br />" +
         Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
 
-        var english11 = (score) => `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed this task and your data has been saved.</p>
-            <p>Your final score is ${lossStartingPoints + score}. This is equivalent to a bonus of $${(lossStartingPoints + score) / pointsPerDollar}.
-            </p>
-            ${
-                !src_subject_id
-                    ? `<p>You will be redirected to the next part of the experiment. If you are not redirected, please click <a href="${redirectLink}">here</a>.</p>`
-                    : ""
-            }
-        </div>`;
+        var english11 = (score) => {
+            return `
+                <div class="body-white-theme">
+                    <p>Thank you!</p>
+                    <p>You have successfully completed this task and your data has been saved.</p>
+                    <p>Your final score is ${lossStartingPoints + score}. This is equivalent to a bonus of $${earnings}.</p>
+                    ${
+                        !src_subject_id
+                            ? `<p>You will be redirected to the next part of the experiment. If you are not redirected, please click <a href="${redirectLink}">here</a>.</p>`
+                            : ""
+                    }
+                </div>`;
+        };
         break;
 
     case "gain":
@@ -394,7 +395,7 @@ switch (version) {
 
         var english2 = `
         <p>Your points will be converted to a final bonus of $1 per every ${pointsPerDollar} points, so please do your best. </p> 
-        <p>You can earn a maximum of $${
+        <p>You can earn a maximum bonus of $${
             (winPoints * blocks * trials) / pointsPerDollar
         } at the end of these rounds and $${
             (winPoints * blocks * trials * 2) / pointsPerDollar
@@ -468,19 +469,25 @@ switch (version) {
         <br /><br />" +
         Veuillez appuyer sur la touche zéro (0) pour continuer.</p>`;
 
-        var english11 = (score) => `
-        <div class="body-white-theme">
-            <p>Thank you!</p>
-            <p>You have successfully completed this task and your data has been saved.</p>
-            <p>Your final score is ${gainStartingPoints + score}. This is equivalent to a bonus of $${(gainStartingPoints + score) / pointsPerDollar}.</p>
-            ${
-                !src_subject_id
-                    ? `<p>You will be redirected to the next part of the experiment. If you are not redirected, please click <a href="${redirectLink}">here</a>.</p>`
-                    : ""
-            }
-        </div>`;
+        var english11 = (score) => {
+            return `
+                <div class="body-white-theme">
+                    <p>Thank you!</p>
+                    <p>You have successfully completed this task and your data has been saved.</p>
+                    <p>Your final score is ${gainStartingPoints + score}. This is equivalent to a bonus of $${earnings}.</p>
+                    ${
+                        !src_subject_id
+                            ? `<p>You will be redirected to the next part of the experiment. If you are not redirected, please click <a href="${redirectLink}">here</a>.</p>`
+                            : ""
+                    }
+                </div>`;
+        }
         break;
 }
+
+
+
+
 
 // Aggregate the instructions of your language choice
 switch (language) {

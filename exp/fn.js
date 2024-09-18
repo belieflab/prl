@@ -173,6 +173,11 @@ function feedbackLogic(data) {
     data.reward_tally = score;
 }
 
+// Add the final earnings to the data file for loss and gain versions
+// jsPsych.data.get().addToAll({
+//     earnings: earnings
+// });
+
 function writeCsvRedirect() {
     const updatedScore =
         typeof score !== "undefined"

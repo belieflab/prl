@@ -6,11 +6,11 @@
 
 // Debug Mode
 // IMPORTANT: Set to false for production
-const debug = true;
+const debug = false;
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage", "gain", "loss"
-const version = "deck";
+const version = "loss";
 
 const counterbalance = false;
 
@@ -51,7 +51,7 @@ const percentile = 25; // Cut-off performance percentile for receiving a bonus
 const reward = "points"; // Options: "points", "$"
 const lossStartingPoints = 8000;
 const gainStartingPoints = 0;
-const pointsPerDollar = 1000;
+const pointsPerDollar = 2000;
 
 // Repetitions
 const repetitions = {

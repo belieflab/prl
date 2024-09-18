@@ -310,7 +310,23 @@ const dataSave = {
     stimulus: dataSaveAnimation(),
     choices: "NO_KEYS",
     trial_duration: 5000,
-    on_finish: writeCsvRedirect,
+    // on_finish: writeCsvRedirect,
+    on_finish: (data) => {
+        // Calculate the final rounded bonus value
+        let earnings; 
+        switch(version){
+            case "gain":
+                earnings = Math.round(((gainStartingPoints + score) / pointsPerDollar) * 100) / 100;
+                break;
+            case "loss":
+                earnings = Math.round(((lossStartingPoints + score) / pointsPerDollar) * 100) / 100;
+                break;
+            default:
+                earnings = "";
+        }
+        data.earnings = earnings;
+        writeCsvRedirect();
+    }
 };
 
 // Load and execute "exp/main.js" using jQuery's $.getScript method.
