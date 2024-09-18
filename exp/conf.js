@@ -10,7 +10,7 @@ const debug = true;
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage", "gain", "loss"
-const version = "loss";
+const version = "deck";
 
 const counterbalance = false;
 

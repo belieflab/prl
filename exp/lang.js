@@ -19,7 +19,7 @@ let instructions = [];
  * @param {array} instructions - An array of instructions specified to be translated.
  */
 
-const english0 = `
+var english0 = `
         <p>Welcome to the experiment!</p>
         <p>Press any key to begin.</p>`;
 
@@ -289,6 +289,12 @@ switch (version) {
         break;
 
     case "loss":
+        var english0 = `
+        <div style="background-color:red; padding:10px ">
+        <p style="color:white">Welcome to this part of the experiment!</p>
+        <p style="color:white">Press any key to begin.</p>
+        </div>`;
+
         var english1 = `
         <p>You will now play several rounds of a card game.</p> 
         <p>You will be given a starting pool of ${lossStartingPoints} points and your goal is to avoid losing points during the rounds.</p>
@@ -389,6 +395,12 @@ switch (version) {
         break;
 
     case "gain":
+        var english0 = `
+        <div style="background-color:green; padding:10px ">
+        <p style="color:white">Welcome to this part of the experiment!</p>
+        <p style="color:white">Press any key to begin.</p>
+        </div>`;
+
         var english1 = `
         <p>You will now play several rounds of a card game.</p> 
         <p>You will be given a starting pool of ${gainStartingPoints} points and your goal is to gain as many points as possible during the rounds.</p>
