@@ -69,6 +69,8 @@ let stimuliSet  = <?php echo $stimuliSet; ?>;
 
 let score = 0; // score accumulated throughout the experiment
 
+let earnings = 0; // earings accumulated throughout the experiment
+
 let stim; //defined as decks or avatars (refer to specific as stim[0])
 
 let phaseProbabilities = [];

@@ -6,7 +6,7 @@
 
 // Debug Mode
 // IMPORTANT: Set to false for production
-const debug = false;
+const debug = true;
 
 // Experiment Version
 // Options: "deck", "avatar", "sabotage", "gain", "loss"
