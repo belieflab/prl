@@ -312,28 +312,28 @@ const dataSave = {
     trial_duration: 5000,
     on_finish: async (data) => {
         // Calculate the final rounded bonus value
-        // let earnings;
         switch (version) {
             case "gain":
-                earnings = (
-                    (gainStartingPoints + score) /
-                    pointsPerDollar
+                earnings = parseFloat(
+                    (gainStartingPoints + score) / pointsPerDollar
                 ).toFixed(2);
                 console.log(earnings);
                 break;
             case "loss":
-                earnings = Math.round(
-                    ((lossStartingPoints + score) / pointsPerDollar).toFixed(2)
+                earnings = parseFloat(
+                    (lossStartingPoints + score) / pointsPerDollar
                 ).toFixed(2);
                 console.log(earnings);
                 break;
             default:
                 earnings = 0;
         }
-        data.earnings = earnings;
+
+        // Store earnings with dollar sign and two decimal places
+        data.total_earnings = `$${earnings}`;
 
         // Now call writeCsvRedirect with both score and earnings
-        await writeCsvRedirect(earnings);
+        await writeCsvRedirect();
     },
 };
 
