@@ -85,13 +85,9 @@ const urlConfig = {
     gain: {
         0: "https://belieflab.yale.edu/arclab/prlLoss/", // loss
         1: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_82Ll88zGoFlwIaq", // questionnaires
-        2: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc", // debrief
-        3: "https://belieflab.yale.edu/arclab/prlLoss/",
     },
     loss: {
         0: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_82Ll88zGoFlwIaq", // questionnaires
         1: "https://belieflab.yale.edu/arclab/prlGain/",
-        2: "https://belieflab.yale.edu/arclab/prlGain/",
-        3: "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_8qsU4yfds5mH6Pc", // debrief
     },
 };
