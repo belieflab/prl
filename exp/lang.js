@@ -25,7 +25,7 @@ var english0 = `
 
 var englishTouch0 = `
         <p>Welcome to the experiment!</p>
-        <p>Please tap any key to begin.</p>`;
+        <p>Please tap the screen to begin.</p>`;
 
 switch (version) {
     case "deck":
@@ -35,7 +35,7 @@ switch (version) {
 
         var englishTouch1 = `
         <p>In this study, you will play a card game, and your goal is to win as many points as you can.</p>
-        <p>Please tap any key to continue.</p>`;
+        <p>Please tap the screen to continue.</p>`;
 
         var english2 = `
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra ${
@@ -47,7 +47,7 @@ switch (version) {
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra ${
             reward === "$" ? "$" + bonus : bonus + " points"
         } bonus, so please do your best!</p>
-        <p>Please tap any key to continue.</p>`;
+        <p>Please tap the screen to continue.</p>`;
 
         var english3 = `
         <p>The card game is very simple: on each turn you will choose one of the three decks below, so you can draw a card from it.</p>
