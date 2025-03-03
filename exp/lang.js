@@ -23,7 +23,7 @@ var english0 = `
         <p>Welcome to the experiment!</p>
         <p>Press any key to begin.</p>`;
 
-var englishtouch0 = `
+var englishTouch0 = `
         <p>Welcome to the experiment!</p>
         <p>Please tap any key to begin.</p>`;
 
@@ -33,7 +33,7 @@ switch (version) {
         <p>In this study, you will play a card game, and your goal is to win as many points as you can.</p>
         <p>Please press the zero (0) key to continue.</p>`;
 
-        var englishtouch1 = `
+        var englishTouch1 = `
         <p>In this study, you will play a card game, and your goal is to win as many points as you can.</p>
         <p>Please tap any key to continue.</p>`;
 
@@ -43,7 +43,7 @@ switch (version) {
         } bonus, so please do your best!</p>
         <p>Please press the zero (0) key to continue.</p>`;
 
-        var englishtouch2 = `
+        var englishTouch2 = `
         <p>If your score lands you in the top ${percentile}% of participants, you will get an extra ${
             reward === "$" ? "$" + bonus : bonus + " points"
         } bonus, so please do your best!</p>
@@ -60,7 +60,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var englishtouch3 = `
+        var englishTouch3 = `
         <p>The card game is very simple: on each turn you will choose one of the three decks below, so you can draw a card from it.</p>
         <p>You can choose a deck by tapping the decks on the screen </p>
         <p>Let's practice choosing decks.</p>
@@ -79,7 +79,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var englishtouch4 = `
+        var englishTouch4 = `
         <p>Great! Now tap the <strong>middle</strong> deck.</p>
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -95,7 +95,7 @@ switch (version) {
             <img class='stimuli-right' src='${stim[2]}'>
         </div>`;
 
-        var englishtouch5 = `
+        var englishTouch5 = `
         <p>Excellent! Now tap the <strong>right</strong> deck.</p>
         <div class='image-container'>
             <img class='stimuli-left' src='${stim[0]}'>
@@ -116,7 +116,7 @@ switch (version) {
         <p>Your job is to figure out which deck is the best deck, so that you can get as many points as possible.</p>
         Please press the zero (0) key to continue.`;
 
-        var englishtouch6 = `
+        var englishTouch6 = `
         <p>Good job! You have successfully practiced selecting decks.</p>
         <p>After you select a deck, the top card will turn over.</p>
         <p>This card can either win you an additional 100 points ('winning' cards) or take away 50 points ('losing' cards).</p>
@@ -139,7 +139,7 @@ switch (version) {
         <br /><br />
         Please press the zero (0) key to start the practice round.`;
 
-        var englishtouch7 = `
+        var englishTouch7 = `
         <p>However, there is one final catch:</p>
         <p><b>There may be times when the best deck will change!</b></p>
         <p>If you think the best deck has changed from what it was before, then try to find out the new best deck.</p>
@@ -154,7 +154,7 @@ switch (version) {
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please press the zero (0) key whenever you are ready to start the main task.</p>`;
 
-        var englishtouch8 = `
+        var englishTouch8 = `
         <p>You have now completed the practice round.</p>
         <p>The main task will take approximately another 10 minutes, with longer individual rounds than the practice.</p>
         <p>Please tap the screen whenever you are ready to start the main task.</p>`;
@@ -572,38 +572,42 @@ switch (version) {
 
 // Aggregate the instructions of your language choice
 switch (language) {
-    default:
-        instructions = [
-            english0,
-            english1,
-            english2,
-            english3,
-            english4,
-            english5,
-            english6,
-            english7,
-            english8,
-            english9,
-            english10,
-            (score, earnings) => english11(score, earnings), // Store it as a function that accepts score
-        ];
+    case "english":
+        switch(enableTouch){
+            case false:
+                instructions = [
+                    english0,
+                    english1,
+                    english2,
+                    english3,
+                    english4,
+                    english5,
+                    english6,
+                    english7,
+                    english8,
+                    english9,
+                    english10,
+                    (score, earnings) => english11(score, earnings), // Store it as a function that accepts score
+                ];
+                break;
+            case true:
+                instructions = [
+                    englishTouch0,
+                    englishTouch1,
+                    englishTouch2,
+                    englishTouch3,
+                    englishTouch4,
+                    englishTouch5,
+                    englishTouch6,
+                    englishTouch7,
+                    englishTouch8,
+                    english9,
+                    english10,
+                    (score, earnings) => english11(score, earnings), // Store it as a function that accepts score
+                ];
+                break;
+        }
         break;
-    case "english-touch":
-            instructions = [
-                englishtouch0,
-                englishtouch1,
-                englishtouch2,
-                englishtouch3,
-                englishtouch4,
-                englishtouch5,
-                englishtouch6,
-                englishtouch7,
-                englishtouch8,
-                english9,
-                english10,
-                (score, earnings) => english11(score, earnings), // Store it as a function that accepts score
-            ];
-            break;
     // Task 4: Please add the case for both french and german
     case "french":
         instructions = [french1];

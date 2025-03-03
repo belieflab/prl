@@ -8,6 +8,9 @@
 // IMPORTANT: Set to false for production
 const debug = false;
 
+// enable touch screen compatibility and adjusts instruction for touch
+const enableTouch = true;
+
 // Experiment Version
 // Options: "deck", "avatar", "sabotage", "gain", "loss"
 const version = "deck";
@@ -20,7 +23,7 @@ let phase = undefined;
 // General Settings
 const experimentName = "Probabilistic Reversal Learning Task";
 const experimentAlias = `prl_${version}`;
-const language = "english-touch";
+const language = "english";
 const theme = "light";
 
 // Trial Settings
