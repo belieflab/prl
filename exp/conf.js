@@ -68,11 +68,15 @@ const adminEmail = undefined;
 // Intake Settings
 const intake = {
     subject: {
-        minLength: 5,
-        maxLength: 5,
+        minLength: 7,
+        maxLength: 7,
+        prefix: "VIP",
     },
-    sites: ["Vanderbilt"],
-    phenotypes: ["hc"],
+    sites: ["Vanderbilt"], // Add your sites here
+    phenotypes: ["sz"], // Add your phenotypes here
+    visits: [1, 3], // Define which visits are allowed (maps to stimulus sets 0, 1)
+    weeks: [], // Define which weeks are allowed if using weeks instead of visits
+    nih: false, // Set to true if this is an NIH study requiring GUID
 };
 
 // Qualtrics Survey Configuration
