@@ -15,7 +15,9 @@ Dive in and see how well you can adapt to the ever-shifting odds!
 ### Clone the Repository
 
 ```bash
-git clone --recurse-submodules -j4 git@github.com:belieflab/prl.git && cd prl && git submodule foreach --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo main)' && git update-index --assume-unchanged exp/conf.js
+git clone --recurse-submodules -j4 git@github.com:belieflab/prl.git && cd prl &&
+git submodule foreach --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo main)' &&
+git update-index --assume-unchanged exp/conf.js
 ```
 
 > 💡 This will initialize the `wrap` submodule
@@ -56,6 +58,7 @@ const intake = {
     },
     sites: ["Vanderbilt"],
     phenotypes: ["hc"],
+    visits: [1,2]
 };
 ```
 
