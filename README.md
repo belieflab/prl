@@ -58,6 +58,7 @@ const intake = {
     },
     sites: ["Vanderbilt"],
     phenotypes: ["hc"],
+    visits: [1,2]
 };
 ```
 
