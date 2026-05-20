@@ -1,0 +1,11 @@
+{
+  "name": "prl",
+  "private": true,
+  "scripts": {
+    "dev": "jspsych-wrap",
+    "dev:port": "jspsych-wrap --port=8080"
+  },
+  "dependencies": {
+    "jspsych-wrap": "file:../../../../Users/Joshua/jspsych-wrap"
+  }
+}
